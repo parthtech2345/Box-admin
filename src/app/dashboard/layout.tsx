@@ -66,8 +66,10 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+
+  // Dropdown is ONLY open if the user is currently on that section
   const [homeDropdownOpen, setHomeDropdownOpen] = useState(
-    () => !pathname?.includes("/dashboard/about-sections")
+    () => Boolean(pathname?.includes("/dashboard/home-sections"))
   );
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/about-sections"))
@@ -75,15 +77,10 @@ export default function DashboardLayout({
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  // Automatically keep the active section's dropdown open and collapse the other
+  // Sync dropdown states strictly with the active route
   useEffect(() => {
-    if (pathname?.includes("/dashboard/about-sections")) {
-      setAboutDropdownOpen(true);
-      setHomeDropdownOpen(false);
-    } else if (pathname?.includes("/dashboard/home-sections")) {
-      setHomeDropdownOpen(true);
-      setAboutDropdownOpen(false);
-    }
+    setHomeDropdownOpen(Boolean(pathname?.includes("/dashboard/home-sections")));
+    setAboutDropdownOpen(Boolean(pathname?.includes("/dashboard/about-sections")));
   }, [pathname]);
 
   const handleLogout = async () => {
