@@ -21,6 +21,11 @@ import {
   Play,
   Pause,
   Video,
+  Factory,
+  Printer,
+  Scissors,
+  Package,
+  ShieldCheck,
 } from "lucide-react";
 import MediaUploader from "@/components/MediaUploader";
 import { HOME_SECTIONS_LIST, DEFAULT_HOME_DATA } from "@/lib/defaultHomeData";
@@ -43,6 +48,7 @@ export default function SectionEditorPage() {
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [heroPlaying, setHeroPlaying] = useState(false);
+  const [activeProcessTab, setActiveProcessTab] = useState<number | null>(null);
 
   // Auto-play interactive 80-frame hero preview when enabled
   useEffect(() => {
@@ -129,6 +135,8 @@ export default function SectionEditorPage() {
 
   const isHero = sectionId === "hero";
   const isAboutUs = sectionId === "about-us";
+  const isCustomPackaging = sectionId === "custom-packaging";
+  const isManufacturingProcess = sectionId === "manufacturing-process";
 
   return (
     <div className="space-y-6 pb-16">
@@ -999,6 +1007,851 @@ export default function SectionEditorPage() {
                           placeholder="Dedicated manufacturing journey"
                           className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#687378] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
                         />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ) : isCustomPackaging ? (
+        /* --- CUSTOM PACKAGING DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Main Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Section Presentation
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Section Header & Headings
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="CUSTOM PACKAGING SOLUTIONS"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="Packaging Designed Around Your Needs."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || data.description || ""}
+                  onChange={(e) =>
+                    setData({ ...data, subtitle: e.target.value, description: e.target.value })
+                  }
+                  placeholder="Every product has different packaging requirements. Tell us what you need, and we'll help create customized corrugated packaging solutions that fit your product, dimensions and business requirements."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Precision Kraft Engineering Concept & Process Steps */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Process & Concept
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Precision Kraft Engineering Concept & Steps
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Concept Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.conceptTitle || ""}
+                  onChange={(e) => setData({ ...data, conceptTitle: e.target.value })}
+                  placeholder="Precision Kraft Engineering from Concept to Prototype"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Concept Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.conceptDesc || ""}
+                  onChange={(e) => setData({ ...data, conceptDesc: e.target.value })}
+                  placeholder="Whether shipping fragile automotive electronics, high-volume retail goods..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Process Steps List with Add Step Button */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between pb-1">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                    From Your Idea to Your Packaging Steps
+                  </label>
+                  <p className="text-[11px] text-[#62574D]">Progressive development steps shown in the concept box.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const current = data.processSteps || [
+                      { num: "01", title: "Share Your Requirements", desc: "Tell us about your product, dimensions and packaging needs." },
+                      { num: "02", title: "Discuss Your Design", desc: "Explore suitable box structures, board strength and printing options." },
+                      { num: "03", title: "Get Your Custom Solution", desc: "Our team reviews your requirements and works towards a suitable packaging solution." },
+                    ];
+                    const nextNum = (current.length + 1).toString().padStart(2, "0");
+                    setData({
+                      ...data,
+                      processSteps: [
+                        ...current,
+                        {
+                          num: nextNum,
+                          title: `Step ${current.length + 1}`,
+                          desc: "Enter packaging process step details.",
+                        },
+                      ],
+                    });
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold rounded-lg transition-colors shadow-xs cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Step</span>
+                </button>
+              </div>
+
+              {(
+                data.processSteps || [
+                  { num: "01", title: "Share Your Requirements", desc: "Tell us about your product, dimensions and packaging needs." },
+                  { num: "02", title: "Discuss Your Design", desc: "Explore suitable box structures, board strength and printing options." },
+                  { num: "03", title: "Get Your Custom Solution", desc: "Our team reviews your requirements and works towards a suitable packaging solution." },
+                ]
+              ).map((step: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-xl border border-[#E4DED3] bg-[#FAF9F5] space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-7 h-7 rounded-full bg-[#E97835] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                        {step.num || `0${idx + 1}`}
+                      </span>
+                      <span className="text-xs font-bold text-[#202A2E]">Step {idx + 1}</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const current = [
+                          ...(data.processSteps || [
+                            { num: "01", title: "Share Your Requirements", desc: "Tell us about your product, dimensions and packaging needs." },
+                            { num: "02", title: "Discuss Your Design", desc: "Explore suitable box structures, board strength and printing options." },
+                            { num: "03", title: "Get Your Custom Solution", desc: "Our team reviews your requirements and works towards a suitable packaging solution." },
+                          ]),
+                        ];
+                        const updated = current
+                          .filter((_, i) => i !== idx)
+                          .map((s, newIdx) => ({
+                            ...s,
+                            num: (newIdx + 1).toString().padStart(2, "0"),
+                          }));
+                        setData({ ...data, processSteps: updated });
+                      }}
+                      className="p-1.5 text-[#62574D] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                      title="Delete Step"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                        Step Title
+                      </label>
+                      <input
+                        type="text"
+                        value={step.title || ""}
+                        onChange={(e) => {
+                          const steps = [
+                            ...(data.processSteps || [
+                              { num: "01", title: "Share Your Requirements", desc: "Tell us about your product, dimensions and packaging needs." },
+                              { num: "02", title: "Discuss Your Design", desc: "Explore suitable box structures, board strength and printing options." },
+                              { num: "03", title: "Get Your Custom Solution", desc: "Our team reviews your requirements and works towards a suitable packaging solution." },
+                            ]),
+                          ];
+                          steps[idx] = { ...steps[idx], title: e.target.value };
+                          setData({ ...data, processSteps: steps });
+                        }}
+                        className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                        Step Description
+                      </label>
+                      <input
+                        type="text"
+                        value={step.desc || ""}
+                        onChange={(e) => {
+                          const steps = [
+                            ...(data.processSteps || [
+                              { num: "01", title: "Share Your Requirements", desc: "Tell us about your product, dimensions and packaging needs." },
+                              { num: "02", title: "Discuss Your Design", desc: "Explore suitable box structures, board strength and printing options." },
+                              { num: "03", title: "Get Your Custom Solution", desc: "Our team reviews your requirements and works towards a suitable packaging solution." },
+                            ]),
+                          ];
+                          steps[idx] = { ...steps[idx], desc: e.target.value };
+                          setData({ ...data, processSteps: steps });
+                        }}
+                        className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Card 3: Packaging Capabilities Cards with Add Capability Button */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between pb-1">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Packaging Capabilities
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                  Core Capability Feature Cards
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  const current = data.capabilities || [
+                    { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                    { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                    { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                    { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                  ];
+                  setData({
+                    ...data,
+                    capabilities: [
+                      ...current,
+                      {
+                        id: `cap-${Date.now()}`,
+                        title: "New Capability",
+                        desc: "Details about this packaging capability or specification option.",
+                        icon: "Box",
+                      },
+                    ],
+                  });
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold rounded-lg transition-colors shadow-xs cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Capability</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(
+                data.capabilities || [
+                  { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                  { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                  { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                  { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                ]
+              ).map((cap: any, idx: number) => (
+                <div
+                  key={cap.id || idx}
+                  className="p-4 rounded-xl border border-[#E4DED3] bg-[#FAF9F5] space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono font-bold text-[#E97835] bg-[#E97835]/15 px-2 py-0.5 rounded">
+                        Capability #{idx + 1}
+                      </span>
+                      <span className="text-xs font-bold text-[#202A2E]">{cap.title}</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const current = [
+                          ...(data.capabilities || [
+                            { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                            { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                            { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                            { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                          ]),
+                        ];
+                        const updated = current.filter((_, i) => i !== idx);
+                        setData({ ...data, capabilities: updated });
+                      }}
+                      className="p-1.5 text-[#62574D] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                      title="Delete Capability"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <div className="sm:col-span-2">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          value={cap.title || ""}
+                          onChange={(e) => {
+                            const list = [
+                              ...(data.capabilities || [
+                                { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                                { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                                { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                                { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                              ]),
+                            ];
+                            list[idx] = { ...list[idx], title: e.target.value };
+                            setData({ ...data, capabilities: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Icon
+                        </label>
+                        <select
+                          value={cap.icon || "Box"}
+                          onChange={(e) => {
+                            const list = [
+                              ...(data.capabilities || [
+                                { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                                { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                                { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                                { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                              ]),
+                            ];
+                            list[idx] = { ...list[idx], icon: e.target.value };
+                            setData({ ...data, capabilities: list });
+                          }}
+                          className="w-full px-2.5 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        >
+                          <option value="Ruler">Ruler</option>
+                          <option value="Box">Box</option>
+                          <option value="Layers">Layers</option>
+                          <option value="Printer">Printer</option>
+                          <option value="ShieldCheck">Shield</option>
+                          <option value="CheckCircle2">Checkmark</option>
+                          <option value="Sparkles">Sparkles</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                        Description
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={cap.desc || cap.description || ""}
+                        onChange={(e) => {
+                          const list = [
+                            ...(data.capabilities || [
+                              { id: "cap-1", title: "Custom Dimensions", desc: "Box sizes designed around your product measurements.", icon: "Ruler" },
+                              { id: "cap-2", title: "Box Styles", desc: "Different structural designs to suit your packaging requirements.", icon: "Box" },
+                              { id: "cap-3", title: "Corrugated Strength", desc: "Choose suitable board construction for your packaging needs.", icon: "Layers" },
+                              { id: "cap-4", title: "Custom Printing", desc: "Add your branding and product information through customized printing.", icon: "Printer" },
+                            ]),
+                          ];
+                          list[idx] = { ...list[idx], desc: e.target.value, description: e.target.value };
+                          setData({ ...data, capabilities: list });
+                        }}
+                        className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Card 4: Fast 24-Hour Design Turnaround CTA Banner */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Bottom Action Card
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Fast 24-Hour Turnaround Inquiry CTA
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaBadge || ""}
+                  onChange={(e) => setData({ ...data, ctaBadge: e.target.value })}
+                  placeholder="FAST 24-HOUR DESIGN TURNAROUND"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Main Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaTitle || ""}
+                  onChange={(e) => setData({ ...data, ctaTitle: e.target.value })}
+                  placeholder="Have a Packaging Requirement?"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Description
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaDesc || ""}
+                  onChange={(e) => setData({ ...data, ctaDesc: e.target.value })}
+                  placeholder="Share your idea with us. Let's discuss the right corrugated packaging solution for your business."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Button Text
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaButtonText || ""}
+                  onChange={(e) => setData({ ...data, ctaButtonText: e.target.value })}
+                  placeholder="Request Custom Packaging"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Button Link
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaButtonLink || ""}
+                  onChange={(e) => setData({ ...data, ctaButtonLink: e.target.value })}
+                  placeholder="#quote"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : isManufacturingProcess ? (
+        /* --- MANUFACTURING PROCESS DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Main Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Section Presentation
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Section Header & Headings
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="OUR MANUFACTURING PROCESS"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="From Raw Material to Ready-to-Ship Packaging."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || data.description || ""}
+                  onChange={(e) =>
+                    setData({ ...data, subtitle: e.target.value, description: e.target.value })
+                  }
+                  placeholder="Every corrugated box goes through a carefully coordinated manufacturing process. From selecting quality raw materials to final inspection, each stage focuses on strength, precision and consistency."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: 6 Production Stages Workflow */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E4DED3] pb-4">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Production Stages Workflow
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                  {(data.stages || []).length} Manufacturing Stages
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Manage stage titles, factory machinery photos, and manufacturing & quality engineering standards.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const current = data.stages || [];
+                  const nextNum = (current.length + 1).toString().padStart(2, "0");
+                  const newStage = {
+                    id: `stage-${nextNum}`,
+                    number: nextNum,
+                    title: `Stage ${current.length + 1}`,
+                    description: "Describe the machinery, process or operations in this manufacturing phase.",
+                    visualLabel: "Production Line Specification",
+                    icon: "Factory",
+                    mediaType: "image",
+                    image: "/home/manufacturing-process/raw-material-selection.png",
+                    technicalSpecs: [
+                      "Quality specification standard 1",
+                      "Operational testing parameter 2",
+                      "Precision compliance standard 3",
+                    ],
+                  };
+                  setData({ ...data, stages: [...current, newStage] });
+                  setActiveProcessTab(current.length);
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer self-start sm:self-auto"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Stage</span>
+              </button>
+            </div>
+
+            {/* Quick Stage Filter / Tab Navigator */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              <button
+                type="button"
+                onClick={() => setActiveProcessTab(null)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  activeProcessTab === null
+                    ? "bg-[#202A2E] text-white shadow-xs"
+                    : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                }`}
+              >
+                Show All Stages ({(data.stages || []).length})
+              </button>
+
+              {(data.stages || []).map((stg: any, sIdx: number) => (
+                <button
+                  key={stg.id || sIdx}
+                  type="button"
+                  onClick={() => setActiveProcessTab(sIdx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                    activeProcessTab === sIdx
+                      ? "bg-[#E97835] text-white shadow-xs"
+                      : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                  }`}
+                >
+                  <span className="font-mono">{stg.number || `0${sIdx + 1}`}</span>
+                  <span className="truncate max-w-[140px]">{stg.title || `Stage ${sIdx + 1}`}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Stages List */}
+            <div className="space-y-6">
+              {(data.stages || []).map((stage: any, sIdx: number) => {
+                if (activeProcessTab !== null && activeProcessTab !== sIdx) return null;
+
+                const specs = Array.isArray(stage.technicalSpecs) ? stage.technicalSpecs : [];
+
+                return (
+                  <div
+                    key={stage.id || sIdx}
+                    className="p-5 sm:p-6 rounded-2xl border border-[#E4DED3] bg-[#FAF9F5] space-y-5 relative group shadow-2xs"
+                  >
+                    {/* Header Row */}
+                    <div className="flex items-center justify-between pb-3 border-b border-[#E4DED3]">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-full bg-[#E97835] text-white text-xs font-bold flex items-center justify-center shrink-0 shadow-xs">
+                          {stage.number || `0${sIdx + 1}`}
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-mono font-bold text-[#E97835] uppercase">
+                              STAGE {stage.number || `0${sIdx + 1}`} OF{" "}
+                              {String((data.stages || []).length).padStart(2, "0")}
+                            </span>
+                            {stage.visualLabel && (
+                              <span className="text-[10px] font-semibold text-[#62574D] bg-[#E4DED3]/50 px-2 py-0.5 rounded">
+                                {stage.visualLabel}
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="font-heading font-bold text-base text-[#202A2E]">
+                            {stage.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (
+                            confirm(
+                              `Remove Stage ${stage.number || sIdx + 1} ("${stage.title}")?`
+                            )
+                          ) {
+                            const updated = (data.stages || []).filter(
+                              (_: any, i: number) => i !== sIdx
+                            );
+                            setData({ ...data, stages: updated });
+                            if (activeProcessTab === sIdx) setActiveProcessTab(null);
+                          }
+                        }}
+                        className="p-2 text-[#62574D] hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                        title="Remove Stage"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Stage Fields Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Stage Number (e.g. 01)
+                        </label>
+                        <input
+                          type="text"
+                          value={stage.number || ""}
+                          onChange={(e) => {
+                            const stages = [...(data.stages || [])];
+                            stages[sIdx] = { ...stages[sIdx], number: e.target.value };
+                            setData({ ...data, stages });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Stage Title
+                        </label>
+                        <input
+                          type="text"
+                          value={stage.title || ""}
+                          onChange={(e) => {
+                            const stages = [...(data.stages || [])];
+                            stages[sIdx] = { ...stages[sIdx], title: e.target.value };
+                            setData({ ...data, stages });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Stage Timeline Icon
+                        </label>
+                        <select
+                          value={stage.icon || "Layers"}
+                          onChange={(e) => {
+                            const stages = [...(data.stages || [])];
+                            stages[sIdx] = { ...stages[sIdx], icon: e.target.value };
+                            setData({ ...data, stages });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        >
+                          <option value="Layers">Layers (Stage 01 Raw Material)</option>
+                          <option value="Factory">Factory (Stage 02 Corrugation)</option>
+                          <option value="Printer">Printer (Stage 03 Printing)</option>
+                          <option value="Scissors">Scissors (Stage 04 Die-Cutting)</option>
+                          <option value="Package">Package (Stage 05 Folding & Assembly)</option>
+                          <option value="ShieldCheck">ShieldCheck (Stage 06 Quality QA)</option>
+                        </select>
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Line Sub-headline / Visual Label (e.g. Continuous Corrugation Line)
+                        </label>
+                        <input
+                          type="text"
+                          value={stage.visualLabel || ""}
+                          onChange={(e) => {
+                            const stages = [...(data.stages || [])];
+                            stages[sIdx] = { ...stages[sIdx], visualLabel: e.target.value };
+                            setData({ ...data, stages });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Stage Description
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={stage.description || ""}
+                          onChange={(e) => {
+                            const stages = [...(data.stages || [])];
+                            stages[sIdx] = { ...stages[sIdx], description: e.target.value };
+                            setData({ ...data, stages });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Stage Photo Uploader */}
+                    <div className="pt-2 border-t border-[#E4DED3]">
+                      <MediaUploader
+                        label={`Stage ${stage.number || sIdx + 1} Production Photo`}
+                        value={stage.image || ""}
+                        mediaType={stage.mediaType || "image"}
+                        allowedTypes={["image", "video", "gif"]}
+                        helperText="High-resolution factory photo illustrating this specific manufacturing phase."
+                        onChange={(url, detectedType) => {
+                          const stages = [...(data.stages || [])];
+                          stages[sIdx] = { ...stages[sIdx], image: url, mediaType: detectedType };
+                          setData({ ...data, stages });
+                        }}
+                      />
+                    </div>
+
+                    {/* Manufacturing & Quality Standards (Bullet points) */}
+                    <div className="pt-2 border-t border-[#E4DED3] space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                            Manufacturing & Quality Standards (Checklist)
+                          </label>
+                          <p className="text-[11px] text-[#62574D]">
+                            Engineering parameters, certifications, and quality control bullet points.
+                          </p>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const stages = [...(data.stages || [])];
+                            const currentSpecs = Array.isArray(stages[sIdx].technicalSpecs)
+                              ? stages[sIdx].technicalSpecs
+                              : [];
+                            stages[sIdx] = {
+                              ...stages[sIdx],
+                              technicalSpecs: [...currentSpecs, "New quality specification standard"],
+                            };
+                            setData({ ...data, stages });
+                          }}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-[#202A2E] text-[11px] font-bold rounded-lg transition-colors cursor-pointer"
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add Standard</span>
+                        </button>
+                      </div>
+
+                      <div className="space-y-2">
+                        {specs.map((spec: string, specIdx: number) => (
+                          <div key={specIdx} className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full bg-[#E97835]/15 text-[#E97835] flex items-center justify-center shrink-0">
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                            </span>
+                            <input
+                              type="text"
+                              value={spec}
+                              onChange={(e) => {
+                                const stages = [...(data.stages || [])];
+                                const currentSpecs = [...(stages[sIdx].technicalSpecs || [])];
+                                currentSpecs[specIdx] = e.target.value;
+                                stages[sIdx] = { ...stages[sIdx], technicalSpecs: currentSpecs };
+                                setData({ ...data, stages });
+                              }}
+                              className="flex-1 px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const stages = [...(data.stages || [])];
+                                const currentSpecs = (stages[sIdx].technicalSpecs || []).filter(
+                                  (_: any, i: number) => i !== specIdx
+                                );
+                                stages[sIdx] = { ...stages[sIdx], technicalSpecs: currentSpecs };
+                                setData({ ...data, stages });
+                              }}
+                              className="p-1 text-[#62574D] hover:text-red-500 rounded transition-colors cursor-pointer"
+                              title="Delete Standard"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

@@ -164,48 +164,80 @@
   "custom-packaging": {
     "sectionId": "custom-packaging",
     "sectionName": "Custom Packaging Solutions",
-    "badge": "CUSTOM SOLUTIONS",
-    "title": "Custom Box Configurator & Prototyping",
-    "subtitle": "Tailored to your exact dimensional, flute, and branding specifications with fast turnaround sampling.",
-    "mediaType": "image",
-    "mediaUrl": "/home/custom-packaging/box-open.png",
-    "steps": [
+    "badge": "CUSTOM PACKAGING SOLUTIONS",
+    "title": "Packaging Designed Around Your Needs.",
+    "subtitle": "Every product has different packaging requirements. Tell us what you need, and we'll help create customized corrugated packaging solutions that fit your product, dimensions and business requirements.",
+    "description": "Every product has different packaging requirements. Tell us what you need, and we'll help create customized corrugated packaging solutions that fit your product, dimensions and business requirements.",
+    "conceptTitle": "Precision Kraft Engineering from Concept to Prototype",
+    "conceptDesc": "Whether shipping fragile automotive electronics, high-volume retail goods, or export produce, our engineering team designs structural dielines and fluting profiles matched to your exact payload weight and handling demands.",
+    "processSteps": [
       {
-        "step": "01",
-        "title": "Size & Dimensions",
-        "description": "Specify internal length, width, and depth for exact fitment."
+        "num": "01",
+        "title": "Share Your Requirements",
+        "desc": "Tell us about your product, dimensions and packaging needs."
       },
       {
-        "step": "02",
-        "title": "Board & Flute Selection",
-        "description": "Choose 3-ply, 5-ply, or 7-ply with single or double fluting."
+        "num": "02",
+        "title": "Discuss Your Design",
+        "desc": "Explore suitable box structures, board strength and printing options."
       },
       {
-        "step": "03",
-        "title": "Branding & Print",
-        "description": "Flexographic multi-color printing, custom logos, and barcodes."
-      },
-      {
-        "step": "04",
-        "title": "Prototype & Dispatch",
-        "description": "Rapid digital CAD sample approval before batch production."
+        "num": "03",
+        "title": "Get Your Custom Solution",
+        "desc": "Our team reviews your requirements and works towards a suitable packaging solution."
       }
     ],
-    "updatedAt": "2026-11-26T03:05:45.921Z"
+    "capabilities": [
+      {
+        "id": "cap-1",
+        "title": "Custom Dimensions",
+        "desc": "Box sizes designed around your product measurements.",
+        "icon": "Ruler",
+        "detail": "Exact internal L × W × H precision in mm"
+      },
+      {
+        "id": "cap-2",
+        "title": "Box Styles",
+        "desc": "Different structural designs to suit your packaging requirements.",
+        "icon": "Box",
+        "detail": "RSC, Die-cut mailers, Tuck-in, Tray & Lid"
+      },
+      {
+        "id": "cap-3",
+        "title": "Corrugated Strength",
+        "desc": "Choose suitable board construction for your packaging needs.",
+        "icon": "Layers",
+        "detail": "3-ply, 5-ply, 7-ply & custom flute (B/C/E)"
+      },
+      {
+        "id": "cap-4",
+        "title": "Custom Printing",
+        "desc": "Add your branding and product information through customized printing.",
+        "icon": "Printer",
+        "detail": "Multi-color flexo & high-res branding"
+      }
+    ],
+    "ctaBadge": "FAST 24-HOUR DESIGN TURNAROUND",
+    "ctaTitle": "Have a Packaging Requirement?",
+    "ctaDesc": "Share your idea with us. Let's discuss the right corrugated packaging solution for your business.",
+    "ctaButtonText": "Request Custom Packaging",
+    "ctaButtonLink": "#quote",
+    "updatedAt": "2026-11-26T04:05:38.559Z"
   },
   "manufacturing-process": {
     "sectionId": "manufacturing-process",
     "sectionName": "Manufacturing Process",
-    "badge": "PRODUCTION WORKFLOW",
-    "title": "Precision Manufacturing From Reel to Box",
-    "subtitle": "Step-by-step glimpse into our automated corrugation, slitting, printing, and gluing lines.",
+    "badge": "OUR MANUFACTURING PROCESS",
+    "title": "From Raw Material to Ready-to-Ship Packaging.",
+    "subtitle": "Every corrugated box goes through a carefully coordinated manufacturing process. From selecting quality raw materials to final inspection, each stage focuses on strength, precision and consistency.",
     "stages": [
       {
         "id": "stage-01",
         "number": "01",
         "title": "Raw Material Selection",
         "description": "Selection of suitable kraft paper and raw materials for corrugated board production.",
-        "visualLabel": "Industrial Kraft Paper Jumbo Rolls",
+        "visualLabel": "Continuous Corrugation Line",
+        "icon": "Layers",
         "mediaType": "image",
         "image": "/home/manufacturing-process/raw-material-selection.png",
         "technicalSpecs": [
@@ -218,46 +250,79 @@
         "id": "stage-02",
         "number": "02",
         "title": "Corrugation & Board Formation",
-        "description": "Heat, steam, and fluting rollers bond linerboard to corrugated medium.",
-        "visualLabel": "High-Speed Corrugation Line",
+        "description": "Paper layers are combined with fluted paper to create corrugated sheets with the required construction.",
+        "visualLabel": "Continuous Corrugation & Lamination",
+        "icon": "Factory",
         "mediaType": "image",
-        "image": "/home/manufacturing-process/corrugation-line.png",
+        "image": "/home/manufacturing-process/corrugation-board-formation.png",
         "technicalSpecs": [
-          "Flute profiles: B, C, E, BC, and Triple Wall",
-          "Starch-based eco adhesive bonding",
-          "Calibrated thickness monitoring"
+          "Automated steam-heated fingerless single & double facers",
+          "B, C, and E flute configurations for 3, 5, and 7-ply board",
+          "Corn-starch ecological adhesive bonding under pressure"
         ]
       },
       {
         "id": "stage-03",
         "number": "03",
-        "title": "Flexographic Printing & Slotting",
-        "description": "High-definition brand printing and precise creasing and slotting.",
-        "visualLabel": "Flexo Printer Slotter Unit",
+        "title": "Printing & Branding",
+        "description": "Customized designs, colours and product information are printed according to customer requirements.",
+        "visualLabel": "Multi-Color High-Definition Flexo Printing",
+        "icon": "Printer",
         "mediaType": "image",
-        "image": "/home/manufacturing-process/printing-slotting.png",
+        "image": "/home/manufacturing-process/printing-branding.png",
         "technicalSpecs": [
-          "Water-based environmentally safe inks",
-          "High-accuracy rotary slotting knives",
-          "Multi-colour registered printing"
+          "Up to 4-color high-speed flexographic printing units",
+          "Water-based non-toxic food-safe and eco inks",
+          "Sharp barcode compliance and transit warning symbols"
         ]
       },
       {
         "id": "stage-04",
         "number": "04",
-        "title": "Die-Cutting & Assembly",
-        "description": "Rotary and flatbed die-cutting with automated folder-gluer strapping.",
-        "visualLabel": "Automatic Folder Gluer",
+        "title": "Die-Cutting & Slotting",
+        "description": "Corrugated sheets are cut, creased and shaped according to the required box dimensions and design.",
+        "visualLabel": "Precision Rotary Die-Cutting & Scoring",
+        "icon": "Scissors",
         "mediaType": "image",
-        "image": "/home/manufacturing-process/die-cutting-assembly.png",
+        "image": "/home/manufacturing-process/die-cutting-slotting.png",
         "technicalSpecs": [
-          "Laser-cut hardened steel dies",
-          "Hot-melt and cold PVA adhesive binding",
-          "Palletized shrink-wrapped bundling"
+          "Rotary & flatbed precision CNC die-cutting cylinders",
+          "Micrometer-accurate scoring lines for crisp folding edges",
+          "Self-locking flap cuts, hand holes, and ventilation slots"
+        ]
+      },
+      {
+        "id": "stage-05",
+        "number": "05",
+        "title": "Folding & Box Assembly",
+        "description": "Cut sheets are folded, glued or stitched to form finished corrugated packaging boxes.",
+        "visualLabel": "Automated Folder-Gluer & Stitching Line",
+        "icon": "Package",
+        "mediaType": "image",
+        "image": "/home/manufacturing-process/folding-box-assembly.png",
+        "technicalSpecs": [
+          "High-speed computerized folder-gluer with squaring section",
+          "Hot-melt and PVA cold adhesive dispensing systems",
+          "Heavy-duty rust-proof wire stitching for industrial crates"
+        ]
+      },
+      {
+        "id": "stage-06",
+        "number": "06",
+        "title": "Quality Inspection & Dispatch",
+        "description": "Finished boxes are checked for construction, dimensions and finishing before packaging and dispatch.",
+        "visualLabel": "Laboratory QA Audit & Palletized Dispatch",
+        "icon": "ShieldCheck",
+        "mediaType": "image",
+        "image": "/home/manufacturing-process/quality-inspection-dispatch.png",
+        "technicalSpecs": [
+          "Edge Crush Test (ECT) & Box Compression Test (BCT) verified",
+          "Automated bundle strapping and moisture-barrier stretch wrap",
+          "Scheduled fleet dispatch with guaranteed logistics lead time"
         ]
       }
     ],
-    "updatedAt": "2026-11-26T03:05:45.921Z"
+    "updatedAt": "2026-11-26T04:35:00.000Z"
   },
   "industries-we-serve": {
     "sectionId": "industries-we-serve",
