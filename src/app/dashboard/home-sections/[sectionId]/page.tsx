@@ -18,6 +18,9 @@ import {
   Layers,
   Sparkles,
   HelpCircle,
+  Play,
+  Pause,
+  Video,
 } from "lucide-react";
 import MediaUploader from "@/components/MediaUploader";
 import { HOME_SECTIONS_LIST, DEFAULT_HOME_DATA } from "@/lib/defaultHomeData";
@@ -38,6 +41,17 @@ export default function SectionEditorPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [heroFrameIndex, setHeroFrameIndex] = useState(0);
+  const [heroPlaying, setHeroPlaying] = useState(false);
+
+  // Auto-play interactive 80-frame hero preview when enabled
+  useEffect(() => {
+    if (!heroPlaying) return;
+    const interval = setInterval(() => {
+      setHeroFrameIndex((prev) => (prev >= 79 ? 0 : prev + 1));
+    }, 45); // ~22 fps
+    return () => clearInterval(interval);
+  }, [heroPlaying]);
 
   // Fetch section data
   useEffect(() => {
@@ -194,160 +208,326 @@ export default function SectionEditorPage() {
       {/* --- HERO SECTION SPECIFIC EDITOR --- */}
       {isHero ? (
         <div className="space-y-6">
-          {/* Hero Media Mode Toggle Card */}
+          {/* 1. Live Hero Background Media Preview Card */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E4DED3] pb-3">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Live Website Background
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Current Hero Media Preview
+                </h2>
+              </div>
+
+              {/* Status Badge */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#E97835]/15 text-[#E97835] border border-[#E97835]/25 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E97835] animate-pulse" />
+                  {data.mediaType === "image"
+                    ? "Static Banner Image Active"
+                    : data.videoMode === "video-url"
+                    ? "Custom MP4 Video Active"
+                    : "Interactive 80-Frame Video Active"}
+                </span>
+              </div>
+            </div>
+
+            {/* Media Player / Canvas Preview Container */}
+            <div className="relative aspect-[16/9] w-full max-h-[380px] bg-[#1A1816] rounded-xl overflow-hidden border border-[#E4DED3] flex items-center justify-center">
+              {data.mediaType === "image" ? (
+                // Banner Image Preview
+                <img
+                  src={data.imageUrl || "/home/company img.png"}
+                  alt="Hero Banner Image Preview"
+                  className="w-full h-full object-cover object-center"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (!target.dataset.triedFallback) {
+                      target.dataset.triedFallback = "true";
+                      target.src = `http://localhost:3000${(data.imageUrl || "/home/company img.png").startsWith("/") ? "" : "/"}${encodeURI(data.imageUrl || "/home/company img.png")}`;
+                    }
+                  }}
+                />
+              ) : data.videoMode === "video-url" && data.videoUrl ? (
+                // Custom Video File Preview
+                <video
+                  src={data.videoUrl}
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full h-full object-cover object-center"
+                />
+              ) : (
+                // Interactive 80-Frame Manufacturing Video Preview
+                <div className="relative w-full h-full flex flex-col justify-between">
+                  <img
+                    src={`http://localhost:3000/home/hero-frames/frame_${heroFrameIndex.toString().padStart(2, "0")}.jpg`}
+                    alt={`Hero manufacturing frame ${heroFrameIndex}`}
+                    className="w-full h-full object-cover object-center select-none"
+                  />
+                  {/* Overlay Controls */}
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-4 flex flex-col gap-2">
+                    <div className="flex items-center justify-between text-xs text-white font-medium">
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setHeroPlaying(!heroPlaying)}
+                          className="px-2.5 py-1 rounded-lg bg-[#E97835] hover:bg-[#d66a2a] text-white flex items-center gap-1.5 text-xs font-bold transition-all shadow-sm cursor-pointer"
+                        >
+                          {heroPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                          <span>{heroPlaying ? "Pause Video" : "Play Video"}</span>
+                        </button>
+                        <span className="text-[11px] text-white/90">
+                          Frame: <strong className="text-white font-mono">{heroFrameIndex + 1} / 80</strong>
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-[#D1B48C]">
+                        Scroll-scrubbed on live website
+                      </span>
+                    </div>
+
+                    {/* Scrub Slider */}
+                    <input
+                      type="range"
+                      min={0}
+                      max={79}
+                      value={heroFrameIndex}
+                      onChange={(e) => {
+                        setHeroPlaying(false);
+                        setHeroFrameIndex(Number(e.target.value));
+                      }}
+                      className="w-full h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-[#E97835]"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 2. Choose Hero Media Mode & Upload Options */}
           <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
-                Primary Display Switcher
+                Hero Background Switcher & Upload
               </span>
               <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
-                Hero Background Media Mode
+                Choose or Upload Hero Media
               </h2>
               <p className="text-xs text-[#687378] mt-1">
-                Choose whether the Hero displays a high-impact interactive video or a high-resolution static banner image.
+                Select between the interactive 80-frame manufacturing video, your own custom uploaded video, or a static high-resolution banner image.
               </p>
             </div>
 
-            {/* Mode Selector Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* 3 Tab Selector Buttons */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Option 1: 80-Frame Interactive Video */}
               <button
                 type="button"
-                onClick={() => setData({ ...data, mediaType: "video" })}
-                className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3.5 ${
-                  data.mediaType === "video"
+                onClick={() => setData({ ...data, mediaType: "video", videoMode: "frames" })}
+                className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between gap-2.5 cursor-pointer ${
+                  data.mediaType === "video" && (data.videoMode === "frames" || !data.videoMode)
                     ? "bg-[#FFF8F3] text-[#202A2E] border-2 border-[#E97835] shadow-xs ring-2 ring-[#E97835]/15"
                     : "bg-[#FFFFFF] hover:bg-[#FAF9F5] text-[#202A2E] border-[#E4DED3] hover:border-[#D1B48C]"
                 }`}
               >
-                <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
-                    data.mediaType === "video"
+                <div className="flex items-center justify-between">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    data.mediaType === "video" && (data.videoMode === "frames" || !data.videoMode)
                       ? "bg-[#E97835] text-white"
                       : "bg-[#F5F2EB] text-[#687378]"
-                  }`}
-                >
-                  <PlaySquare className="w-5 h-5" />
+                  }`}>
+                    <Film className="w-4 h-4" />
+                  </div>
+                  {data.mediaType === "video" && (data.videoMode === "frames" || !data.videoMode) && (
+                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
+                      ACTIVE
+                    </span>
+                  )}
                 </div>
                 <div>
-                  <div className="font-bold text-sm flex items-center gap-2">
-                    <span>Video Mode</span>
-                    {data.mediaType === "video" && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
-                        ACTIVE
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs mt-1 leading-normal text-[#687378]">
-                    Interactive 80-frame scroll scrubbing video or custom uploaded video file.
+                  <div className="font-bold text-xs">Interactive 80-Frame Video</div>
+                  <p className="text-[11px] text-[#687378] mt-0.5 leading-snug">
+                    Mousewheel-scrubbed manufacturing video (Website default).
                   </p>
                 </div>
               </button>
 
+              {/* Option 2: Upload Custom Video */}
+              <button
+                type="button"
+                onClick={() => setData({ ...data, mediaType: "video", videoMode: "video-url" })}
+                className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between gap-2.5 cursor-pointer ${
+                  data.mediaType === "video" && data.videoMode === "video-url"
+                    ? "bg-[#FFF8F3] text-[#202A2E] border-2 border-[#E97835] shadow-xs ring-2 ring-[#E97835]/15"
+                    : "bg-[#FFFFFF] hover:bg-[#FAF9F5] text-[#202A2E] border-[#E4DED3] hover:border-[#D1B48C]"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    data.mediaType === "video" && data.videoMode === "video-url"
+                      ? "bg-[#E97835] text-white"
+                      : "bg-[#F5F2EB] text-[#687378]"
+                  }`}>
+                    <Video className="w-4 h-4" />
+                  </div>
+                  {data.mediaType === "video" && data.videoMode === "video-url" && (
+                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
+                      ACTIVE
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <div className="font-bold text-xs">Upload Custom Video</div>
+                  <p className="text-[11px] text-[#687378] mt-0.5 leading-snug">
+                    Upload an MP4 / WebM video file to autoplay in the background.
+                  </p>
+                </div>
+              </button>
+
+              {/* Option 3: Banner Image */}
               <button
                 type="button"
                 onClick={() => setData({ ...data, mediaType: "image" })}
-                className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3.5 ${
+                className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between gap-2.5 cursor-pointer ${
                   data.mediaType === "image"
                     ? "bg-[#FFF8F3] text-[#202A2E] border-2 border-[#E97835] shadow-xs ring-2 ring-[#E97835]/15"
                     : "bg-[#FFFFFF] hover:bg-[#FAF9F5] text-[#202A2E] border-[#E4DED3] hover:border-[#D1B48C]"
                 }`}
               >
-                <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
+                <div className="flex items-center justify-between">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
                     data.mediaType === "image"
                       ? "bg-[#E97835] text-white"
                       : "bg-[#F5F2EB] text-[#687378]"
-                  }`}
-                >
-                  <ImageIcon className="w-5 h-5" />
+                  }`}>
+                    <ImageIcon className="w-4 h-4" />
+                  </div>
+                  {data.mediaType === "image" && (
+                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
+                      ACTIVE
+                    </span>
+                  )}
                 </div>
                 <div>
-                  <div className="font-bold text-sm flex items-center gap-2">
-                    <span>Image Mode</span>
-                    {data.mediaType === "image" && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
-                        ACTIVE
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs mt-1 leading-normal text-[#687378]">
-                    High-resolution packaging factory or box banner image with responsive cover.
+                  <div className="font-bold text-xs">Upload Banner Image</div>
+                  <p className="text-[11px] text-[#687378] mt-0.5 leading-snug">
+                    Upload a high-resolution banner photo for the hero background.
                   </p>
                 </div>
               </button>
             </div>
 
-            {/* Video Mode Sub-Configuration */}
-            {data.mediaType === "video" && (
-              <div className="pt-4 border-t border-[#E4DED3] space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#202A2E]">
-                    Video Playback Style
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setData({ ...data, videoMode: "frames" })}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                        data.videoMode === "frames"
-                          ? "bg-[#E97835] text-white shadow-xs"
-                          : "bg-[#F5F2EB] text-[#687378] hover:text-[#202A2E] hover:bg-[#EAE4D7]"
-                      }`}
-                    >
-                      Interactive Frames (80-Frame Scrub)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setData({ ...data, videoMode: "video-url" })}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                        data.videoMode === "video-url"
-                          ? "bg-[#E97835] text-white shadow-xs"
-                          : "bg-[#F5F2EB] text-[#687378] hover:text-[#202A2E] hover:bg-[#EAE4D7]"
-                      }`}
-                    >
-                      Uploaded Video File (MP4/WebM)
-                    </button>
-                  </div>
+            {/* DIRECT UPLOAD CONTROLS BASED ON ACTIVE TAB */}
+            {data.mediaType === "video" && data.videoMode === "video-url" && (
+              <div className="p-4 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] space-y-3">
+                <MediaUploader
+                  label="Upload Custom Hero Video (MP4 / WebM)"
+                  value={data.videoUrl || ""}
+                  mediaType="video"
+                  allowedTypes={["video"]}
+                  helperText="Upload an MP4 or WebM video file, or select a factory video from the website."
+                  onChange={(url) => setData({ ...data, videoUrl: url, mediaType: "video", videoMode: "video-url" })}
+                />
+
+                {/* Quick Presets */}
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E4DED3]">
+                  <span className="text-[11px] font-bold text-[#687378]">Quick Presets:</span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setData({
+                        ...data,
+                        videoUrl: "/home/Cardboard_box_manufacturing_process_5dda02d1_1080p_gwr_video_mvp.mp4",
+                        mediaType: "video",
+                        videoMode: "video-url",
+                      })
+                    }
+                    className="text-xs px-2.5 py-1 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] font-semibold transition-colors cursor-pointer"
+                  >
+                    🎬 1080p Factory Process Video (MP4)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setData({
+                        ...data,
+                        videoUrl: "/home/sustainability/factory-worker-packing.mp4",
+                        mediaType: "video",
+                        videoMode: "video-url",
+                      })
+                    }
+                    className="text-xs px-2.5 py-1 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] font-semibold transition-colors cursor-pointer"
+                  >
+                    📦 Worker Packing Video (MP4)
+                  </button>
                 </div>
-
-                {data.videoMode === "video-url" && (
-                  <MediaUploader
-                    label="Upload Custom Hero Video (MP4 / WebM)"
-                    value={data.videoUrl || ""}
-                    mediaType="video"
-                    allowedTypes={["video"]}
-                    helperText="Upload an MP4 or WebM video file, or enter an external video URL to play on the homepage hero."
-                    onChange={(url) => setData({ ...data, videoUrl: url })}
-                  />
-                )}
-
-                {data.videoMode === "frames" && (
-                  <div className="p-4 rounded-xl bg-[#FFF9F5] border border-[#E97835]/30 text-xs text-[#687378] flex items-start gap-3">
-                    <Film className="w-5 h-5 text-[#E97835] shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-[#202A2E] block">
-                        Interactive 80-Frame Scroll Scrubbing Active
-                      </strong>
-                      <span>
-                        Hero scrubs dynamically through 80 sequential frames (/home/hero-frames/frame_00.jpg to frame_79.jpg) locked smoothly to the user mousewheel.
-                      </span>
-                    </div>
-                  </div>
-                )}
               </div>
             )}
 
-            {/* Image Mode Sub-Configuration */}
             {data.mediaType === "image" && (
-              <div className="pt-4 border-t border-[#E4DED3] space-y-4">
+              <div className="p-4 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] space-y-3">
                 <MediaUploader
-                  label="Hero Banner Image"
-                  value={data.imageUrl || "/home/hero-poster.jpg"}
+                  label="Upload Hero Banner Image (JPG / PNG / WebP)"
+                  value={data.imageUrl || "/home/company img.png"}
                   mediaType="image"
                   allowedTypes={["image"]}
-                  helperText="Upload high-res JPG, PNG or WebP image (e.g. 1920x1080) for the hero banner."
-                  onChange={(url) => setData({ ...data, imageUrl: url })}
+                  helperText="Upload a high-resolution background banner image (e.g. 1920x1080) for the homepage hero."
+                  onChange={(url) => setData({ ...data, imageUrl: url, mediaType: "image" })}
                 />
+
+                {/* Quick Presets */}
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E4DED3]">
+                  <span className="text-[11px] font-bold text-[#687378]">Quick Presets:</span>
+                  <button
+                    type="button"
+                    onClick={() => setData({ ...data, imageUrl: "/home/company img.png", mediaType: "image" })}
+                    className="text-xs px-2.5 py-1 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] font-semibold transition-colors cursor-pointer"
+                  >
+                    🏭 Factory Facility Image
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setData({ ...data, imageUrl: "/home/hero-frames/frame_00.jpg", mediaType: "image" })}
+                    className="text-xs px-2.5 py-1 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] font-semibold transition-colors cursor-pointer"
+                  >
+                    📦 Cardboard Frame #00
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {(data.mediaType === "video" && (data.videoMode === "frames" || !data.videoMode)) && (
+              <div className="p-4 rounded-xl bg-[#FFF9F5] border border-[#E97835]/30 text-xs text-[#202A2E] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-3">
+                  <Film className="w-5 h-5 text-[#E97835] shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="block text-sm font-bold text-[#202A2E]">
+                      Interactive 80-Frame Scroll Scrubbing Active on Website
+                    </strong>
+                    <p className="text-xs text-[#687378] mt-1">
+                      Visitors scrub dynamically through 80 sequential frames (/home/hero-frames/frame_00.jpg to frame_79.jpg) locked smoothly to their mousewheel. Use the live preview above to scrub or play it.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="shrink-0 flex sm:flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setData({ ...data, mediaType: "video", videoMode: "video-url" })}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] text-[#202A2E] font-bold transition-all shadow-2xs cursor-pointer"
+                  >
+                    Upload Video (MP4) &rarr;
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setData({ ...data, mediaType: "image" })}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-white border border-[#E4DED3] hover:border-[#E97835] text-[#202A2E] font-bold transition-all shadow-2xs cursor-pointer"
+                  >
+                    Upload Image &rarr;
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -367,7 +547,7 @@ export default function SectionEditorPage() {
                   type="text"
                   value={data.title || ""}
                   onChange={(e) => setData({ ...data, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#D1B48C] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
 
@@ -379,7 +559,7 @@ export default function SectionEditorPage() {
                   type="text"
                   value={data.subtitle || ""}
                   onChange={(e) => setData({ ...data, subtitle: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#D1B48C] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
 
@@ -846,7 +1026,7 @@ export default function SectionEditorPage() {
                   value={data.badge || ""}
                   onChange={(e) => setData({ ...data, badge: e.target.value })}
                   placeholder="e.g. ABOUT AAVRIT PACKAGING"
-                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#D1B48C] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
 
@@ -859,7 +1039,7 @@ export default function SectionEditorPage() {
                   value={data.title || ""}
                   onChange={(e) => setData({ ...data, title: e.target.value })}
                   placeholder="Section headline"
-                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#D1B48C] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
 
@@ -879,7 +1059,7 @@ export default function SectionEditorPage() {
                     });
                   }}
                   placeholder="Detailed context or description text"
-                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#D1B48C] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
             </div>
