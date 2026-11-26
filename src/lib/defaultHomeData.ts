@@ -538,9 +538,15 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
   sustainability: {
     sectionId: "sustainability",
     sectionName: "Sustainability",
-    badge: "PACKAGING WITH PURPOSE",
-    title: "Committed to Circular & Sustainable Packaging",
-    subtitle: "Environmentally responsible corrugated solutions made from renewable, biodegradable fiber.",
+    badge: "RESPONSIBLE PACKAGING",
+    title: "Better Packaging. Thoughtful Choices.",
+    subtitle: "Good packaging does more than protect products. Thoughtful material selection and efficient design can help reduce unnecessary packaging and support more responsible resource use.",
+    mediaTitle: "Sustainable Packaging in Motion",
+    mediaUrl: "/home/sustainability/box_manufacturing_kraft_theme.gif",
+    mediaType: "gif",
+    quote: "“Thoughtful packaging starts with the right material, the right design and the right fit for every product.”",
+    linkText: "Learn More",
+    linkUrl: "/sustainability",
     principles: [
       {
         number: "01",

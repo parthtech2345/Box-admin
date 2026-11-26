@@ -149,6 +149,7 @@ export default function SectionEditorPage() {
   const isIndustriesWeServe = sectionId === "industries-we-serve";
   const isCaseStudies = sectionId === "case-studies";
   const isBoxConstruction = sectionId === "box-construction";
+  const isSustainability = sectionId === "sustainability";
 
   return (
     <div className="space-y-6 pb-16">
@@ -3369,6 +3370,284 @@ export default function SectionEditorPage() {
                   className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      ) : isSustainability ? (
+        /* --- SUSTAINABILITY DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Section Header & Headings
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Badge / Eyebrow Text
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="e.g. RESPONSIBLE PACKAGING"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="e.g. Better Packaging. Thoughtful Choices."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || ""}
+                  onChange={(e) => setData({ ...data, subtitle: e.target.value })}
+                  placeholder="Good packaging does more than protect products..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Sustainable Packaging in Motion (Animated GIF & Editorial Statement) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="border-b border-[#E4DED3] pb-3">
+              <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                Sustainable Packaging in Motion (Animated GIF & Highlight)
+              </h2>
+              <p className="text-xs text-[#687378] mt-0.5">
+                Manage the animated conveyor packaging GIF visual and the supporting editorial statement.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                Media Headline
+              </label>
+              <input
+                type="text"
+                value={data.mediaTitle || ""}
+                onChange={(e) => setData({ ...data, mediaTitle: e.target.value })}
+                placeholder="e.g. Sustainable Packaging in Motion"
+                className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+              />
+            </div>
+
+            {/* Media Uploader for GIF */}
+            <div className="pt-1">
+              <MediaUploader
+                label="Packaging in Motion Media (GIF / Image / Video)"
+                value={data.mediaUrl || data.image || "/home/sustainability/box_manufacturing_kraft_theme.gif"}
+                mediaType={data.mediaType || "gif"}
+                allowedTypes={["gif", "image", "video"]}
+                helperText="Upload an animated GIF (e.g. /home/sustainability/box_manufacturing_kraft_theme.gif), video, or graphic showing sustainable manufacturing."
+                onChange={(url, detectedType) => {
+                  setData({
+                    ...data,
+                    mediaUrl: url,
+                    image: url,
+                    mediaType: detectedType,
+                  });
+                }}
+              />
+            </div>
+
+            <div className="pt-2 grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-[#E4DED3]/70">
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Supporting Editorial Statement / Quote
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.quote || ""}
+                  onChange={(e) => setData({ ...data, quote: e.target.value })}
+                  placeholder="e.g. “Thoughtful packaging starts with the right material, the right design and the right fit for every product.”"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Link Text
+                </label>
+                <input
+                  type="text"
+                  value={data.linkText || ""}
+                  onChange={(e) => setData({ ...data, linkText: e.target.value })}
+                  placeholder="e.g. Learn More"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Destination URL
+                </label>
+                <input
+                  type="text"
+                  value={data.linkUrl || ""}
+                  onChange={(e) => setData({ ...data, linkUrl: e.target.value })}
+                  placeholder="e.g. /sustainability"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Sustainability Principles (The 4 Pillars) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Sustainability Principles
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Configure the 4 core sustainable packaging pillars (Recyclable, Design, Material Usage, Eco-Conscious Flow).
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const list = Array.isArray(data.principles) ? [...data.principles] : [];
+                  const nextNum = list.length + 1;
+                  list.push({
+                    number: nextNum < 10 ? `0${nextNum}` : `${nextNum}`,
+                    title: "New Sustainable Principle",
+                    badge: "ECO-FRIENDLY INITIATIVE",
+                    description: "Describe how this practice supports sustainable and responsible packaging.",
+                  });
+                  setData({ ...data, principles: list });
+                }}
+                className="px-3 py-1.5 rounded-lg bg-[#FAF9F5] border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-xs font-bold text-[#202A2E] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Principle</span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {(data.principles || []).map((principle: any, pIdx: number) => (
+                <div
+                  key={pIdx}
+                  className="p-5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-7 h-7 rounded-lg bg-[#E97835]/10 text-[#E97835] flex items-center justify-center font-bold text-xs">
+                        {principle.number || `0${pIdx + 1}`}
+                      </span>
+                      <span className="font-heading font-bold text-sm text-[#202A2E]">
+                        {principle.title || `Principle #${pIdx + 1}`}
+                      </span>
+                      {principle.badge && (
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#845B32] bg-white px-2 py-0.5 rounded border border-[#E4DED3]">
+                          {principle.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (confirm(`Remove principle "${principle.title}"?`)) {
+                          const list = (data.principles || []).filter((_: any, i: number) => i !== pIdx);
+                          setData({ ...data, principles: list });
+                        }
+                      }}
+                      className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                      title="Delete Principle"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                        Number Code
+                      </label>
+                      <input
+                        type="text"
+                        value={principle.number || ""}
+                        onChange={(e) => {
+                          const list = [...(data.principles || [])];
+                          list[pIdx] = { ...list[pIdx], number: e.target.value };
+                          setData({ ...data, principles: list });
+                        }}
+                        placeholder="e.g. 01"
+                        className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                        Principle Title
+                      </label>
+                      <input
+                        type="text"
+                        value={principle.title || ""}
+                        onChange={(e) => {
+                          const list = [...(data.principles || [])];
+                          list[pIdx] = { ...list[pIdx], title: e.target.value };
+                          setData({ ...data, principles: list });
+                        }}
+                        placeholder="e.g. Recyclable Paper-Based Packaging"
+                        className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                        Category Tag / Badge
+                      </label>
+                      <input
+                        type="text"
+                        value={principle.badge || ""}
+                        onChange={(e) => {
+                          const list = [...(data.principles || [])];
+                          list[pIdx] = { ...list[pIdx], badge: e.target.value };
+                          setData({ ...data, principles: list });
+                        }}
+                        placeholder="e.g. Circular Material Recovery"
+                        className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                      Principle Description
+                    </label>
+                    <textarea
+                      rows={2}
+                      value={principle.description || ""}
+                      onChange={(e) => {
+                        const list = [...(data.principles || [])];
+                        list[pIdx] = { ...list[pIdx], description: e.target.value };
+                        setData({ ...data, principles: list });
+                      }}
+                      placeholder="Corrugated cardboard is paper-based and can generally be recycled..."
+                      className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
