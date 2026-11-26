@@ -159,58 +159,17 @@ export default function SectionEditorPage() {
   return (
     <div className="space-y-6 pb-16">
       {/* Top Header Bar */}
-      <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687378] hover:text-[#202A2E] mb-2"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Dashboard</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <h1 className="font-heading font-extrabold text-2xl text-[#202A2E]">
-              {meta.name}
-            </h1>
-            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#FAF9F5] border border-[#E4DED3] text-[#845B32]">
-              #{sectionId}
-            </span>
-          </div>
-          <p className="text-xs text-[#687378] mt-1">{meta.description}</p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          <button
-            type="button"
-            onClick={handleResetDefaults}
-            className="px-3.5 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#EAE4D7] text-[#687378] hover:text-[#202A2E] text-xs font-bold border border-[#E4DED3] transition-all flex items-center gap-1.5"
-            title="Reset to website default data"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Reset Defaults</span>
-          </button>
-
-          <a
-            href={`http://localhost:3000#${sectionId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3.5 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#EAE4D7] text-[#202A2E] text-xs font-bold border border-[#E4DED3] transition-all flex items-center gap-1.5"
-          >
-            <span>Preview</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-
-          <button
-            type="button"
-            onClick={handleSave}
-            disabled={saving}
-            className="px-5 py-2 rounded-xl bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
-          >
-            <Save className="w-4 h-4" />
-            <span>{saving ? "Saving to MongoDB..." : "Save Changes"}</span>
-          </button>
-        </div>
+      <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-5 sm:p-6 shadow-sm">
+        <Link
+          href="/dashboard"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687378] hover:text-[#202A2E] mb-2"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Back to Dashboard</span>
+        </Link>
+        <h1 className="font-heading font-extrabold text-2xl text-[#202A2E]">
+          {meta.name}
+        </h1>
       </div>
 
       {/* Notification Toast */}
