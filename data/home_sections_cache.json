@@ -453,9 +453,9 @@
   "case-studies": {
     "sectionId": "case-studies",
     "sectionName": "Case Studies & Applications",
-    "badge": "PACKAGING APPLICATIONS",
-    "title": "Proven in Action: Real-World Applications",
-    "subtitle": "Explore how our custom packaging structures solve transit safety and shipping efficiency.",
+    "badge": "OUR WORK & APPLICATIONS",
+    "title": "Packaging Solutions in Action",
+    "subtitle": "Discover how corrugated packaging solutions serve different industries and business requirements, combining practical design, dependable protection and manufacturing precision.",
     "applications": [
       {
         "id": "automotive",
@@ -497,13 +497,13 @@
         "image": "/home/case-studies/ecommerce-packaging.png",
         "href": "/industries/ecommerce",
         "highlights": [
-          "Rapid Assembly",
-          "Crush-Resistant Edges",
-          "Branded Flexo Print"
+          "Tamper-Evident Mailers",
+          "Quick-Lock Assembly",
+          "High Stacking Strength"
         ]
       }
     ],
-    "updatedAt": "2026-11-26T03:05:45.921Z"
+    "updatedAt": "2026-11-26T05:05:00.000Z"
   },
   "box-construction": {
     "sectionId": "box-construction",

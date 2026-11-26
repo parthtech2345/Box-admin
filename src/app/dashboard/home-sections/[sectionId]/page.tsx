@@ -50,6 +50,7 @@ export default function SectionEditorPage() {
   const [heroPlaying, setHeroPlaying] = useState(false);
   const [activeProcessTab, setActiveProcessTab] = useState<number | null>(null);
   const [activeIndustryTab, setActiveIndustryTab] = useState<number | null>(null);
+  const [activeAppTab, setActiveAppTab] = useState<number | null>(null);
 
   // Auto-play interactive 80-frame hero preview when enabled
   useEffect(() => {
@@ -139,6 +140,7 @@ export default function SectionEditorPage() {
   const isCustomPackaging = sectionId === "custom-packaging";
   const isManufacturingProcess = sectionId === "manufacturing-process";
   const isIndustriesWeServe = sectionId === "industries-we-serve";
+  const isCaseStudies = sectionId === "case-studies";
 
   return (
     <div className="space-y-6 pb-16">
@@ -2169,6 +2171,369 @@ export default function SectionEditorPage() {
                               }}
                               className="p-1 text-[#62574D] hover:text-red-500 rounded transition-colors cursor-pointer"
                               title="Delete Application"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ) : isCaseStudies ? (
+        /* --- CASE STUDIES & APPLICATIONS DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Main Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Section Presentation
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Section Header & Headings
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="OUR WORK & APPLICATIONS"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="Packaging Solutions in Action"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || data.description || ""}
+                  onChange={(e) =>
+                    setData({ ...data, subtitle: e.target.value, description: e.target.value })
+                  }
+                  placeholder="Discover how corrugated packaging solutions serve different industries and business requirements, combining practical design, dependable protection and manufacturing precision."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Packaging Applications & Case Studies Showcases */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E4DED3] pb-4">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Deployments & Work
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                  {(data.applications || []).length} Application Showcases
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Featured primary showcase (7-column layout) and supporting application cards with photos, highlights, and direct links.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const current = data.applications || [];
+                  const nextNum = (current.length + 1).toString().padStart(2, "0");
+                  const newApp = {
+                    id: `app-${Date.now()}`,
+                    projectNumber: `PROJECT ${nextNum}`,
+                    category: "CUSTOM PACKAGING",
+                    title: `Packaging Application ${current.length + 1}`,
+                    description: "Describe the specific corrugated packaging deployment, product payload, and protection features.",
+                    mediaType: "image",
+                    image: "/home/case-studies/automotive-packaging.png",
+                    href: "/industries/automotive",
+                    highlights: [
+                      "Custom Internal Partitions",
+                      "Heavy-Duty Stacking Strength",
+                      "Precision Sized",
+                    ],
+                  };
+                  setData({ ...data, applications: [...current, newApp] });
+                  setActiveAppTab(current.length);
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer self-start sm:self-auto"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Application Showcase</span>
+              </button>
+            </div>
+
+            {/* Quick Filter Tabs */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              <button
+                type="button"
+                onClick={() => setActiveAppTab(null)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  activeAppTab === null
+                    ? "bg-[#202A2E] text-white shadow-xs"
+                    : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                }`}
+              >
+                Show All ({(data.applications || []).length})
+              </button>
+
+              {(data.applications || []).map((app: any, aIdx: number) => (
+                <button
+                  key={app.id || aIdx}
+                  type="button"
+                  onClick={() => setActiveAppTab(aIdx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                    activeAppTab === aIdx
+                      ? "bg-[#E97835] text-white shadow-xs"
+                      : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                  }`}
+                >
+                  <span className="font-mono">{app.projectNumber || `#0${aIdx + 1}`}</span>
+                  <span className="truncate max-w-[130px]">{app.category || app.title || `App ${aIdx + 1}`}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Application Showcases List */}
+            <div className="space-y-6">
+              {(data.applications || []).map((app: any, aIdx: number) => {
+                if (activeAppTab !== null && activeAppTab !== aIdx) return null;
+
+                const highlights = Array.isArray(app.highlights) ? app.highlights : [];
+
+                return (
+                  <div
+                    key={app.id || aIdx}
+                    className="p-5 sm:p-6 rounded-2xl border border-[#E4DED3] bg-[#FAF9F5] space-y-5 relative group shadow-2xs"
+                  >
+                    {/* Header Row */}
+                    <div className="flex items-center justify-between pb-3 border-b border-[#E4DED3]">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-full bg-[#E97835] text-white text-xs font-bold flex items-center justify-center shrink-0 shadow-xs">
+                          {String(aIdx + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-mono font-bold text-[#E97835] uppercase">
+                              {app.projectNumber || `PROJECT 0${aIdx + 1}`}
+                            </span>
+                            {aIdx === 0 && (
+                              <span className="text-[10px] font-bold text-white bg-[#493629] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Primary Featured (7-Col)
+                              </span>
+                            )}
+                            {app.category && (
+                              <span className="text-[10px] font-semibold text-[#62574D] bg-[#E4DED3]/50 px-2 py-0.5 rounded uppercase">
+                                {app.category}
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="font-heading font-bold text-base text-[#202A2E]">
+                            {app.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (confirm(`Remove application "${app.title}"?`)) {
+                            const updated = (data.applications || []).filter(
+                              (_: any, i: number) => i !== aIdx
+                            );
+                            setData({ ...data, applications: updated });
+                            if (activeAppTab === aIdx) setActiveAppTab(null);
+                          }
+                        }}
+                        className="p-2 text-[#62574D] hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                        title="Remove Application"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Inputs */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Project Label (e.g. PROJECT 01)
+                        </label>
+                        <input
+                          type="text"
+                          value={app.projectNumber || ""}
+                          onChange={(e) => {
+                            const list = [...(data.applications || [])];
+                            list[aIdx] = { ...list[aIdx], projectNumber: e.target.value };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Category Badge (e.g. AUTOMOTIVE, FOOD & BEVERAGE)
+                        </label>
+                        <input
+                          type="text"
+                          value={app.category || ""}
+                          onChange={(e) => {
+                            const list = [...(data.applications || [])];
+                            list[aIdx] = { ...list[aIdx], category: e.target.value };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Link Target URL (e.g. /industries/automotive)
+                        </label>
+                        <input
+                          type="text"
+                          value={app.href || ""}
+                          onChange={(e) => {
+                            const list = [...(data.applications || [])];
+                            list[aIdx] = { ...list[aIdx], href: e.target.value };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Showcase Headline Title
+                        </label>
+                        <input
+                          type="text"
+                          value={app.title || ""}
+                          onChange={(e) => {
+                            const list = [...(data.applications || [])];
+                            list[aIdx] = { ...list[aIdx], title: e.target.value };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Description
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={app.description || ""}
+                          onChange={(e) => {
+                            const list = [...(data.applications || [])];
+                            list[aIdx] = { ...list[aIdx], description: e.target.value };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Image Uploader */}
+                    <div className="pt-2 border-t border-[#E4DED3]">
+                      <MediaUploader
+                        label={`${app.title || "Showcase"} Packaging Photography`}
+                        value={app.image || ""}
+                        mediaType={app.mediaType || "image"}
+                        allowedTypes={["image", "video", "gif"]}
+                        helperText="High-resolution packaging photography demonstrating this real-world application."
+                        onChange={(url, detectedType) => {
+                          const list = [...(data.applications || [])];
+                          list[aIdx] = { ...list[aIdx], image: url, mediaType: detectedType };
+                          setData({ ...data, applications: list });
+                        }}
+                      />
+                    </div>
+
+                    {/* Technical Highlights Tags */}
+                    <div className="pt-2 border-t border-[#E4DED3] space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                            Feature & Engineering Highlights
+                          </label>
+                          <p className="text-[11px] text-[#62574D]">
+                            Pill tags displayed on the showcase (e.g. 7-Ply Protection, Ventilated Air-Flow).
+                          </p>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const list = [...(data.applications || [])];
+                            const currentH = Array.isArray(list[aIdx].highlights)
+                              ? list[aIdx].highlights
+                              : [];
+                            list[aIdx] = {
+                              ...list[aIdx],
+                              highlights: [...currentH, "New Highlight"],
+                            };
+                            setData({ ...data, applications: list });
+                          }}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-[#202A2E] text-[11px] font-bold rounded-lg transition-colors cursor-pointer"
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add Highlight</span>
+                        </button>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {highlights.map((h: string, hIdx: number) => (
+                          <div key={hIdx} className="flex items-center gap-1 bg-white border border-[#E4DED3] rounded-lg px-2.5 py-1">
+                            <input
+                              type="text"
+                              value={h}
+                              onChange={(e) => {
+                                const list = [...(data.applications || [])];
+                                const currentH = [...(list[aIdx].highlights || [])];
+                                currentH[hIdx] = e.target.value;
+                                list[aIdx] = { ...list[aIdx], highlights: currentH };
+                                setData({ ...data, applications: list });
+                              }}
+                              className="w-36 bg-transparent text-xs text-[#202A2E] focus:outline-none"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const list = [...(data.applications || [])];
+                                const currentH = (list[aIdx].highlights || []).filter(
+                                  (_: any, i: number) => i !== hIdx
+                                );
+                                list[aIdx] = { ...list[aIdx], highlights: currentH };
+                                setData({ ...data, applications: list });
+                              }}
+                              className="p-0.5 text-[#62574D] hover:text-red-500 rounded transition-colors cursor-pointer"
+                              title="Delete Highlight"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>

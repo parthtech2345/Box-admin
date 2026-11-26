@@ -360,9 +360,9 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
   "case-studies": {
     sectionId: "case-studies",
     sectionName: "Case Studies & Applications",
-    badge: "PACKAGING APPLICATIONS",
-    title: "Proven in Action: Real-World Applications",
-    subtitle: "Explore how our custom packaging structures solve transit safety and shipping efficiency.",
+    badge: "OUR WORK & APPLICATIONS",
+    title: "Packaging Solutions in Action",
+    subtitle: "Discover how corrugated packaging solutions serve different industries and business requirements, combining practical design, dependable protection and manufacturing precision.",
     applications: [
       {
         id: "automotive",
@@ -395,7 +395,7 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
         mediaType: "image",
         image: "/home/case-studies/ecommerce-packaging.png",
         href: "/industries/ecommerce",
-        highlights: ["Rapid Assembly", "Crush-Resistant Edges", "Branded Flexo Print"]
+        highlights: ["Tamper-Evident Mailers", "Quick-Lock Assembly", "High Stacking Strength"]
       }
     ],
     updatedAt: new Date().toISOString(),
