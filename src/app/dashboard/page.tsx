@@ -24,8 +24,10 @@ import {
   Handshake,
   MessageSquareQuote,
   HelpCircle,
+  Home as HomeIcon,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
+import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   PlaySquare,
@@ -46,6 +48,8 @@ const ICON_MAP: Record<string, React.ElementType> = {
 
 export default function DashboardOverviewPage() {
   const [sectionsData, setSectionsData] = useState<Record<string, any>>({});
+  const [aboutSectionsData, setAboutSectionsData] = useState<Record<string, any>>({});
+  const [activeTab, setActiveTab] = useState<"home" | "about">("home");
   const [loading, setLoading] = useState(true);
   const [seeding, setSeeding] = useState(false);
   const [seedSuccess, setSeedSuccess] = useState<string | null>(null);
@@ -53,11 +57,14 @@ export default function DashboardOverviewPage() {
   const fetchSections = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/home-sections");
-      const data = await res.json();
-      if (data.success) {
-        setSectionsData(data.data || {});
-      }
+      const [resHome, resAbout] = await Promise.all([
+        fetch("/api/home-sections"),
+        fetch("/api/about-sections"),
+      ]);
+      const dataHome = await resHome.json();
+      const dataAbout = await resAbout.json();
+      if (dataHome.success) setSectionsData(dataHome.data || {});
+      if (dataAbout.success) setAboutSectionsData(dataAbout.data || {});
     } catch (e) {
       console.error("Failed to load sections", e);
     } finally {
@@ -70,26 +77,33 @@ export default function DashboardOverviewPage() {
   }, []);
 
   const handleSeedDefaults = async () => {
-    if (!confirm("This will synchronize all 14 homepage sections with website defaults in MongoDB. Proceed?")) {
+    const isAbout = activeTab === "about";
+    const targetName = isAbout ? "9 About Us sections" : "14 homepage sections";
+    const endpoint = isAbout ? "/api/about-sections" : "/api/home-sections";
+
+    if (!confirm(`This will synchronize all ${targetName} with website defaults in MongoDB. Proceed?`)) {
       return;
     }
     setSeeding(true);
     setSeedSuccess(null);
     try {
-      const res = await fetch("/api/home-sections", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "seed" }),
       });
       const data = await res.json();
       if (data.success) {
-        setSeedSuccess("All 14 homepage sections successfully seeded to MongoDB!");
-        await fetchSections();
+        setSeedSuccess(`All ${targetName} synchronized successfully with MongoDB!`);
+        fetchSections();
+      } else {
+        alert("Failed to seed: " + data.message);
       }
-    } catch (e) {
-      alert("Error seeding defaults: " + e);
+    } catch (e: any) {
+      alert("Error seeding: " + e.message);
     } finally {
       setSeeding(false);
+      setTimeout(() => setSeedSuccess(null), 4000);
     }
   };
 
@@ -232,78 +246,173 @@ export default function DashboardOverviewPage() {
         </div>
       </div>
 
-      {/* Homepage Sections Grid */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="font-heading font-bold text-xl text-[#202A2E]">
-              Homepage Sections
-            </h2>
-            <p className="text-xs text-[#687378] mt-0.5">
-              Select any section to edit its content, upload media, or modify parameters.
-            </p>
+      {/* Section Tabs Switcher */}
+      <div className="flex items-center gap-2 p-1.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-2xl w-fit">
+        <button
+          type="button"
+          onClick={() => setActiveTab("home")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === "home"
+              ? "bg-[#E97835] text-white shadow-xs"
+              : "text-[#687378] hover:text-[#202A2E] hover:bg-white"
+          }`}
+        >
+          <HomeIcon className="w-3.5 h-3.5" />
+          <span>Homepage CMS (14)</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("about")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === "about"
+              ? "bg-[#E97835] text-white shadow-xs"
+              : "text-[#687378] hover:text-[#202A2E] hover:bg-white"
+          }`}
+        >
+          <Building2 className="w-3.5 h-3.5" />
+          <span>About Us CMS (9)</span>
+        </button>
+      </div>
+
+      {/* Dynamic Sections Grid */}
+      {activeTab === "home" ? (
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="font-heading font-bold text-xl text-[#202A2E]">
+                Homepage Sections
+              </h2>
+              <p className="text-xs text-[#687378] mt-0.5">
+                Select any section to edit its content, upload media, or modify parameters.
+              </p>
+            </div>
+            <span className="text-xs text-[#E97835] font-bold bg-[#E97835]/10 px-3 py-1 rounded-full border border-[#E97835]/25">
+              14 Sections Available
+            </span>
           </div>
-          <span className="text-xs text-[#E97835] font-bold bg-[#E97835]/10 px-3 py-1 rounded-full border border-[#E97835]/25">
-            14 Sections Available
-          </span>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {HOME_SECTIONS_LIST.map((sec, idx) => {
-            const IconComponent = ICON_MAP[sec.icon] || Boxes;
-            const currentData = sectionsData[sec.id] || {};
-            const isHero = sec.id === "hero";
-            const updated = currentData.updatedAt
-              ? new Date(currentData.updatedAt).toLocaleDateString()
-              : "Default";
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {HOME_SECTIONS_LIST.map((sec, idx) => {
+              const IconComponent = ICON_MAP[sec.icon] || Boxes;
+              const currentData = sectionsData[sec.id] || {};
+              const isHero = sec.id === "hero";
+              const updated = currentData.updatedAt
+                ? new Date(currentData.updatedAt).toLocaleDateString()
+                : "Default";
 
-            return (
-              <div
-                key={sec.id}
-                className="bg-[#FFFFFF] border border-[#E4DED3] hover:border-[#E97835] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-[#202A2E] flex items-center justify-center group-hover:bg-[#E97835] group-hover:text-white transition-colors">
-                      <IconComponent className="w-5 h-5" />
+              return (
+                <div
+                  key={sec.id}
+                  className="bg-[#FFFFFF] border border-[#E4DED3] hover:border-[#E97835] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-[#202A2E] flex items-center justify-center group-hover:bg-[#E97835] group-hover:text-white transition-colors">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-mono font-bold text-[#A0ACB2]">
+                          #{(idx + 1).toString().padStart(2, "0")}
+                        </span>
+                        {isHero && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#E97835]/15 text-[#E97835]">
+                            {heroMediaType.toUpperCase()}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
+
+                    <h3 className="font-heading font-bold text-base text-[#202A2E] group-hover:text-[#E97835] transition-colors">
+                      {sec.name}
+                    </h3>
+                    <p className="text-xs text-[#687378] mt-1.5 line-clamp-2 leading-relaxed">
+                      {sec.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-[#E4DED3] flex items-center justify-between">
+                    <span className="text-[11px] text-[#A0ACB2]">
+                      Updated: <strong className="text-[#687378]">{updated}</strong>
+                    </span>
+                    <Link
+                      href={`/dashboard/home-sections/${sec.id}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#E97835] text-[#202A2E] group-hover:text-white text-xs font-bold transition-all"
+                    >
+                      <span>Edit Section</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="font-heading font-bold text-xl text-[#202A2E]">
+                About Us Page Sections
+              </h2>
+              <p className="text-xs text-[#687378] mt-0.5">
+                Manage hero banner, mascot character/GIF, company history, 5-ply core values, leadership team, and FAQs.
+              </p>
+            </div>
+            <span className="text-xs text-[#E97835] font-bold bg-[#E97835]/10 px-3 py-1 rounded-full border border-[#E97835]/25">
+              9 Sections Available
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {ABOUT_SECTIONS_LIST.map((sec, idx) => {
+              const IconComponent = ICON_MAP[sec.icon] || Building2;
+              const currentData = aboutSectionsData[sec.id] || {};
+              const updated = currentData.updatedAt
+                ? new Date(currentData.updatedAt).toLocaleDateString()
+                : "Default";
+
+              return (
+                <div
+                  key={sec.id}
+                  className="bg-[#FFFFFF] border border-[#E4DED3] hover:border-[#E97835] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-[#202A2E] flex items-center justify-center group-hover:bg-[#E97835] group-hover:text-white transition-colors">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
                       <span className="text-xs font-mono font-bold text-[#A0ACB2]">
                         #{(idx + 1).toString().padStart(2, "0")}
                       </span>
-                      {isHero && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#E97835]/15 text-[#E97835]">
-                          {heroMediaType.toUpperCase()}
-                        </span>
-                      )}
                     </div>
+
+                    <h3 className="font-heading font-bold text-base text-[#202A2E] group-hover:text-[#E97835] transition-colors">
+                      {sec.name}
+                    </h3>
+                    <p className="text-xs text-[#687378] mt-1.5 line-clamp-2 leading-relaxed">
+                      {sec.description}
+                    </p>
                   </div>
 
-                  <h3 className="font-heading font-bold text-base text-[#202A2E] group-hover:text-[#E97835] transition-colors">
-                    {sec.name}
-                  </h3>
-                  <p className="text-xs text-[#687378] mt-1.5 line-clamp-2 leading-relaxed">
-                    {sec.description}
-                  </p>
+                  <div className="mt-5 pt-4 border-t border-[#E4DED3] flex items-center justify-between">
+                    <span className="text-[11px] text-[#A0ACB2]">
+                      Updated: <strong className="text-[#687378]">{updated}</strong>
+                    </span>
+                    <Link
+                      href={`/dashboard/about-sections/${sec.id}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#E97835] text-[#202A2E] group-hover:text-white text-xs font-bold transition-all"
+                    >
+                      <span>Edit Section</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-
-                <div className="mt-5 pt-4 border-t border-[#E4DED3] flex items-center justify-between">
-                  <span className="text-[11px] text-[#A0ACB2]">
-                    Updated: <strong className="text-[#687378]">{updated}</strong>
-                  </span>
-                  <Link
-                    href={`/dashboard/home-sections/${sec.id}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#E97835] text-[#202A2E] group-hover:text-white text-xs font-bold transition-all"
-                  >
-                    <span>Edit Section</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

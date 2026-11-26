@@ -1,0 +1,410 @@
+{
+  "about-hero": {
+    "sectionId": "about-hero",
+    "sectionName": "Hero Banner & Mascot",
+    "title": "About Us",
+    "breadcrumbRoot": "Home",
+    "breadcrumbCurrent": "About Us",
+    "backgroundImage": "/about/Professional Corrugated Packaging Display.png",
+    "mascotImage": "/about/worker-mascot-clean.png",
+    "mascotAlt": "AAVRIT PACKAGING Employee Welcoming Visitors",
+    "speechBubbleTitle": "Let's Get to Know Us!",
+    "speechBubbleSubtitle": "Discover the passion & precision behind every box",
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "company-history": {
+    "sectionId": "company-history",
+    "sectionName": "Company History & Statistics",
+    "badge": "ABOUT AAVRIT PACKAGING",
+    "title": "Protection Begins With Better Packaging.",
+    "firstParagraph": "At AAVRIT Packaging, we believe packaging is more than just a box. It is an essential part of protecting products, maintaining quality and helping businesses deliver with confidence.",
+    "secondParagraph": "From customized corrugated boxes to dependable bulk packaging solutions, our focus is on understanding business requirements and creating packaging that combines strength, practicality and value.",
+    "facilityImage": "/home/company img.png",
+    "facilityImageAlt": "AAVRIT PACKAGING modern corrugated cardboard packaging manufacturing facility in India",
+    "qualities": [
+      "Built Around Your Requirements",
+      "Certified In-House Lab Testing",
+      "Strength in Every Layer",
+      "High-Speed Automated Capacity",
+      "Focused on Reliable Packaging",
+      "Eco-Friendly 100% Recyclable"
+    ],
+    "statistics": [
+      {
+        "id": "stat-1",
+        "value": 25,
+        "suffix": "+",
+        "label": "Years of Experience",
+        "subtext": "Dedicated manufacturing journey",
+        "icon": "Award"
+      },
+      {
+        "id": "stat-2",
+        "value": 500,
+        "suffix": "+",
+        "label": "Clients Served",
+        "subtext": "Across major industrial sectors",
+        "icon": "Users"
+      },
+      {
+        "id": "stat-3",
+        "value": 1200,
+        "suffix": "+",
+        "label": "Packaging Solutions",
+        "subtext": "Engineered box designs",
+        "icon": "Package"
+      },
+      {
+        "id": "stat-4",
+        "value": 65,
+        "suffix": "+",
+        "label": "Cities Reached",
+        "subtext": "Pan-India delivery network",
+        "icon": "MapPin"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "growth-journey": {
+    "sectionId": "growth-journey",
+    "sectionName": "Our Journey & Milestones",
+    "badge": "OUR JOURNEY",
+    "title": "Our Journey & Manufacturing Milestones.",
+    "subtitle": "From our foundational corrugation lines in 2008 to modern high-speed automated facilities, explore every stage that shaped our quality packaging journey.",
+    "milestones": [
+      {
+        "id": "establishment",
+        "year": "2008",
+        "phaseTitle": "The Inception",
+        "headline": "Foundations of Quality Packaging",
+        "description": "Aavrit Packaging started in 2008 with a simple ambition: to manufacture dependable, high-integrity corrugated cartons tailored to the essential protection requirements of local industries while building genuine relationships with every client.",
+        "keyHighlight": "Manual corrugation lines & foundational quality standards",
+        "statBadge": "Inception & Core Setup",
+        "image": "/about/growth-journey/journey-2008-inception.png"
+      },
+      {
+        "id": "expansion",
+        "year": "2013",
+        "phaseTitle": "Capacity Expansion",
+        "headline": "Scaling Production & Infrastructure",
+        "description": "Expanded plant footprint and introduced semi-automated flute laminating lines, enabling steady delivery of 3-ply and 5-ply cartons across emerging FMCG, engineering, and automotive component sectors.",
+        "keyHighlight": "3x daily throughput capacity & semi-automated slitting",
+        "statBadge": "Semi-Automated Line",
+        "image": "/about/growth-journey/journey-2013-expansion.png"
+      },
+      {
+        "id": "modernization",
+        "year": "2018",
+        "phaseTitle": "Technological Shift",
+        "headline": "High-Speed Automated Corrugation",
+        "description": "Invested in continuous high-speed corrugators, multi-color rotary die-cutters, and stringent in-house bursting strength QA testing units for high-volume commercial clients.",
+        "keyHighlight": "Continuous corrugator line & multi-color flexo printing",
+        "statBadge": "Precision Machinery",
+        "image": "/about/growth-journey/journey-2018-automation.png"
+      },
+      {
+        "id": "sustainable-today",
+        "year": "2024 – Present",
+        "phaseTitle": "Future-Ready Plant",
+        "headline": "Sustainable Engineering & Pan-India Reach",
+        "description": "Today, Aavrit Packaging leads with 100% recyclable virgin and test kraft engineering, serving over 500 enterprise clients with dependable, precision-engineered corrugated packaging across India.",
+        "keyHighlight": "100% recyclable kraft stewardship & pan-India logistics",
+        "statBadge": "Present & Future",
+        "image": "/about/growth-journey/journey-2024-sustainable.png"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "core-values": {
+    "sectionId": "core-values",
+    "sectionName": "Our Core Values",
+    "badge": "OUR CORE VALUES",
+    "title": "What We Stand For Shapes Everything We Do.",
+    "subtitle": "Our values guide the way we work, the solutions we create and the relationships we build. Much like corrugated cardboard derives its integrity from synchronized paper layers, our company culture is reinforced by each core principle.",
+    "diagramHeading": "INTERACTIVE CORRUGATED CROSS-SECTION",
+    "diagramBadge": "5-Ply Structural Metaphor",
+    "values": [
+      {
+        "id": "value-1",
+        "number": "01",
+        "title": "Quality First",
+        "description": "We focus on maintaining quality and consistency throughout our packaging processes.",
+        "layerName": "Top Outer Liner",
+        "layerRole": "Shielding Surface & Puncture Resistance"
+      },
+      {
+        "id": "value-2",
+        "number": "02",
+        "title": "Customer Commitment",
+        "description": "We understand customer requirements and work towards practical packaging solutions.",
+        "layerName": "Primary Fluted Core",
+        "layerRole": "Dynamic Shock Cushioning & Vertical Load Strength"
+      },
+      {
+        "id": "value-3",
+        "number": "03",
+        "title": "Integrity & Trust",
+        "description": "We believe in transparent communication and dependable business relationships.",
+        "layerName": "Center Bonding Liner",
+        "layerRole": "Tensile Strength & Rigidity Distribution"
+      },
+      {
+        "id": "value-4",
+        "number": "04",
+        "title": "Continuous Improvement",
+        "description": "We continuously look for opportunities to improve our processes and working methods.",
+        "layerName": "Reinforced Fluted Wave",
+        "layerRole": "Calibrated Fluting & Impact Resistance"
+      },
+      {
+        "id": "value-5",
+        "number": "05",
+        "title": "Responsible Practices",
+        "description": "We aim to make considered choices in packaging design, material stewardship and environmental responsibility.",
+        "layerName": "Bottom Base Liner",
+        "layerRole": "Stable Foundation & 100% Recyclable Recovery"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "vision-mission": {
+    "sectionId": "vision-mission",
+    "sectionName": "Vision & Mission",
+    "badge": "OUR VISION & MISSION",
+    "title": "From Vision to Reality.",
+    "subtitle": "One purpose. Every box. A better packaging future.",
+    "vision": {
+      "badgeNumber": "01",
+      "title": "Shaping the Future of Packaging.",
+      "description": "To build a trusted packaging identity through thoughtful solutions, consistent quality and a forward-looking approach to the evolving needs of businesses.",
+      "checkpoints": [
+        "Industry-trusted manufacturing identity",
+        "Sustainable high-strength kraft stewardship",
+        "Future-ready automated corrugation lines",
+        "Consistent batch-to-batch quality benchmarks",
+        "Long-term value creation for partner brands"
+      ]
+    },
+    "mission": {
+      "badgeNumber": "02",
+      "title": "Creating Packaging with Purpose.",
+      "description": "To understand customer requirements and develop practical corrugated packaging solutions through careful design, attention to quality and dependable service.",
+      "checkpoints": [
+        "Deep understanding of client product protection",
+        "Custom dimensioning and optimized flute selection",
+        "Rigorous dimensional and structural inspection",
+        "Reliable delivery schedules and on-demand supply",
+        "Transparent communication from inquiry to dispatch"
+      ]
+    },
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "manufacturing-experience": {
+    "sectionId": "manufacturing-experience",
+    "sectionName": "Manufacturing Experience",
+    "badge": "OUR MANUFACTURING EXPERIENCE",
+    "title": "Packaging Solutions, Made with Purpose.",
+    "subtitle": "Explore illustrative packaging applications demonstrating how different products and industries are served with precision-engineered corrugated packaging solutions.",
+    "projects": [
+      {
+        "id": "automotive-packaging",
+        "category": "AUTOMOTIVE PACKAGING",
+        "title": "Automotive Component Packaging",
+        "description": "Corrugated packaging concepts designed for organizing and transporting automotive components, spare parts and industrial supplies.",
+        "applicationLabel": "Automotive Parts & Components",
+        "imageSrc": "/about/manufacturing-experience/automotive-component-packaging.png",
+        "imageAlt": "Industrial kraft corrugated box with custom partitions organizing precision automotive parts",
+        "recommendedFlute": "BC-Flute Double Wall (Heavy Duty)",
+        "targetProtection": "High impact resistance & organized mechanical partitions",
+        "typicalUsage": "Engine parts, brake assemblies, gears & industrial sub-assemblies",
+        "sustainabilityNote": "100% recyclable virgin kraft liner with high burst factor"
+      },
+      {
+        "id": "food-beverage-packaging",
+        "category": "FOOD & BEVERAGE",
+        "title": "Food & Beverage Packaging",
+        "description": "Practical corrugated packaging applications for food products, bakery items and FMCG distribution.",
+        "applicationLabel": "Food Products & FMCG",
+        "imageSrc": "/about/manufacturing-experience/food-beverage-packaging.png",
+        "imageAlt": "Food-grade kraft corrugated bulk transport cartons in clean distribution facility",
+        "recommendedFlute": "B-Flute / C-Flute Single Wall with ventilation die-cuts",
+        "targetProtection": "Stacking compression strength & moisture balance",
+        "typicalUsage": "Processed foods, bakery supplies, canned goods & FMCG packs",
+        "sustainabilityNote": "Food-contact safe starch adhesive and unbleached kraft board"
+      },
+      {
+        "id": "ecommerce-shipping",
+        "category": "E-COMMERCE PACKAGING",
+        "title": "E-commerce Shipping Solutions",
+        "description": "Shipping cartons and packaging formats designed for product storage, order fulfilment and delivery operations.",
+        "applicationLabel": "Shipping & Distribution",
+        "imageSrc": "/about/manufacturing-experience/ecommerce-shipping-solutions.png",
+        "imageAlt": "Sturdy e-commerce parcel shipping cartons arranged in modern fulfillment warehouse",
+        "recommendedFlute": "E-Flute Micro / B-Flute Postal Cartons",
+        "targetProtection": "Courier transit crush protection & tamper-evident flap seals",
+        "typicalUsage": "Omnichannel fulfillment, parcel deliveries & retail shipping",
+        "sustainabilityNote": "Lightweight corrugated design optimizing volumetric courier charges"
+      },
+      {
+        "id": "electrical-equipment",
+        "category": "ELECTRICAL PACKAGING",
+        "title": "Electrical Equipment Packaging",
+        "description": "Corrugated packaging concepts for organizing and protecting electrical products, components and accessories during handling.",
+        "applicationLabel": "Electrical Products & Accessories",
+        "imageSrc": "/about/manufacturing-experience/electrical-equipment-packaging.png",
+        "imageAlt": "Precision electrical equipment and components secured in custom kraft corrugated inserts",
+        "recommendedFlute": "C-Flute / Double Wall with anti-static cushion inserts",
+        "targetProtection": "Vibration dampening, edge drop absorption & scratch prevention",
+        "typicalUsage": "Distribution boxes, electrical panels, switchgear & wire modules",
+        "sustainabilityNote": "Biodegradable cellular corrugated replacing plastic EPS foam"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:12:17.484Z"
+  },
+  "leadership-team": {
+    "sectionId": "leadership-team",
+    "sectionName": "Leadership & Management Team",
+    "badge": "MEET OUR LEADERSHIP",
+    "title": "Leadership That Drives Our Vision.",
+    "subtitle": "Behind every successful business is a clear vision and a commitment to doing things better. Our leadership guides the company with a focus on thoughtful packaging solutions, quality and lasting business relationships.",
+    "teamBadge": "THE PEOPLE BEHIND OUR WORK",
+    "teamTitle": "Meet Our Management Team",
+    "teamSubtitle": "A dedicated team working together to keep our operations organized, our processes moving and our commitments on track.",
+    "owner": {
+      "name": "Rajeshwar Sharma",
+      "designation": "Founder & Managing Director",
+      "companyName": "Aavrit Packaging",
+      "photoUrl": "/about/management-team/founder-director-portrait.png",
+      "quote": "Packaging is not merely a box—it is the silent ambassador of our clients' products, engineered with precision, reliability and care.",
+      "bioFirst": "Behind every successful business is a clear vision and a commitment to doing things better. Our leadership guides the company with a focus on thoughtful packaging solutions, quality and lasting business relationships.",
+      "bioSecond": "Driven by decades of combined industrial understanding, our operational philosophy centers on sustainable material stewardship, modern corrugation technology, and honest customer partnerships across diverse commercial sectors.",
+      "signatureLabel": "Aavrit Packaging Leadership"
+    },
+    "team": [
+      {
+        "id": "rajesh-patel",
+        "name": "Rajesh Patel",
+        "designation": "General Manager",
+        "department": "Plant Management & Strategy",
+        "photoUrl": "/about/management-team/rajesh-patel.png"
+      },
+      {
+        "id": "amit-shah",
+        "name": "Amit Shah",
+        "designation": "Production Manager",
+        "department": "Corrugation & Quality Control",
+        "photoUrl": "/about/management-team/amit-shah.png"
+      },
+      {
+        "id": "neha-desai",
+        "name": "Neha Desai",
+        "designation": "Operations Manager",
+        "department": "Supply Chain & Logistics",
+        "photoUrl": "/about/management-team/neha-desai.png"
+      },
+      {
+        "id": "priya-mehta",
+        "name": "Priya Mehta",
+        "designation": "Human Resources Manager",
+        "department": "Talent & Organizational Culture",
+        "photoUrl": "/about/management-team/priya-mehta.png"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:22:33.551Z"
+  },
+  "working-principles": {
+    "sectionId": "working-principles",
+    "sectionName": "Working Principles",
+    "badge": "HOW WE WORK",
+    "title": "The Principles Behind Every Box We Create.",
+    "subtitle": "Our approach brings together thoughtful manufacturing, customer-focused solutions and a consistent commitment to quality.",
+    "principles": [
+      {
+        "number": "01",
+        "label": "OUR PRODUCTION PHILOSOPHY",
+        "heading": "Thoughtful Manufacturing. Practical Solutions.",
+        "description": "We believe good packaging begins with understanding the product and its requirements. Our production approach focuses on thoughtful design, suitable material selection and careful manufacturing practices to create practical corrugated packaging solutions.",
+        "bulletPoints": [
+          "Optimal flute geometry matched to load-bearing dynamics",
+          "Sustainable kraft paperboard sourcing with high tensile strength",
+          "Resource-efficient die-cutting and precise slotting operations"
+        ],
+        "imageSrc": "/about/working-principles/production-philosophy.png",
+        "imageAlt": "Corrugated cardboard manufacturing machinery fluting raw kraft paper in modern plant",
+        "metricValue": "Precision Fluting",
+        "metricLabel": "Balanced Structural Strength"
+      },
+      {
+        "number": "02",
+        "label": "OUR CUSTOMER APPROACH",
+        "heading": "Understanding Needs. Building Relationships.",
+        "description": "Every packaging requirement is different. We value clear communication, understanding customer expectations and working towards suitable packaging solutions for different products and applications.",
+        "bulletPoints": [
+          "Collaborative dimensioning and load-testing consultations",
+          "Transparent recommendations tailored to transit environments",
+          "Responsive turnaround on customized box specifications"
+        ],
+        "imageSrc": "/about/working-principles/customer-approach.png",
+        "imageAlt": "Packaging consultation worktable with kraft box prototypes, calipers, and technical plans",
+        "metricValue": "Consultative",
+        "metricLabel": "Solution-First Partnership"
+      },
+      {
+        "number": "03",
+        "label": "OUR QUALITY COMMITMENT",
+        "heading": "Attention to Detail at Every Stage.",
+        "description": "We recognize the importance of packaging consistency and product protection. Our approach emphasizes attention to materials, dimensions, construction and inspection according to the requirements of each packaging solution.",
+        "bulletPoints": [
+          "Uniform scoring and accurate 90° fold integrity",
+          "Edge crush and bursting strength awareness across batches",
+          "Dimensional adherence to prevent transit shifting and product damage"
+        ],
+        "imageSrc": "/about/working-principles/quality-commitment.png",
+        "imageAlt": "Quality inspection workstation checking corrugated flute layers, fold edges, and box thickness",
+        "metricValue": "Rigorous Checks",
+        "metricLabel": "Every Batch Inspected"
+      }
+    ],
+    "updatedAt": "2026-11-26T09:31:34.570Z"
+  },
+  "about-faq": {
+    "sectionId": "about-faq",
+    "sectionName": "Frequently Asked Questions",
+    "badge": "HAVE QUESTIONS?",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our company, packaging solutions and manufacturing approach.",
+    "faqs": [
+      {
+        "id": "about-faq-1",
+        "number": "01",
+        "q": "What does our company specialize in?",
+        "a": "We specialize in corrugated cardboard packaging solutions designed for different product types, packaging requirements and business applications."
+      },
+      {
+        "id": "about-faq-2",
+        "number": "02",
+        "q": "What types of packaging solutions do we offer?",
+        "a": "We offer corrugated packaging solutions for different applications, including shipping cartons, industrial packaging and customized boxes. Specific options depend on our manufacturing capabilities."
+      },
+      {
+        "id": "about-faq-3",
+        "number": "03",
+        "q": "Can we provide customized packaging solutions?",
+        "a": "Yes. Packaging requirements can be discussed based on product dimensions, intended application, packaging style and other project requirements."
+      },
+      {
+        "id": "about-faq-4",
+        "number": "04",
+        "q": "How do we approach manufacturing quality?",
+        "a": "Our approach focuses on suitable material selection, careful manufacturing practices and attention to dimensions, construction and packaging requirements."
+      },
+      {
+        "id": "about-faq-5",
+        "number": "05",
+        "q": "Which industries do we serve?",
+        "a": "Our packaging solutions are intended for applications across industries such as automotive, pharmaceutical, food and beverage, e-commerce, electronics, textiles, agriculture and engineering."
+      }
+    ],
+    "updatedAt": "2026-11-26T09:40:21.758Z"
+  }
+}

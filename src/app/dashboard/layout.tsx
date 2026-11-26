@@ -29,8 +29,13 @@ import {
   Menu,
   X,
   CheckCircle2,
+  TrendingUp,
+  Compass,
+  Users,
+  Info,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
+import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
 
 // Icon mapping helper
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -48,6 +53,10 @@ const ICON_MAP: Record<string, React.ElementType> = {
   MessageSquareQuote,
   HelpCircle,
   Sparkles,
+  TrendingUp,
+  Compass,
+  Users,
+  Info,
 };
 
 export default function DashboardLayout({
@@ -57,14 +66,23 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [homeDropdownOpen, setHomeDropdownOpen] = useState(true);
+  const [homeDropdownOpen, setHomeDropdownOpen] = useState(
+    () => !pathname?.includes("/dashboard/about-sections")
+  );
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/about-sections"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  // Automatically keep Home dropdown open if user is browsing a home section
+  // Automatically keep the active section's dropdown open and collapse the other
   useEffect(() => {
-    if (pathname.includes("/dashboard/home-sections")) {
+    if (pathname?.includes("/dashboard/about-sections")) {
+      setAboutDropdownOpen(true);
+      setHomeDropdownOpen(false);
+    } else if (pathname?.includes("/dashboard/home-sections")) {
       setHomeDropdownOpen(true);
+      setAboutDropdownOpen(false);
     }
   }, [pathname]);
 
@@ -153,8 +171,8 @@ export default function DashboardLayout({
                   href="/dashboard"
                   onClick={() => setMobileSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${pathname === "/dashboard"
-                      ? "bg-[#E97835] text-white shadow-xs"
-                      : "text-[#202A2E] hover:bg-[#F5F2EB]"
+                    ? "bg-[#E97835] text-white shadow-xs"
+                    : "text-[#202A2E] hover:bg-[#F5F2EB]"
                     }`}
                 >
                   <LayoutDashboard className="w-4 h-4 shrink-0" />
@@ -165,8 +183,8 @@ export default function DashboardLayout({
                   href="/dashboard/management"
                   onClick={() => setMobileSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${pathname === "/dashboard/management"
-                      ? "bg-[#E97835] text-white shadow-xs"
-                      : "text-[#202A2E] hover:bg-[#F5F2EB]"
+                    ? "bg-[#E97835] text-white shadow-xs"
+                    : "text-[#202A2E] hover:bg-[#F5F2EB]"
                     }`}
                 >
                   <Sliders className="w-4 h-4 shrink-0" />
@@ -213,8 +231,8 @@ export default function DashboardLayout({
                           href={`/dashboard/home-sections/${sec.id}`}
                           onClick={() => setMobileSidebarOpen(false)}
                           className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${active
-                              ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
-                              : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                            ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                            : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                             }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
@@ -234,13 +252,75 @@ export default function DashboardLayout({
                           {isHero && (
                             <span
                               className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${active
-                                  ? "bg-[#E97835] text-white"
-                                  : "bg-[#E97835]/15 text-[#E97835]"
+                                ? "bg-[#E97835] text-white"
+                                : "bg-[#E97835]/15 text-[#E97835]"
                                 }`}
                             >
                               Video/Img
                             </span>
                           )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* About Us Dynamic Content Dropdown Section */}
+            <div>
+
+
+              {/* Collapsible About Section Dropdown */}
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Info className="w-3.5 h-3.5" />
+                    </div>
+                    <span>About Section</span>
+                  </div>
+                  {aboutDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for About Us */}
+                {aboutDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5 max-h-[calc(100vh-280px)] overflow-y-auto">
+                    {ABOUT_SECTIONS_LIST.map((sec, index) => {
+                      const IconComponent = ICON_MAP[sec.icon] || Building2;
+                      const active = pathname === `/dashboard/about-sections/${sec.id}`;
+
+                      return (
+                        <Link
+                          key={sec.id}
+                          href={`/dashboard/about-sections/${sec.id}`}
+                          onClick={() => setMobileSidebarOpen(false)}
+                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${active
+                              ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                              : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                            }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span
+                              className={`text-[10px] font-mono shrink-0 w-4 text-center ${active ? "text-[#E97835] font-bold" : "text-[#A0ACB2]"
+                                }`}
+                            >
+                              {(index + 1).toString().padStart(2, "0")}
+                            </span>
+                            <IconComponent
+                              className={`w-3.5 h-3.5 shrink-0 ${active ? "text-[#E97835]" : "text-[#687378]"
+                                }`}
+                            />
+                            <span className="truncate">{sec.name}</span>
+                          </div>
                         </Link>
                       );
                     })}
