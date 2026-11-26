@@ -1,0 +1,109 @@
+export interface ManagementData {
+  logo: {
+    lightLogo: string;
+    darkLogo: string;
+    favicon: string;
+    siteTitle: string;
+    tagline: string;
+  };
+  navbar: {
+    phone: string;
+    email: string;
+    address: string;
+    mapsUrl: string;
+    ctaText: string;
+    ctaLink: string;
+    navLinks: Array<{ label: string; href: string }>;
+  };
+  footer: {
+    companyDescription: string;
+    phone: string;
+    email: string;
+    address: string;
+    mapsUrl: string;
+    copyrightText: string;
+    socialTitle?: string;
+    navigationTitle?: string;
+    productsTitle?: string;
+    plantTitle?: string;
+    socialLinks: {
+      instagram: string;
+      youtube: string;
+      twitter: string;
+      linkedin: string;
+    };
+    quickLinks: Array<{ label: string; href: string }>;
+    productLinks: Array<{ label: string; href: string }>;
+    legalLinks: Array<{ label: string; href: string }>;
+  };
+  updatedAt?: string;
+}
+
+export const DEFAULT_MANAGEMENT_DATA: ManagementData = {
+  logo: {
+    lightLogo: "/images/aavrit_logo_light_bg.svg",
+    darkLogo: "/images/aavrit_logo_dark_bg.svg",
+    favicon: "/favicon.ico",
+    siteTitle: "AAVRIT PACKAGING",
+    tagline: "Protection Begins With Better Packaging",
+  },
+  navbar: {
+    phone: "+91 98765 43210",
+    email: "inquiry@aavritpackaging.com",
+    address: "Plot No. 42, Phase II GIDC, Gujarat, India",
+    mapsUrl: "https://maps.google.com/?q=Plot+No.+42,+Phase+II+GIDC+Industrial+Estate,+Gujarat+382445,+India",
+    ctaText: "Request a Quote",
+    ctaLink: "/contact#inquiry-form",
+    navLinks: [
+      { label: "About Us", href: "/about" },
+      { label: "Products", href: "/products" },
+      { label: "Custom Packaging", href: "/custom-packaging" },
+      { label: "Industries", href: "/industries" },
+      { label: "Contact Us", href: "/contact" },
+      { label: "Blogs", href: "/blogs" },
+    ],
+  },
+  footer: {
+    companyDescription:
+      "Manufacturers of heavy-duty industrial cartons, 3-ply, 5-ply, 7-ply corrugated boxes, custom printed master packaging, and precision die-cut shipping solutions.",
+    phone: "+91 98765 43210",
+    email: "inquiry@aavritpackaging.com",
+    address: "Plot No. 42, Phase II GIDC Industrial Estate, Gujarat 382445, India",
+    mapsUrl: "https://maps.google.com/?q=Plot+No.+42,+Phase+II+GIDC+Industrial+Estate,+Gujarat+382445,+India",
+    copyrightText: "© 2026 AAVRIT PACKAGING. All Rights Reserved.",
+    socialTitle: "FOLLOW US",
+    navigationTitle: "NAVIGATION",
+    productsTitle: "PRODUCTS",
+    plantTitle: "PLANT & OFFICE",
+    socialLinks: {
+      instagram: "https://instagram.com",
+      youtube: "https://youtube.com",
+      twitter: "https://x.com",
+      linkedin: "https://linkedin.com",
+    },
+    quickLinks: [
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
+      { label: "Products", href: "/products" },
+      { label: "Custom Packaging", href: "/custom-packaging" },
+      { label: "Industries", href: "/industries" },
+      { label: "Machinery & Technology", href: "/machinery" },
+      { label: "Sustainability", href: "/sustainability" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Blogs", href: "/blogs" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+    productLinks: [
+      { label: "Corrugated Boxes", href: "/products?category=corrugated-boxes" },
+      { label: "Printed Boxes", href: "/products?category=printed-corrugated-boxes" },
+      { label: "Die-Cut Mailers", href: "/products?category=die-cut-boxes" },
+      { label: "Industrial Packaging", href: "/products?category=industrial-packaging" },
+      { label: "Food Packaging", href: "/products?category=food-packaging" },
+      { label: "E-commerce Cartons", href: "/products?category=ecommerce-packaging" },
+    ],
+    legalLinks: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-and-conditions" },
+    ],
+  },
+};

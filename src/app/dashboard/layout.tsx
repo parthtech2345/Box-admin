@@ -162,6 +162,19 @@ export default function DashboardLayout({
                   <LayoutDashboard className="w-4 h-4 shrink-0" />
                   <span>Dashboard Overview</span>
                 </Link>
+
+                <Link
+                  href="/dashboard/management"
+                  onClick={() => setMobileSidebarOpen(false)}
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                    pathname === "/dashboard/management"
+                      ? "bg-[#E97835] text-white shadow-xs"
+                      : "text-[#202A2E] hover:bg-[#F5F2EB]"
+                  }`}
+                >
+                  <Sliders className="w-4 h-4 shrink-0" />
+                  <span>Management</span>
+                </Link>
               </nav>
             </div>
 
