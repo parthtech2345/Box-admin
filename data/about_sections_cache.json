@@ -264,9 +264,9 @@
   "leadership-team": {
     "sectionId": "leadership-team",
     "sectionName": "Leadership & Management Team",
-    "badge": "MEET OUR LEADERSHIP",
-    "title": "Leadership That Drives Our Vision.",
-    "subtitle": "Behind every successful business is a clear vision and a commitment to doing things better. Our leadership guides the company with a focus on thoughtful packaging solutions, quality and lasting business relationships.",
+    "badge": "LEADERSHIP & MANAGEMENT",
+    "title": "Guided by Experience. Driven by Purpose.",
+    "subtitle": "Behind every successful business is a clear vision and a commitment to doing things better. Meet the founders and operations leaders guiding Aavrit Packaging.",
     "teamBadge": "THE PEOPLE BEHIND OUR WORK",
     "teamTitle": "Meet Our Management Team",
     "teamSubtitle": "A dedicated team working together to keep our operations organized, our processes moving and our commitments on track.",
@@ -310,7 +310,9 @@
         "photoUrl": "/about/management-team/priya-mehta.png"
       }
     ],
-    "updatedAt": "2026-11-26T09:22:33.551Z"
+    "updatedAt": "2026-11-26T09:57:43.961Z",
+    "founderBadge": "MEET OUR LEADERSHIP",
+    "founderTitle": "Leadership That Drives Our Vision."
   },
   "working-principles": {
     "sectionId": "working-principles",

@@ -349,10 +349,12 @@ export const DEFAULT_ABOUT_DATA: Record<string, any> = {
   "leadership-team": {
     sectionId: "leadership-team",
     sectionName: "Leadership & Management Team",
-    badge: "MEET OUR LEADERSHIP",
-    title: "Leadership That Drives Our Vision.",
+    badge: "LEADERSHIP & MANAGEMENT",
+    title: "Guided by Experience. Driven by Purpose.",
     subtitle:
-      "Behind every successful business is a clear vision and a commitment to doing things better. Our leadership guides the company with a focus on thoughtful packaging solutions, quality and lasting business relationships.",
+      "Behind every successful business is a clear vision and a commitment to doing things better. Meet the founders and operations leaders guiding Aavrit Packaging.",
+    founderBadge: "MEET OUR LEADERSHIP",
+    founderTitle: "Leadership That Drives Our Vision.",
     teamBadge: "THE PEOPLE BEHIND OUR WORK",
     teamTitle: "Meet Our Management Team",
     teamSubtitle:

@@ -1441,6 +1441,58 @@ export default function AboutSectionEditorPage() {
       {/* ======================================================== */}
       {sectionId === "leadership-team" && (
         <div className="space-y-6">
+          {/* Section Headings (Top 2-Column Header) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="border-b border-[#E4DED3] pb-3">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-[#E97835] bg-[#E97835]/10 px-2.5 py-1 rounded-full inline-block mb-1">
+                Section Level Header
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                Section 2-Column Headings (Website Top Header)
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data?.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="LEADERSHIP & MANAGEMENT"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Title
+                </label>
+                <input
+                  type="text"
+                  value={data?.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="Guided by Experience. Driven by Purpose."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Subtitle (Right Context)
+                </label>
+                <input
+                  type="text"
+                  value={data?.subtitle || ""}
+                  onChange={(e) => setData({ ...data, subtitle: e.target.value })}
+                  placeholder="Behind every successful business is a clear vision..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Part 1: Founder & Managing Director Spotlight */}
           <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
             <div className="border-b border-[#E4DED3] pb-3 flex items-center justify-between">
@@ -1457,12 +1509,12 @@ export default function AboutSectionEditorPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
-                  Eyebrow Badge
+                  Founder Card Eyebrow
                 </label>
                 <input
                   type="text"
-                  value={data?.badge || ""}
-                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  value={data?.founderBadge || data?.badge || ""}
+                  onChange={(e) => setData({ ...data, founderBadge: e.target.value })}
                   placeholder="MEET OUR LEADERSHIP"
                   className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
@@ -1470,12 +1522,12 @@ export default function AboutSectionEditorPage() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
-                  Main Heading
+                  Founder Card Heading
                 </label>
                 <input
                   type="text"
-                  value={data?.title || ""}
-                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  value={data?.founderTitle || data?.title || ""}
+                  onChange={(e) => setData({ ...data, founderTitle: e.target.value })}
                   placeholder="Leadership That Drives Our Vision."
                   className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
                 />
