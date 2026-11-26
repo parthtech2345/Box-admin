@@ -44,10 +44,22 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
     badge: "ABOUT AAVRIT PACKAGING",
     title: "Protection Begins With Better Packaging.",
     description: "At AAVRIT Packaging, we believe packaging is more than just a box. It is an essential part of protecting products, maintaining quality and helping businesses deliver with confidence.",
+    secondParagraph: "From customized corrugated boxes to dependable bulk packaging solutions, our focus is on understanding business requirements and creating packaging that combines strength, practicality and value.",
+    qualities: [
+      "Built Around Your Requirements",
+      "Certified In-House Lab Testing",
+      "Strength in Every Layer",
+      "High-Speed Automated Capacity",
+      "Focused on Reliable Packaging",
+      "Eco-Friendly 100% Recyclable"
+    ],
     bulletPoints: [
-      "Continuous Quality Assurance & Burst Strength Testing",
-      "High-Precision Auto Die-Cutting & Multi-Color Printing",
-      "Sustainable & 100% Recyclable Paper-Based Materials"
+      "Built Around Your Requirements",
+      "Certified In-House Lab Testing",
+      "Strength in Every Layer",
+      "High-Speed Automated Capacity",
+      "Focused on Reliable Packaging",
+      "Eco-Friendly 100% Recyclable"
     ],
     mediaType: "image",
     mediaUrl: "/home/company img.png",

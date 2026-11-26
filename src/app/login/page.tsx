@@ -66,11 +66,11 @@ export default function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#202A2E] text-[#D1B48C] shadow-lg shadow-[#202A2E]/20 mb-4 border border-[#E4DED3]">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#E97835] text-white shadow-lg shadow-[#E97835]/25 mb-4 border border-[#E97835]/30">
             <Package className="w-7 h-7" />
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D1B48C]/20 border border-[#D1B48C]/40 mb-3 text-[11px] font-bold uppercase tracking-widest text-[#845B32]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E97835]/10 border border-[#E97835]/20 mb-3 text-[11px] font-bold uppercase tracking-widest text-[#E97835]">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Administrative Gateway</span>
           </div>
@@ -116,7 +116,7 @@ export default function LoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin"
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-sm text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#D1B48C] focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-sm text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#E97835] focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-sm text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#D1B48C] focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-10 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-sm text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#E97835] focus:border-transparent transition-all"
                 />
                 <button
                   type="button"
@@ -170,7 +170,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-3 px-4 rounded-xl bg-[#202A2E] hover:bg-[#2b383e] active:scale-[0.99] text-[#FFFFFF] font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full mt-2 py-3 px-4 rounded-xl bg-[#E97835] hover:bg-[#d66a2a] active:scale-[0.99] text-[#FFFFFF] font-bold text-sm shadow-md shadow-[#E97835]/25 hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>

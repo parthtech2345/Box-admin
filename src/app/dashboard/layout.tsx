@@ -82,30 +82,30 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen bg-[#F8F6F0] flex flex-col text-[#202A2E]">
       {/* Top Navbar */}
-      <header className="h-16 bg-[#202A2E] text-[#FFFFFF] border-b border-[#2C383D] sticky top-0 z-50 px-4 sm:px-6 flex items-center justify-between shadow-md">
+      <header className="h-16 bg-[#FFFFFF] text-[#202A2E] border-b border-[#E4DED3] sticky top-0 z-50 px-4 sm:px-6 flex items-center justify-between shadow-xs">
         <div className="flex items-center gap-4">
           <button
             onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="md:hidden p-2 rounded-lg text-[#D1B48C] hover:bg-[#2C383D] transition-colors"
+            className="md:hidden p-2 rounded-lg text-[#687378] hover:bg-[#F5F2EB] transition-colors"
             aria-label="Toggle sidebar"
           >
             {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
           <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-[#D1B48C] text-[#202A2E] flex items-center justify-center font-bold shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-[#E97835] text-white flex items-center justify-center font-bold shadow-xs group-hover:scale-105 transition-transform">
               <Package className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-heading font-extrabold text-base tracking-tight text-[#FFFFFF]">
+                <span className="font-heading font-extrabold text-base tracking-tight text-[#202A2E]">
                   Aavrit Packaging
                 </span>
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#D1B48C]/20 text-[#D1B48C] uppercase tracking-wider border border-[#D1B48C]/30">
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#E97835]/15 text-[#E97835] uppercase tracking-wider border border-[#E97835]/25">
                   Admin
                 </span>
               </div>
-              <p className="text-[11px] text-[#A0ACB2] hidden sm:block">
+              <p className="text-[11px] text-[#687378] hidden sm:block">
                 Industrial Packaging Dynamic Content CMS
               </p>
             </div>
@@ -119,31 +119,31 @@ export default function DashboardLayout({
             href="http://localhost:3000"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#2C383D] hover:bg-[#38484E] text-[#D1B48C] text-xs font-semibold border border-[#38484E] transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] hover:bg-[#EAE4D7] text-[#202A2E] text-xs font-semibold border border-[#E4DED3] transition-all"
           >
             <span>Live Website</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-3.5 h-3.5 text-[#E97835]" />
           </a>
 
           {/* Database Status */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#182023] border border-[#2C383D] text-[11px] text-[#A0ACB2]">
-            <Database className="w-3 h-3 text-emerald-400" />
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 font-medium">
+            <Database className="w-3 h-3 text-emerald-600" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>MongoDB Connected</span>
           </div>
 
           {/* User Profile & Logout */}
-          <div className="flex items-center gap-3 pl-3 border-l border-[#2C383D]">
+          <div className="flex items-center gap-3 pl-3 border-l border-[#E4DED3]">
             <div className="text-right hidden sm:block">
-              <div className="text-xs font-bold text-[#FFFFFF]">Admin User</div>
-              <div className="text-[10px] text-[#D1B48C]">Super Administrator</div>
+              <div className="text-xs font-bold text-[#202A2E]">Admin User</div>
+              <div className="text-[10px] text-[#E97835] font-semibold">Super Administrator</div>
             </div>
 
             <button
               onClick={handleLogout}
               disabled={loggingOut}
               title="Sign Out"
-              className="p-2 rounded-lg bg-[#2C383D] hover:bg-red-950/60 hover:text-red-400 text-[#A0ACB2] transition-colors flex items-center gap-1.5 text-xs"
+              className="p-2 rounded-lg bg-[#F5F2EB] hover:bg-red-50 hover:text-red-600 text-[#687378] border border-[#E4DED3] transition-colors flex items-center gap-1.5 text-xs font-semibold"
             >
               <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Logout</span>
@@ -173,7 +173,7 @@ export default function DashboardLayout({
                   onClick={() => setMobileSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                     pathname === "/dashboard"
-                      ? "bg-[#202A2E] text-[#D1B48C] shadow-sm"
+                      ? "bg-[#E97835] text-white shadow-xs"
                       : "text-[#202A2E] hover:bg-[#F5F2EB]"
                   }`}
                 >
@@ -187,7 +187,7 @@ export default function DashboardLayout({
             <div>
               <div className="text-[10px] font-bold uppercase tracking-wider text-[#687378] px-3 mb-2 flex items-center justify-between">
                 <span>Homepage CMS</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#D1B48C]/30 text-[#845B32] font-bold">
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#E97835]/15 text-[#E97835] font-bold">
                   14 Sections
                 </span>
               </div>
@@ -227,21 +227,21 @@ export default function DashboardLayout({
                           onClick={() => setMobileSidebarOpen(false)}
                           className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
                             active
-                              ? "bg-[#202A2E] text-[#D1B48C] font-semibold"
+                              ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                               : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                           }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <span
                               className={`text-[10px] font-mono shrink-0 w-4 text-center ${
-                                active ? "text-[#D1B48C]" : "text-[#A0ACB2]"
+                                active ? "text-[#E97835] font-bold" : "text-[#A0ACB2]"
                               }`}
                             >
                               {(index + 1).toString().padStart(2, "0")}
                             </span>
                             <IconComponent
                               className={`w-3.5 h-3.5 shrink-0 ${
-                                active ? "text-[#D1B48C]" : "text-[#687378]"
+                                active ? "text-[#E97835]" : "text-[#687378]"
                               }`}
                             />
                             <span className="truncate">{sec.name}</span>
@@ -251,7 +251,7 @@ export default function DashboardLayout({
                             <span
                               className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${
                                 active
-                                  ? "bg-[#D1B48C] text-[#202A2E]"
+                                  ? "bg-[#E97835] text-white"
                                   : "bg-[#E97835]/15 text-[#E97835]"
                               }`}
                             >

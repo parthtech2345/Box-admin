@@ -57,6 +57,20 @@ export default function MediaUploader({
   const isVideo = mediaType === "video" || value?.endsWith(".mp4") || value?.endsWith(".webm");
   const isGif = mediaType === "gif" || value?.endsWith(".gif");
 
+  const getPreviewUrl = (val: string) => {
+    if (!val) return "";
+    if (val.startsWith("http://") || val.startsWith("https://") || val.startsWith("data:") || val.startsWith("blob:")) {
+      return val;
+    }
+    // If it's an uploaded asset inside admin public/uploads:
+    if (val.startsWith("/uploads/")) {
+      return val;
+    }
+    const websiteBase = process.env.NEXT_PUBLIC_WEBSITE_URL || "http://localhost:3000";
+    const cleanPath = val.startsWith("/") ? val : `/${val}`;
+    return `${websiteBase}${encodeURI(cleanPath)}`;
+  };
+
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
@@ -82,7 +96,7 @@ export default function MediaUploader({
               onChange(val, detected);
             }}
             placeholder="/home/example.png or https://... or uploaded file"
-            className="flex-1 px-3.5 py-2 bg-[#FFFFFF] border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#D1B48C]"
+            className="flex-1 px-3.5 py-2 bg-[#FFFFFF] border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#E97835]"
           />
 
           <input
@@ -97,7 +111,7 @@ export default function MediaUploader({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="px-3.5 py-2 rounded-lg bg-[#202A2E] hover:bg-[#2b383e] text-[#FFFFFF] text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer disabled:opacity-60"
+            className="px-3.5 py-2 rounded-lg bg-[#E97835] hover:bg-[#d66a2a] text-[#FFFFFF] text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer disabled:opacity-60 shadow-xs"
           >
             {uploading ? (
               <>
@@ -106,7 +120,7 @@ export default function MediaUploader({
               </>
             ) : (
               <>
-                <Upload className="w-3.5 h-3.5 text-[#D1B48C]" />
+                <Upload className="w-3.5 h-3.5 text-white" />
                 <span>Upload Media</span>
               </>
             )}
@@ -122,34 +136,49 @@ export default function MediaUploader({
 
         {/* Media Preview Box */}
         {value && typeof value === "string" && value.trim() !== "" && (
-          <div className="relative rounded-lg overflow-hidden border border-[#E4DED3] bg-[#202A2E]/5 max-h-56 flex items-center justify-center p-2">
-            {isVideo ? (
-              <video
-                src={value}
-                controls
-                className="max-h-48 rounded w-auto max-w-full object-contain"
-              />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={value}
-                alt={label || "Media preview"}
-                className="max-h-48 rounded w-auto max-w-full object-contain"
-                onError={(e) => {
-                  // Fallback for image preview error
-                  (e.target as HTMLElement).style.display = "none";
-                }}
-              />
-            )}
+          <div className="relative rounded-xl overflow-hidden border border-[#E4DED3] bg-[#FFFFFF] p-3 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-[#E97835] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E97835] animate-pulse" />
+                Current Active Media Preview
+              </span>
+              <span className="text-[10px] font-mono text-[#847B70] truncate max-w-[220px]" title={value}>
+                {value}
+              </span>
+            </div>
 
-            <button
-              type="button"
-              onClick={() => onChange("", "image")}
-              title="Clear media"
-              className="absolute top-2 right-2 w-6 h-6 rounded-full bg-[#202A2E]/80 text-[#FFFFFF] hover:bg-red-600 flex items-center justify-center transition-colors"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
+            <div className="relative rounded-lg overflow-hidden border border-[#E4DED3] bg-[#FAF9F5] max-h-56 flex items-center justify-center p-2">
+              {isVideo ? (
+                <video
+                  src={getPreviewUrl(value)}
+                  controls
+                  className="max-h-48 rounded w-auto max-w-full object-contain"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={getPreviewUrl(value)}
+                  alt={label || "Media preview"}
+                  className="max-h-48 rounded w-auto max-w-full object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (!target.dataset.triedFallback && !value.startsWith("http")) {
+                      target.dataset.triedFallback = "true";
+                      target.src = `http://localhost:3000${value.startsWith("/") ? "" : "/"}${encodeURI(value)}`;
+                    }
+                  }}
+                />
+              )}
+
+              <button
+                type="button"
+                onClick={() => onChange("", "image")}
+                title="Clear media"
+                className="absolute top-2 right-2 w-7 h-7 rounded-full bg-[#202A2E]/70 text-white hover:bg-red-600 flex items-center justify-center transition-colors shadow-sm cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         )}
 

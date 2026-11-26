@@ -129,7 +129,7 @@ export default function DashboardOverviewPage() {
             href="http://localhost:3000"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-[#202A2E] hover:bg-[#2b383e] text-[#D1B48C] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+            className="px-4 py-2.5 rounded-xl bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
           >
             <span>View Live Website</span>
             <ExternalLink className="w-3.5 h-3.5" />
@@ -221,7 +221,7 @@ export default function DashboardOverviewPage() {
             <span className="text-xs font-bold uppercase tracking-wider text-[#687378]">
               Media Supported
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#202A2E] text-[#D1B48C] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
               <Package className="w-4 h-4" />
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function DashboardOverviewPage() {
               Select any section to edit its content, upload media, or modify parameters.
             </p>
           </div>
-          <span className="text-xs text-[#845B32] font-bold bg-[#D1B48C]/20 px-3 py-1 rounded-full border border-[#D1B48C]/40">
+          <span className="text-xs text-[#E97835] font-bold bg-[#E97835]/10 px-3 py-1 rounded-full border border-[#E97835]/25">
             14 Sections Available
           </span>
         </div>
@@ -260,11 +260,11 @@ export default function DashboardOverviewPage() {
             return (
               <div
                 key={sec.id}
-                className="bg-[#FFFFFF] border border-[#E4DED3] hover:border-[#D1B48C] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+                className="bg-[#FFFFFF] border border-[#E4DED3] hover:border-[#E97835] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-[#202A2E] flex items-center justify-center group-hover:bg-[#202A2E] group-hover:text-[#D1B48C] transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-[#202A2E] flex items-center justify-center group-hover:bg-[#E97835] group-hover:text-white transition-colors">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <div className="flex items-center gap-1.5">
@@ -293,7 +293,7 @@ export default function DashboardOverviewPage() {
                   </span>
                   <Link
                     href={`/dashboard/home-sections/${sec.id}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#202A2E] text-[#202A2E] group-hover:text-[#D1B48C] text-xs font-bold transition-all"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#E97835] text-[#202A2E] group-hover:text-white text-xs font-bold transition-all"
                   >
                     <span>Edit Section</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

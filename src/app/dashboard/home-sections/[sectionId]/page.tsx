@@ -114,6 +114,7 @@ export default function SectionEditorPage() {
   }
 
   const isHero = sectionId === "hero";
+  const isAboutUs = sectionId === "about-us";
 
   return (
     <div className="space-y-6 pb-16">
@@ -164,7 +165,7 @@ export default function SectionEditorPage() {
             type="button"
             onClick={handleSave}
             disabled={saving}
-            className="px-5 py-2 rounded-xl bg-[#202A2E] hover:bg-[#2b383e] text-[#D1B48C] text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
+            className="px-5 py-2 rounded-xl bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? "Saving to MongoDB..." : "Save Changes"}</span>
@@ -214,15 +215,15 @@ export default function SectionEditorPage() {
                 onClick={() => setData({ ...data, mediaType: "video" })}
                 className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3.5 ${
                   data.mediaType === "video"
-                    ? "bg-[#202A2E] text-[#FFFFFF] border-[#202A2E] shadow-md ring-2 ring-[#D1B48C]"
-                    : "bg-[#FAF9F5] hover:bg-[#F5F2EB] text-[#202A2E] border-[#E4DED3]"
+                    ? "bg-[#FFF8F3] text-[#202A2E] border-2 border-[#E97835] shadow-xs ring-2 ring-[#E97835]/15"
+                    : "bg-[#FFFFFF] hover:bg-[#FAF9F5] text-[#202A2E] border-[#E4DED3] hover:border-[#D1B48C]"
                 }`}
               >
                 <div
                   className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
                     data.mediaType === "video"
-                      ? "bg-[#D1B48C] text-[#202A2E]"
-                      : "bg-[#E4DED3] text-[#687378]"
+                      ? "bg-[#E97835] text-white"
+                      : "bg-[#F5F2EB] text-[#687378]"
                   }`}
                 >
                   <PlaySquare className="w-5 h-5" />
@@ -231,16 +232,12 @@ export default function SectionEditorPage() {
                   <div className="font-bold text-sm flex items-center gap-2">
                     <span>Video Mode</span>
                     {data.mediaType === "video" && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#D1B48C] text-[#202A2E]">
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
                         ACTIVE
                       </span>
                     )}
                   </div>
-                  <p
-                    className={`text-xs mt-1 leading-normal ${
-                      data.mediaType === "video" ? "text-[#A0ACB2]" : "text-[#687378]"
-                    }`}
-                  >
+                  <p className="text-xs mt-1 leading-normal text-[#687378]">
                     Interactive 80-frame scroll scrubbing video or custom uploaded video file.
                   </p>
                 </div>
@@ -251,15 +248,15 @@ export default function SectionEditorPage() {
                 onClick={() => setData({ ...data, mediaType: "image" })}
                 className={`p-4 rounded-xl border text-left transition-all flex items-start gap-3.5 ${
                   data.mediaType === "image"
-                    ? "bg-[#202A2E] text-[#FFFFFF] border-[#202A2E] shadow-md ring-2 ring-[#D1B48C]"
-                    : "bg-[#FAF9F5] hover:bg-[#F5F2EB] text-[#202A2E] border-[#E4DED3]"
+                    ? "bg-[#FFF8F3] text-[#202A2E] border-2 border-[#E97835] shadow-xs ring-2 ring-[#E97835]/15"
+                    : "bg-[#FFFFFF] hover:bg-[#FAF9F5] text-[#202A2E] border-[#E4DED3] hover:border-[#D1B48C]"
                 }`}
               >
                 <div
                   className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
                     data.mediaType === "image"
-                      ? "bg-[#D1B48C] text-[#202A2E]"
-                      : "bg-[#E4DED3] text-[#687378]"
+                      ? "bg-[#E97835] text-white"
+                      : "bg-[#F5F2EB] text-[#687378]"
                   }`}
                 >
                   <ImageIcon className="w-5 h-5" />
@@ -268,16 +265,12 @@ export default function SectionEditorPage() {
                   <div className="font-bold text-sm flex items-center gap-2">
                     <span>Image Mode</span>
                     {data.mediaType === "image" && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#D1B48C] text-[#202A2E]">
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#E97835] text-white font-bold">
                         ACTIVE
                       </span>
                     )}
                   </div>
-                  <p
-                    className={`text-xs mt-1 leading-normal ${
-                      data.mediaType === "image" ? "text-[#A0ACB2]" : "text-[#687378]"
-                    }`}
-                  >
+                  <p className="text-xs mt-1 leading-normal text-[#687378]">
                     High-resolution packaging factory or box banner image with responsive cover.
                   </p>
                 </div>
@@ -297,8 +290,8 @@ export default function SectionEditorPage() {
                       onClick={() => setData({ ...data, videoMode: "frames" })}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                         data.videoMode === "frames"
-                          ? "bg-[#202A2E] text-[#D1B48C]"
-                          : "bg-[#FAF9F5] text-[#687378] hover:bg-[#F5F2EB]"
+                          ? "bg-[#E97835] text-white shadow-xs"
+                          : "bg-[#F5F2EB] text-[#687378] hover:text-[#202A2E] hover:bg-[#EAE4D7]"
                       }`}
                     >
                       Interactive Frames (80-Frame Scrub)
@@ -308,8 +301,8 @@ export default function SectionEditorPage() {
                       onClick={() => setData({ ...data, videoMode: "video-url" })}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                         data.videoMode === "video-url"
-                          ? "bg-[#202A2E] text-[#D1B48C]"
-                          : "bg-[#FAF9F5] text-[#687378] hover:bg-[#F5F2EB]"
+                          ? "bg-[#E97835] text-white shadow-xs"
+                          : "bg-[#F5F2EB] text-[#687378] hover:text-[#202A2E] hover:bg-[#EAE4D7]"
                       }`}
                     >
                       Uploaded Video File (MP4/WebM)
@@ -329,8 +322,8 @@ export default function SectionEditorPage() {
                 )}
 
                 {data.videoMode === "frames" && (
-                  <div className="p-4 rounded-xl bg-[#FAF9F5] border border-[#E4DED3] text-xs text-[#687378] flex items-start gap-3">
-                    <Film className="w-5 h-5 text-[#845B32] shrink-0 mt-0.5" />
+                  <div className="p-4 rounded-xl bg-[#FFF9F5] border border-[#E97835]/30 text-xs text-[#687378] flex items-start gap-3">
+                    <Film className="w-5 h-5 text-[#E97835] shrink-0 mt-0.5" />
                     <div>
                       <strong className="text-[#202A2E] block">
                         Interactive 80-Frame Scroll Scrubbing Active
@@ -436,6 +429,404 @@ export default function SectionEditorPage() {
             </div>
           </div>
         </div>
+      ) : isAboutUs ? (
+        /* --- DEDICATED ABOUT US & STATISTICS EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Eyebrow Badge & Main Title */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Section Eyebrow & Main Title
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Category Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="ABOUT AAVRIT PACKAGING"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="Protection Begins With Better Packaging."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Company Facility Image (Live Preview & Upload) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Manufacturing Facility Visual
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                About Section Factory Image
+              </h2>
+              <p className="text-xs text-[#687378] mt-1">
+                Displays on the left 50% column of the About Us section on the homepage. Default: /home/company img.png
+              </p>
+            </div>
+
+            <MediaUploader
+              label="Company Facility / Factory Image"
+              value={data.mediaUrl || data.image || "/home/company img.png"}
+              mediaType="image"
+              allowedTypes={["image"]}
+              helperText="Upload a high-resolution factory image or enter an asset path. Changes update the live factory photo on the website."
+              onChange={(url) => {
+                setData({
+                  ...data,
+                  mediaUrl: url,
+                  image: url,
+                });
+              }}
+            />
+          </div>
+
+          {/* Card 3: Story Paragraphs (First & Second Paragraph) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Company Story Paragraphs
+            </h2>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5 flex items-center justify-between">
+                  <span>First Paragraph (Core Mission)</span>
+                  <span className="text-[10px] text-[#E97835] font-semibold">Primary Text</span>
+                </label>
+                <textarea
+                  rows={3}
+                  value={data.description || ""}
+                  onChange={(e) => setData({ ...data, description: e.target.value })}
+                  placeholder="At AAVRIT Packaging, we believe packaging is more than just a box. It is an essential part of protecting products, maintaining quality and helping businesses deliver with confidence."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5 flex items-center justify-between">
+                  <span>Second Paragraph (Capabilities & Practical Value)</span>
+                  <span className="text-[10px] text-[#E97835] font-semibold">Detailed Story</span>
+                </label>
+                <textarea
+                  rows={3}
+                  value={
+                    data.secondParagraph !== undefined
+                      ? data.secondParagraph
+                      : "From customized corrugated boxes to dependable bulk packaging solutions, our focus is on understanding business requirements and creating packaging that combines strength, practicality and value."
+                  }
+                  onChange={(e) => setData({ ...data, secondParagraph: e.target.value })}
+                  placeholder="From customized corrugated boxes to dependable bulk packaging solutions, our focus is on understanding business requirements and creating packaging that combines strength, practicality and value."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4: 6 Brand Qualities (Checkmark Grid) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Brand Value Checkmarks
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  The 6 interactive checkmark points displayed below the story paragraphs on the website.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const currentQualities = data.qualities || [
+                    "Built Around Your Requirements",
+                    "Certified In-House Lab Testing",
+                    "Strength in Every Layer",
+                    "High-Speed Automated Capacity",
+                    "Focused on Reliable Packaging",
+                    "Eco-Friendly 100% Recyclable",
+                  ];
+                  setData({
+                    ...data,
+                    qualities: [...currentQualities, "New Quality Point"],
+                  });
+                }}
+                className="px-3.5 py-1.5 rounded-xl bg-[#E97835] text-white text-xs font-bold hover:bg-[#d66a2a] transition-all flex items-center gap-1.5 shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Quality</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {(
+                data.qualities || [
+                  "Built Around Your Requirements",
+                  "Certified In-House Lab Testing",
+                  "Strength in Every Layer",
+                  "High-Speed Automated Capacity",
+                  "Focused on Reliable Packaging",
+                  "Eco-Friendly 100% Recyclable",
+                ]
+              ).map((quality: string, idx: number) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 p-2.5 rounded-xl border border-[#E4DED3] bg-[#FAF9F5] hover:border-[#E97835]/40 transition-colors"
+                >
+                  <div className="w-6 h-6 rounded-md bg-[#E97835]/15 text-[#E97835] flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="text"
+                    value={quality}
+                    onChange={(e) => {
+                      const list = [
+                        ...(data.qualities || [
+                          "Built Around Your Requirements",
+                          "Certified In-House Lab Testing",
+                          "Strength in Every Layer",
+                          "High-Speed Automated Capacity",
+                          "Focused on Reliable Packaging",
+                          "Eco-Friendly 100% Recyclable",
+                        ]),
+                      ];
+                      list[idx] = e.target.value;
+                      setData({ ...data, qualities: list });
+                    }}
+                    className="flex-1 px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const list = (data.qualities || [
+                        "Built Around Your Requirements",
+                        "Certified In-House Lab Testing",
+                        "Strength in Every Layer",
+                        "High-Speed Automated Capacity",
+                        "Focused on Reliable Packaging",
+                        "Eco-Friendly 100% Recyclable",
+                      ]).filter((_: any, i: number) => i !== idx);
+                      setData({ ...data, qualities: list });
+                    }}
+                    className="text-red-500 hover:text-red-700 p-1.5 rounded hover:bg-red-50 transition-colors"
+                    title="Remove quality"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Card 5: Statistics Impact Counters (4 Metric Cards with Number, Suffix, Label, Subtext) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Impact Metrics
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                  Live Animated Statistics Counters
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  4 counter cards with animated numeric rollups on the website.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const currentStats = data.stats || [];
+                  const newStat = {
+                    id: `stat-${Date.now()}`,
+                    value: 100,
+                    suffix: "+",
+                    label: "New Metric",
+                    subtext: "Description of metric",
+                  };
+                  setData({ ...data, stats: [...currentStats, newStat] });
+                }}
+                className="px-3.5 py-1.5 rounded-xl bg-[#E97835] text-white text-xs font-bold hover:bg-[#d66a2a] transition-all flex items-center gap-1.5 shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Metric</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(
+                data.stats || [
+                  { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                  { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                  { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                  { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                ]
+              ).map((stat: any, idx: number) => {
+                const statId = stat.id || `stat-${idx + 1}`;
+                return (
+                  <div
+                    key={statId}
+                    className="p-5 rounded-2xl border border-[#E4DED3] bg-[#FAF9F5] hover:border-[#E97835]/60 transition-all space-y-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-mono font-bold text-[#E97835] bg-[#E97835]/15 px-2 py-0.5 rounded">
+                          Metric #{idx + 1}
+                        </span>
+                        <span className="text-xs font-bold text-[#202A2E]">
+                          Live Counter: <span className="text-[#E97835] font-extrabold text-sm">{stat.value}{stat.suffix || ""}</span>
+                        </span>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const currentStats = data.stats || [
+                            { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                            { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                            { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                            { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                          ];
+                          setData({
+                            ...data,
+                            stats: currentStats.filter((_: any, i: number) => i !== idx),
+                          });
+                        }}
+                        className="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                        title="Remove metric"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Counter Number (Value)
+                        </label>
+                        <input
+                          type="number"
+                          value={stat.value !== undefined ? stat.value : 0}
+                          onChange={(e) => {
+                            const currentStats = [
+                              ...(data.stats || [
+                                { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                                { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                                { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                                { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                              ]),
+                            ];
+                            currentStats[idx] = {
+                              ...currentStats[idx],
+                              value: e.target.value === "" ? 0 : Number(e.target.value),
+                            };
+                            setData({ ...data, stats: currentStats });
+                          }}
+                          placeholder="25"
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs font-bold text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Suffix / Unit
+                        </label>
+                        <input
+                          type="text"
+                          value={stat.suffix !== undefined ? stat.suffix : "+"}
+                          onChange={(e) => {
+                            const currentStats = [
+                              ...(data.stats || [
+                                { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                                { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                                { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                                { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                              ]),
+                            ];
+                            currentStats[idx] = {
+                              ...currentStats[idx],
+                              suffix: e.target.value,
+                            };
+                            setData({ ...data, stats: currentStats });
+                          }}
+                          placeholder="+"
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs font-bold text-[#E97835] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="col-span-2">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Metric Label / Title
+                        </label>
+                        <input
+                          type="text"
+                          value={stat.label || ""}
+                          onChange={(e) => {
+                            const currentStats = [
+                              ...(data.stats || [
+                                { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                                { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                                { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                                { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                              ]),
+                            ];
+                            currentStats[idx] = {
+                              ...currentStats[idx],
+                              label: e.target.value,
+                            };
+                            setData({ ...data, stats: currentStats });
+                          }}
+                          placeholder="Years of Experience"
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="col-span-2">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Subtext / Explanation
+                        </label>
+                        <input
+                          type="text"
+                          value={stat.subtext || ""}
+                          onChange={(e) => {
+                            const currentStats = [
+                              ...(data.stats || [
+                                { id: "stat-1", value: 25, suffix: "+", label: "Years of Experience", subtext: "Dedicated manufacturing journey" },
+                                { id: "stat-2", value: 500, suffix: "+", label: "Clients Served", subtext: "Across major industrial sectors" },
+                                { id: "stat-3", value: 1200, suffix: "+", label: "Packaging Solutions", subtext: "Engineered box designs" },
+                                { id: "stat-4", value: 65, suffix: "+", label: "Cities Reached", subtext: "Pan-India delivery network" },
+                              ]),
+                            ];
+                            currentStats[idx] = {
+                              ...currentStats[idx],
+                              subtext: e.target.value,
+                            };
+                            setData({ ...data, stats: currentStats });
+                          }}
+                          placeholder="Dedicated manufacturing journey"
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#687378] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       ) : (
         /* --- ALL OTHER SECTIONS EDITOR --- */
         <div className="space-y-6">
@@ -521,18 +912,18 @@ export default function SectionEditorPage() {
       )}
 
       {/* Bottom Sticky Save Bar */}
-      <div className="sticky bottom-4 z-20 bg-[#202A2E] text-[#FFFFFF] p-4 rounded-2xl shadow-xl flex items-center justify-between border border-[#38484E]">
+      <div className="sticky bottom-4 z-20 bg-[#FFFFFF] text-[#202A2E] p-4 rounded-2xl shadow-lg flex items-center justify-between border border-[#E4DED3]">
         <div className="flex items-center gap-2 text-xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-semibold">Ready to update:</span>
-          <span className="text-[#D1B48C] font-mono">{meta.name}</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-semibold text-[#687378]">Ready to update:</span>
+          <span className="text-[#E97835] font-bold font-mono">{meta.name}</span>
         </div>
 
         <button
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="px-5 py-2.5 rounded-xl bg-[#D1B48C] hover:bg-[#c2a275] text-[#202A2E] text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-md disabled:opacity-60"
+          className="px-5 py-2.5 rounded-xl bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-sm disabled:opacity-60"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? "Saving to MongoDB..." : "Save Changes"}</span>
@@ -606,7 +997,7 @@ function renderDynamicItems(sectionId: string, data: any, setData: (d: any) => v
         <button
           type="button"
           onClick={addItem}
-          className="px-3.5 py-1.5 rounded-xl bg-[#202A2E] text-[#D1B48C] text-xs font-bold hover:bg-[#2c383d] transition-all flex items-center gap-1.5"
+          className="px-3.5 py-1.5 rounded-xl bg-[#E97835] text-white text-xs font-bold hover:bg-[#d66a2a] transition-all flex items-center gap-1.5 shadow-xs"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Add Item</span>
