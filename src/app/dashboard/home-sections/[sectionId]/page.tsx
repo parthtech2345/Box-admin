@@ -26,6 +26,11 @@ import {
   Scissors,
   Package,
   ShieldCheck,
+  SlidersHorizontal,
+  FileText,
+  Ruler,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import MediaUploader from "@/components/MediaUploader";
 import { HOME_SECTIONS_LIST, DEFAULT_HOME_DATA } from "@/lib/defaultHomeData";
@@ -51,6 +56,8 @@ export default function SectionEditorPage() {
   const [activeProcessTab, setActiveProcessTab] = useState<number | null>(null);
   const [activeIndustryTab, setActiveIndustryTab] = useState<number | null>(null);
   const [activeAppTab, setActiveAppTab] = useState<number | null>(null);
+  const [activeBoxPlyTab, setActiveBoxPlyTab] = useState<number | null>(null);
+  const [activeReqTab, setActiveReqTab] = useState<number | null>(null);
 
   // Auto-play interactive 80-frame hero preview when enabled
   useEffect(() => {
@@ -141,6 +148,7 @@ export default function SectionEditorPage() {
   const isManufacturingProcess = sectionId === "manufacturing-process";
   const isIndustriesWeServe = sectionId === "industries-we-serve";
   const isCaseStudies = sectionId === "case-studies";
+  const isBoxConstruction = sectionId === "box-construction";
 
   return (
     <div className="space-y-6 pb-16">
@@ -2544,6 +2552,823 @@ export default function SectionEditorPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      ) : isBoxConstruction ? (
+        /* --- CORRUGATED BOX CONSTRUCTION DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Section Header & Headings
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Badge / Eyebrow Text
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="e.g. PACKAGING KNOWLEDGE"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="e.g. Choose the Right Strength for Your Packaging"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || ""}
+                  onChange={(e) => setData({ ...data, subtitle: e.target.value })}
+                  placeholder="Understanding box construction and material specifications..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: 3-Layer Board Cutaway & Anatomy */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="border-b border-[#E4DED3] pb-3">
+              <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                3-Layer Board Cutaway & Anatomy
+              </h2>
+              <p className="text-xs text-[#687378] mt-0.5">
+                Manage the visual 3-layer cross-section illustration and interactive layer callouts (Outer Liner, Fluted Medium, Inner Liner).
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Cutaway Eyebrow / Subtitle
+                </label>
+                <input
+                  type="text"
+                  value={data.cutawaySubtitle || ""}
+                  onChange={(e) => setData({ ...data, cutawaySubtitle: e.target.value })}
+                  placeholder="e.g. Anatomy of Strength"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Cutaway Section Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.cutawayTitle || ""}
+                  onChange={(e) => setData({ ...data, cutawayTitle: e.target.value })}
+                  placeholder="e.g. The Science of 3-Layer Construction"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Cutaway Explanatory Text
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.cutawayDescription || ""}
+                  onChange={(e) => setData({ ...data, cutawayDescription: e.target.value })}
+                  placeholder="Corrugated board is an engineered composite paper material..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Cutaway Visual Image */}
+            <div className="pt-2">
+              <MediaUploader
+                label="3-Layer Cutaway Diagram / Image"
+                value={data.cutawayImage || "/home/box-specifications/corrugated-board-cutaway.png"}
+                mediaType="image"
+                allowedTypes={["image"]}
+                helperText="Cross-sectional illustration showing the 3 structural layers of corrugated cardboard."
+                onChange={(url) => setData({ ...data, cutawayImage: url })}
+              />
+            </div>
+
+            {/* 3 Callout Layers */}
+            <div className="pt-2 space-y-3">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                3-Layer Callout Cards (Interactive Pin Callouts)
+              </label>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {((data.cutawayLayers && data.cutawayLayers.length > 0)
+                  ? data.cutawayLayers
+                  : [
+                      {
+                        layerNumber: 1,
+                        title: "Outer Liner",
+                        description:
+                          "The external flat paper layer providing puncture resistance and a smooth surface for commercial printing and labeling.",
+                      },
+                      {
+                        layerNumber: 2,
+                        title: "Fluted Medium",
+                        description:
+                          "The wave-shaped middle layer that creates protective air cushions and acts as continuous structural arches resisting top-to-bottom compression.",
+                      },
+                      {
+                        layerNumber: 3,
+                        title: "Inner Liner",
+                        description:
+                          "The internal flat paper layer that holds the fluted arches in permanent geometry and protects internal cargo from abrasion.",
+                      },
+                    ]
+                ).map((layer: any, lIdx: number) => (
+                  <div
+                    key={lIdx}
+                    className="p-4 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl space-y-2.5"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-[#E97835] text-white flex items-center justify-center font-bold text-xs">
+                        {layer.layerNumber || lIdx + 1}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                        Layer #{lIdx + 1}
+                      </span>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                        Layer Title
+                      </label>
+                      <input
+                        type="text"
+                        value={layer.title || ""}
+                        onChange={(e) => {
+                          const layers = [...(data.cutawayLayers || [])];
+                          layers[lIdx] = { ...layers[lIdx], title: e.target.value };
+                          setData({ ...data, cutawayLayers: layers });
+                        }}
+                        className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                        Layer Description
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={layer.description || ""}
+                        onChange={(e) => {
+                          const layers = [...(data.cutawayLayers || [])];
+                          layers[lIdx] = { ...layers[lIdx], description: e.target.value };
+                          setData({ ...data, cutawayLayers: layers });
+                        }}
+                        className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Corrugated Ply Options Cards (3-Ply, 5-Ply, 7-Ply) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Explore Corrugated Ply Options
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Configure the 3-ply, 5-ply, and 7-ply card specifications and suited applications.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const plyList = Array.isArray(data.plyOptions) ? [...data.plyOptions] : [];
+                  plyList.push({
+                    id: `ply-${Date.now()}`,
+                    name: "New Ply Option",
+                    category: "CUSTOM WALL",
+                    construction: "Custom Construction",
+                    description: "Describe the layer composition and ideal payload strength.",
+                    image: "/home/box-specifications/3ply-single-wall.png",
+                    bestFor: ["Industrial packaging", "Custom shipment"],
+                  });
+                  setData({ ...data, plyOptions: plyList });
+                  setActiveBoxPlyTab(plyList.length - 1);
+                }}
+                className="px-3 py-1.5 rounded-lg bg-[#FAF9F5] border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-xs font-bold text-[#202A2E] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Ply Option</span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {(data.plyOptions || []).map((ply: any, pIdx: number) => {
+                const isOpen = activeBoxPlyTab === null || activeBoxPlyTab === pIdx;
+                return (
+                  <div
+                    key={ply.id || pIdx}
+                    className="border border-[#E4DED3] rounded-xl overflow-hidden bg-[#FAF9F5] transition-all"
+                  >
+                    <div
+                      onClick={() => setActiveBoxPlyTab(activeBoxPlyTab === pIdx ? null : pIdx)}
+                      className="p-4 bg-white hover:bg-[#FAF9F5] flex items-center justify-between cursor-pointer border-b border-[#E4DED3]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 rounded-lg bg-[#E97835]/10 text-[#E97835] flex items-center justify-center font-bold text-xs">
+                          {pIdx + 1}
+                        </span>
+                        <div>
+                          <div className="font-heading font-bold text-sm text-[#202A2E]">
+                            {ply.name || `Ply Option #${pIdx + 1}`}
+                          </div>
+                          <div className="text-[11px] text-[#687378]">
+                            {ply.construction || "No construction set"} •{" "}
+                            <span className="font-semibold text-[#845B32]">{ply.category || "GENERAL"}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (confirm(`Remove ply option "${ply.name}"?`)) {
+                              const list = (data.plyOptions || []).filter((_: any, i: number) => i !== pIdx);
+                              setData({ ...data, plyOptions: list });
+                            }
+                          }}
+                          className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                          title="Delete Ply"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                        {isOpen ? (
+                          <ChevronUp className="w-4 h-4 text-[#687378]" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4 text-[#687378]" />
+                        )}
+                      </div>
+                    </div>
+
+                    {isOpen && (
+                      <div className="p-5 space-y-4 bg-[#FAF9F5]">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Ply Display Name
+                            </label>
+                            <input
+                              type="text"
+                              value={ply.name || ""}
+                              onChange={(e) => {
+                                const list = [...(data.plyOptions || [])];
+                                list[pIdx] = { ...list[pIdx], name: e.target.value };
+                                setData({ ...data, plyOptions: list });
+                              }}
+                              placeholder="e.g. 3 Ply – Single Wall"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Category Badge
+                            </label>
+                            <input
+                              type="text"
+                              value={ply.category || ""}
+                              onChange={(e) => {
+                                const list = [...(data.plyOptions || [])];
+                                list[pIdx] = { ...list[pIdx], category: e.target.value };
+                                setData({ ...data, plyOptions: list });
+                              }}
+                              placeholder="e.g. SINGLE WALL"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Construction Formula
+                            </label>
+                            <input
+                              type="text"
+                              value={ply.construction || ""}
+                              onChange={(e) => {
+                                const list = [...(data.plyOptions || [])];
+                                list[pIdx] = { ...list[pIdx], construction: e.target.value };
+                                setData({ ...data, plyOptions: list });
+                              }}
+                              placeholder="e.g. 2 Liners + 1 Flute"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                            Ply Description
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={ply.description || ""}
+                            onChange={(e) => {
+                              const list = [...(data.plyOptions || [])];
+                              list[pIdx] = { ...list[pIdx], description: e.target.value };
+                              setData({ ...data, plyOptions: list });
+                            }}
+                            placeholder="Detailed structural characteristics..."
+                            className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                          />
+                        </div>
+
+                        {/* Ply Cross-Section Image */}
+                        <div>
+                          <MediaUploader
+                            label="Ply Cross-Section Image"
+                            value={ply.image || ""}
+                            mediaType="image"
+                            allowedTypes={["image"]}
+                            helperText="High-clarity cross section image (e.g. /home/box-specifications/3ply-single-wall.png)"
+                            onChange={(url) => {
+                              const list = [...(data.plyOptions || [])];
+                              list[pIdx] = { ...list[pIdx], image: url };
+                              setData({ ...data, plyOptions: list });
+                            }}
+                          />
+                        </div>
+
+                        {/* Best For Bullets */}
+                        <div className="pt-2 border-t border-[#E4DED3]/70 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#202A2E]">
+                              Best Suited For (Bullet Points)
+                            </label>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const list = [...(data.plyOptions || [])];
+                                const bestFor = Array.isArray(list[pIdx].bestFor)
+                                  ? [...list[pIdx].bestFor]
+                                  : [];
+                                bestFor.push("New application point");
+                                list[pIdx] = { ...list[pIdx], bestFor };
+                                setData({ ...data, plyOptions: list });
+                              }}
+                              className="text-[11px] font-bold text-[#E97835] hover:underline flex items-center gap-1 cursor-pointer"
+                            >
+                              <Plus className="w-3 h-3" />
+                              <span>Add Bullet</span>
+                            </button>
+                          </div>
+
+                          <div className="space-y-1.5">
+                            {(ply.bestFor || []).map((point: string, bIdx: number) => (
+                              <div key={bIdx} className="flex items-center gap-2">
+                                <span className="text-[#E97835] font-bold text-xs">•</span>
+                                <input
+                                  type="text"
+                                  value={point}
+                                  onChange={(e) => {
+                                    const list = [...(data.plyOptions || [])];
+                                    const bestFor = [...(list[pIdx].bestFor || [])];
+                                    bestFor[bIdx] = e.target.value;
+                                    list[pIdx] = { ...list[pIdx], bestFor };
+                                    setData({ ...data, plyOptions: list });
+                                  }}
+                                  className="flex-1 px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const list = [...(data.plyOptions || [])];
+                                    const bestFor = (list[pIdx].bestFor || []).filter(
+                                      (_: any, i: number) => i !== bIdx
+                                    );
+                                    list[pIdx] = { ...list[pIdx], bestFor };
+                                    setData({ ...data, plyOptions: list });
+                                  }}
+                                  className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                                  title="Delete point"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Card 4: Interactive Selection Guide ("Not Sure Which Box You Need?") */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Interactive Selection Guide (&quot;Not Sure Which Box You Need?&quot;)
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Configure the interactive tabs: Lightweight, Medium to Heavy, and Heavy-Duty requirements.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const reqList = Array.isArray(data.selectionRequirements)
+                    ? [...data.selectionRequirements]
+                    : [];
+                  reqList.push({
+                    id: `req-${Date.now()}`,
+                    title: "New Product Requirement",
+                    examples: "Describe example products and packaging scenarios.",
+                    recommendedPly: "5 Ply – Double Wall",
+                    recommendedCategory: "Recommended Starting Point",
+                    explanation: "Explain why this ply construction is ideal.",
+                    keyFactors: ["Material efficiency", "Impact resistance", "Transit stability"],
+                  });
+                  setData({ ...data, selectionRequirements: reqList });
+                  setActiveReqTab(reqList.length - 1);
+                }}
+                className="px-3 py-1.5 rounded-lg bg-[#FAF9F5] border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-xs font-bold text-[#202A2E] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Requirement</span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {(data.selectionRequirements || []).map((req: any, rIdx: number) => {
+                const isOpen = activeReqTab === null || activeReqTab === rIdx;
+                return (
+                  <div
+                    key={req.id || rIdx}
+                    className="border border-[#E4DED3] rounded-xl overflow-hidden bg-[#FAF9F5] transition-all"
+                  >
+                    <div
+                      onClick={() => setActiveReqTab(activeReqTab === rIdx ? null : rIdx)}
+                      className="p-4 bg-white hover:bg-[#FAF9F5] flex items-center justify-between cursor-pointer border-b border-[#E4DED3]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 rounded-lg bg-[#845B32]/10 text-[#845B32] flex items-center justify-center font-bold text-xs">
+                          {rIdx + 1}
+                        </span>
+                        <div>
+                          <div className="font-heading font-bold text-sm text-[#202A2E]">
+                            {req.title || `Requirement #${rIdx + 1}`}
+                          </div>
+                          <div className="text-[11px] text-[#687378]">
+                            Recommended: <span className="font-semibold text-[#E97835]">{req.recommendedPly}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (confirm(`Remove requirement "${req.title}"?`)) {
+                              const list = (data.selectionRequirements || []).filter(
+                                (_: any, i: number) => i !== rIdx
+                              );
+                              setData({ ...data, selectionRequirements: list });
+                            }
+                          }}
+                          className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                          title="Delete Requirement"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                        {isOpen ? (
+                          <ChevronUp className="w-4 h-4 text-[#687378]" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4 text-[#687378]" />
+                        )}
+                      </div>
+                    </div>
+
+                    {isOpen && (
+                      <div className="p-5 space-y-4 bg-[#FAF9F5]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Requirement Headline / Title
+                            </label>
+                            <input
+                              type="text"
+                              value={req.title || ""}
+                              onChange={(e) => {
+                                const list = [...(data.selectionRequirements || [])];
+                                list[rIdx] = { ...list[rIdx], title: e.target.value };
+                                setData({ ...data, selectionRequirements: list });
+                              }}
+                              placeholder="e.g. Lightweight Products"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Recommended Ply Solution
+                            </label>
+                            <input
+                              type="text"
+                              value={req.recommendedPly || ""}
+                              onChange={(e) => {
+                                const list = [...(data.selectionRequirements || [])];
+                                list[rIdx] = { ...list[rIdx], recommendedPly: e.target.value };
+                                setData({ ...data, selectionRequirements: list });
+                              }}
+                              placeholder="e.g. 3 Ply – Single Wall"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                            Product Examples & Scope
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={req.examples || ""}
+                            onChange={(e) => {
+                              const list = [...(data.selectionRequirements || [])];
+                              list[rIdx] = { ...list[rIdx], examples: e.target.value };
+                              setData({ ...data, selectionRequirements: list });
+                            }}
+                            placeholder="Lightweight retail goods, apparel, cosmetics..."
+                            className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                            Recommendation Explanation / Rationale
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={req.explanation || ""}
+                            onChange={(e) => {
+                              const list = [...(data.selectionRequirements || [])];
+                              list[rIdx] = { ...list[rIdx], explanation: e.target.value };
+                              setData({ ...data, selectionRequirements: list });
+                            }}
+                            placeholder="A single fluted layer enclosed by two flat liners delivers adequate rigidity..."
+                            className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                          />
+                        </div>
+
+                        {/* Key Performance Factors */}
+                        <div className="pt-2 border-t border-[#E4DED3]/70 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#202A2E]">
+                              Key Performance Factors (Checklist Cards)
+                            </label>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const list = [...(data.selectionRequirements || [])];
+                                const keyFactors = Array.isArray(list[rIdx].keyFactors)
+                                  ? [...list[rIdx].keyFactors]
+                                  : [];
+                                keyFactors.push("New performance factor");
+                                list[rIdx] = { ...list[rIdx], keyFactors };
+                                setData({ ...data, selectionRequirements: list });
+                              }}
+                              className="text-[11px] font-bold text-[#E97835] hover:underline flex items-center gap-1 cursor-pointer"
+                            >
+                              <Plus className="w-3 h-3" />
+                              <span>Add Factor</span>
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            {(req.keyFactors || []).map((factor: string, fIdx: number) => (
+                              <div key={fIdx} className="flex items-center gap-1.5 bg-white p-1.5 rounded-lg border border-[#E4DED3]">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-[#E97835] shrink-0" />
+                                <input
+                                  type="text"
+                                  value={factor}
+                                  onChange={(e) => {
+                                    const list = [...(data.selectionRequirements || [])];
+                                    const keyFactors = [...(list[rIdx].keyFactors || [])];
+                                    keyFactors[fIdx] = e.target.value;
+                                    list[rIdx] = { ...list[rIdx], keyFactors };
+                                    setData({ ...data, selectionRequirements: list });
+                                  }}
+                                  className="w-full bg-transparent text-xs text-[#202A2E] focus:outline-none"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const list = [...(data.selectionRequirements || [])];
+                                    const keyFactors = (list[rIdx].keyFactors || []).filter(
+                                      (_: any, i: number) => i !== fIdx
+                                    );
+                                    list[rIdx] = { ...list[rIdx], keyFactors };
+                                    setData({ ...data, selectionRequirements: list });
+                                  }}
+                                  className="p-0.5 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                                  title="Delete factor"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Card 5: Packaging Specification Checklist (What Goes Into Your Box Specification?) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Packaging Specification Checklist
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  &quot;What Goes Into Your Box Specification?&quot; (Ply Construction, Flute Type, Paper GSM, Dimensions, etc.)
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const factorList = Array.isArray(data.specificationFactors)
+                    ? [...data.specificationFactors]
+                    : [];
+                  factorList.push({
+                    title: "New Factor",
+                    detail: "Describe this specification requirement.",
+                  });
+                  setData({ ...data, specificationFactors: factorList });
+                }}
+                className="px-3 py-1.5 rounded-lg bg-[#FAF9F5] border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-xs font-bold text-[#202A2E] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Factor</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {(data.specificationFactors || []).map((factor: any, fIdx: number) => (
+                <div
+                  key={fIdx}
+                  className="p-4 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl space-y-2.5 relative group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="w-6 h-6 rounded-lg bg-[#E97835]/10 text-[#E97835] flex items-center justify-center font-bold text-xs">
+                      {fIdx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const list = (data.specificationFactors || []).filter(
+                          (_: any, i: number) => i !== fIdx
+                        );
+                        setData({ ...data, specificationFactors: list });
+                      }}
+                      className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                      title="Delete Factor"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                      Factor Title
+                    </label>
+                    <input
+                      type="text"
+                      value={factor.title || ""}
+                      onChange={(e) => {
+                        const list = [...(data.specificationFactors || [])];
+                        list[fIdx] = { ...list[fIdx], title: e.target.value };
+                        setData({ ...data, specificationFactors: list });
+                      }}
+                      placeholder="e.g. Paper GSM"
+                      className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-[#687378] mb-1">
+                      Specification Detail
+                    </label>
+                    <textarea
+                      rows={2}
+                      value={factor.detail || ""}
+                      onChange={(e) => {
+                        const list = [...(data.specificationFactors || [])];
+                        list[fIdx] = { ...list[fIdx], detail: e.target.value };
+                        setData({ ...data, specificationFactors: list });
+                      }}
+                      placeholder="e.g. Carefully calibrated substance (120 to 350+ GSM)..."
+                      className="w-full px-3 py-1.5 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Card 6: Bottom Action Banner (Consultation CTA) */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Bottom Action Banner (Consultation CTA)
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Banner Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaTitle || ""}
+                  onChange={(e) => setData({ ...data, ctaTitle: e.target.value })}
+                  placeholder="e.g. Let's Find the Right Packaging for Your Product"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Button Text
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaButtonText || ""}
+                  onChange={(e) => setData({ ...data, ctaButtonText: e.target.value })}
+                  placeholder="e.g. Request a Packaging Consultation"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Button Destination Link
+                </label>
+                <input
+                  type="text"
+                  value={data.ctaButtonLink || ""}
+                  onChange={(e) => setData({ ...data, ctaButtonLink: e.target.value })}
+                  placeholder="e.g. /inquiry"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  CTA Subtitle / Explanatory Copy
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.ctaSubtitle || ""}
+                  onChange={(e) => setData({ ...data, ctaSubtitle: e.target.value })}
+                  placeholder="Share your product specifications with our engineering desk..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
             </div>
           </div>
         </div>

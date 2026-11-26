@@ -508,57 +508,149 @@
   "box-construction": {
     "sectionId": "box-construction",
     "sectionName": "Corrugated Box Construction",
-    "badge": "CORRUGATED ANATOMY",
-    "title": "Understanding Board Construction (3 / 5 / 7 Ply)",
-    "subtitle": "Select the ideal wall thickness and fluting combination to maximize stacking strength and reduce costs.",
+    "badge": "PACKAGING KNOWLEDGE",
+    "title": "Choose the Right Strength for Your Packaging",
+    "subtitle": "Understanding box construction and material specifications helps you choose packaging that protects your products throughout storage and transportation.",
+    "cutawaySubtitle": "Anatomy of Strength",
+    "cutawayTitle": "The Science of 3-Layer Construction",
+    "cutawayDescription": "Corrugated board is an engineered composite paper material. Hover over each layer on the image or below to inspect its structural role.",
+    "cutawayImage": "/home/box-specifications/corrugated-board-cutaway.png",
+    "cutawayLayers": [
+      {
+        "layerNumber": 1,
+        "title": "Outer Liner",
+        "description": "The external flat paper layer providing puncture resistance and a smooth surface for commercial printing and labeling."
+      },
+      {
+        "layerNumber": 2,
+        "title": "Fluted Medium",
+        "description": "The wave-shaped middle layer that creates protective air cushions and acts as continuous structural arches resisting top-to-bottom compression."
+      },
+      {
+        "layerNumber": 3,
+        "title": "Inner Liner",
+        "description": "The internal flat paper layer that holds the fluted arches in permanent geometry and protects internal cargo from abrasion."
+      }
+    ],
     "plyOptions": [
       {
-        "id": "3-ply",
-        "name": "3-Ply Single Wall",
-        "category": "Lightweight & E-Commerce",
-        "construction": "2 Liners + 1 Fluted Medium",
-        "layersSummary": "Outer Liner + Wave Medium + Inner Liner",
-        "description": "Standard single-wall corrugated board engineered for parcels, consumer retail, and lightweight storage.",
+        "id": "3ply",
+        "name": "3 Ply – Single Wall",
+        "category": "SINGLE WALL",
+        "construction": "2 Liners + 1 Flute",
+        "layersSummary": "Outer Liner • Fluted Medium • Inner Liner",
+        "description": "One fluted layer between two flat liner sheets. Suitable for lightweight products and general-purpose packaging.",
         "mediaType": "image",
-        "image": "/home/box-construction/3ply.png",
+        "image": "/home/box-specifications/3ply-single-wall.png",
         "bestFor": [
-          "Up to 15 kg product payload",
-          "E-commerce courier mailers",
-          "Dry grocery & retail displays"
+          "Lightweight retail and FMCG items",
+          "E-commerce apparel & small parcel delivery",
+          "Inner protective packaging and partitions"
         ]
       },
       {
-        "id": "5-ply",
-        "name": "5-Ply Double Wall",
-        "category": "Industrial & Heavy Duty",
-        "construction": "3 Liners + 2 Fluted Mediums",
-        "layersSummary": "Outer Liner + B Flute + Mid Liner + C Flute + Inner Liner",
-        "description": "Double-wall board delivering substantial compressive strength and puncture protection for industrial logistics.",
+        "id": "5ply",
+        "name": "5 Ply – Double Wall",
+        "category": "DOUBLE WALL",
+        "construction": "3 Liners + 2 Flutes",
+        "layersSummary": "Outer Liner • Flute 1 • Middle Liner • Flute 2 • Inner Liner",
+        "description": "Two fluted layers between three liner sheets. Suitable for medium-to-heavy products, storage and transportation.",
         "mediaType": "image",
-        "image": "/home/box-construction/5ply.png",
+        "image": "/home/box-specifications/5ply-double-wall.png",
         "bestFor": [
-          "15 kg to 45 kg product payload",
-          "Bulk export master cartons",
-          "Electronics & home appliances"
+          "Master outer shipping cartons & export boxes",
+          "Home appliances, electronics & glassware",
+          "Automotive components and food distribution"
         ]
       },
       {
-        "id": "7-ply",
-        "name": "7-Ply Triple Wall",
-        "category": "Heavy Machinery & Wooden Crate Replacement",
-        "construction": "4 Liners + 3 Fluted Mediums",
-        "layersSummary": "Heavy Outer + Flute 1 + Liner + Flute 2 + Liner + Flute 3 + Inner",
-        "description": "Maximum strength triple-wall corrugated board capable of replacing traditional wooden packaging.",
+        "id": "7ply",
+        "name": "7 Ply – Triple Wall",
+        "category": "TRIPLE WALL",
+        "construction": "4 Liners + 3 Flutes",
+        "layersSummary": "Outer Liner • 3 Fluted Mediums • 2 Center Liners • Inner Liner",
+        "description": "Three fluted layers between four liner sheets. Suitable for demanding packaging applications and heavier industrial goods.",
         "mediaType": "image",
-        "image": "/home/box-construction/7ply.png",
+        "image": "/home/box-specifications/7ply-triple-wall.png",
         "bestFor": [
-          "Over 45 kg heavy loads",
-          "Automotive machinery parts",
-          "Sea freight export shipments"
+          "Heavy industrial machinery & metal castings",
+          "Bulk chemical and bulk agricultural exports",
+          "Wooden crate replacement for international freight"
         ]
       }
     ],
-    "updatedAt": "2026-11-26T03:05:45.921Z"
+    "selectionRequirements": [
+      {
+        "id": "req-lightweight",
+        "title": "Lightweight Products",
+        "examples": "Lightweight retail goods, apparel, cosmetics, personal care and general-purpose e-commerce parcels.",
+        "recommendedPly": "3 Ply – Single Wall",
+        "recommendedCategory": "Recommended Starting Point",
+        "explanation": "A single fluted layer enclosed by two flat liners delivers adequate rigidity and cost-effective physical protection without adding dead freight weight.",
+        "keyFactors": [
+          "Material efficiency",
+          "Optimized courier freight costs",
+          "Compact storage footprint"
+        ]
+      },
+      {
+        "id": "req-medium-heavy",
+        "title": "Medium to Heavy Products",
+        "examples": "Industrial components, consumer appliances, glassware, lubricants and multi-tier palletized freight.",
+        "recommendedPly": "5 Ply – Double Wall",
+        "recommendedCategory": "Recommended Starting Point",
+        "explanation": "Two fluted chambers cushioned between three paper liners deliver exceptional vertical stacking resistance and shock absorption during transit.",
+        "keyFactors": [
+          "Superior vertical compression",
+          "Long-distance transit stability",
+          "Resistance to external side punctures"
+        ]
+      },
+      {
+        "id": "req-heavy-duty",
+        "title": "Heavy-Duty Applications",
+        "examples": "Automotive engine parts, heavy metal castings, pumps, chemical drums and export sea shipments.",
+        "recommendedPly": "7 Ply – Triple Wall",
+        "recommendedCategory": "Recommended Starting Point",
+        "explanation": "Engineered with four heavy paper liners and three high-strength fluted arches, this construction offers structural rigidity capable of substituting wooden packaging.",
+        "keyFactors": [
+          "Maximum puncture resistance",
+          "Heavy equipment stabilization",
+          "Eco-friendly wooden crate alternative"
+        ]
+      }
+    ],
+    "specificationFactors": [
+      {
+        "title": "Ply Construction",
+        "detail": "Single (3-ply), Double (5-ply), or Triple (7-ply) wall based on structural demands."
+      },
+      {
+        "title": "Flute Type",
+        "detail": "B, C, E, or BC combination profile tailored to cushioning versus print clarity requirements."
+      },
+      {
+        "title": "Paper GSM",
+        "detail": "Carefully calibrated substance (120 to 350+ GSM) across kraft liners and fluting media."
+      },
+      {
+        "title": "Box Dimensions",
+        "detail": "Internal precision length, width, and depth (L × W × H) to eliminate product movement."
+      },
+      {
+        "title": "Printing & Branding",
+        "detail": "High-contrast flexographic or offset printing with brand graphics, handling icons, and barcodes."
+      },
+      {
+        "title": "Box Style & Design",
+        "detail": "RSC, die-cut self-locking mailers, telescopic lids, or custom internal partitions."
+      }
+    ],
+    "ctaTitle": "Let's Find the Right Packaging for Your Product",
+    "ctaSubtitle": "Share your product specifications with our engineering desk. We'll help you develop the appropriate box construction.",
+    "ctaButtonText": "Request a Packaging Consultation",
+    "ctaButtonLink": "/inquiry",
+    "updatedAt": "2026-11-26T05:20:00.000Z"
   },
   "sustainability": {
     "sectionId": "sustainability",
