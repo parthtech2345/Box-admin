@@ -270,14 +270,15 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
   "industries-we-serve": {
     sectionId: "industries-we-serve",
     sectionName: "Industries We Serve",
-    badge: "TARGET SECTORS",
-    title: "Specialized Packaging for Every Industry",
-    subtitle: "Engineered box solutions catering to unique weight, barrier, and stacking requirements.",
+    badge: "INDUSTRIES WE SERVE",
+    title: "Packaging Solutions Across Every Industry",
+    subtitle: "From automotive components to everyday consumer products, our corrugated packaging solutions support diverse industries with reliable protection, practical design and dependable quality.",
     industries: [
       {
         id: "automotive",
         slug: "automotive",
         name: "Automotive",
+        title: "Automotive",
         description: "Protective packaging solutions for automotive components and transportation.",
         mediaType: "image",
         image: "/home/industries/automotive.jpg",
@@ -287,6 +288,7 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
         id: "pharmaceutical",
         slug: "pharmaceutical",
         name: "Pharmaceutical",
+        title: "Pharmaceutical",
         description: "Reliable secondary packaging for pharmaceutical products and medical supplies.",
         mediaType: "image",
         image: "/home/industries/pharmaceutical.jpg",
@@ -296,37 +298,61 @@ export const DEFAULT_HOME_DATA: Record<string, any> = {
         id: "food-beverage",
         slug: "food-beverage",
         name: "Food & Beverage",
-        description: "Hygienic corrugated boxes for fresh produce, confectionery, and beverages.",
+        title: "Food & Beverage",
+        description: "Practical packaging for food products, beverages and everyday consumer goods.",
         mediaType: "image",
         image: "/home/industries/food-beverage.jpg",
-        applications: ["Bakery Products", "Beverage Cartons", "Snacks Packaging", "Produce Trays"]
+        applications: ["Food Products", "Bakery & Snacks", "FMCG", "Frozen Products"]
       },
       {
         id: "ecommerce",
         slug: "ecommerce",
-        name: "E-Commerce & Retail",
-        description: "Lightweight, tamper-evident mailers and custom shipper boxes.",
+        name: "E-commerce",
+        title: "E-commerce",
+        description: "Dependable shipping packaging designed for online orders and deliveries.",
         mediaType: "image",
         image: "/home/industries/ecommerce.jpg",
-        applications: ["Courier Boxes", "Subscription Packaging", "Mailers", "Fragile Item Cushioning"]
+        applications: ["Courier Boxes", "Shipping Cartons", "Mailer Boxes", "Return Packaging"]
       },
       {
         id: "electronics",
         slug: "electronics",
-        name: "Electronics & Appliances",
-        description: "Anti-static, impact-resistant packaging for precision electronics.",
+        name: "Electronics",
+        title: "Electronics",
+        description: "Protective packaging for electronic components, appliances and fragile products.",
         mediaType: "image",
         image: "/home/industries/electronics.jpg",
-        applications: ["Home Appliances", "Circuit Boards", "Lighting Fixtures", "Audio Equipment"]
+        applications: ["Electronic Components", "Appliances", "Accessories", "Fragile Products"]
       },
       {
-        id: "textile",
-        slug: "textile",
-        name: "Textiles & Garments",
-        description: "High-volume master cartons designed for export garments and apparel.",
+        id: "textile-garments",
+        slug: "textile-garments",
+        name: "Textile & Garments",
+        title: "Textile & Garments",
+        description: "Packaging solutions for garments, textile products and export shipments.",
         mediaType: "image",
-        image: "/home/industries/textile.jpg",
-        applications: ["Apparel Export", "Fabric Rolls", "Retail Garment Boxes", "Hanger Cartons"]
+        image: "/home/industries/textile-garments.jpg",
+        applications: ["Garment Boxes", "Textile Packaging", "Export Cartons"]
+      },
+      {
+        id: "agriculture",
+        slug: "agriculture",
+        name: "Agriculture",
+        title: "Agriculture",
+        description: "Corrugated packaging for fresh produce and agricultural products.",
+        mediaType: "image",
+        image: "/home/industries/agriculture.jpg",
+        applications: ["Fruits", "Vegetables", "Agricultural Products"]
+      },
+      {
+        id: "engineering",
+        slug: "engineering",
+        name: "Engineering",
+        title: "Engineering",
+        description: "Strong industrial packaging for machinery parts and engineering components.",
+        mediaType: "image",
+        image: "/home/industries/engineering.jpg",
+        applications: ["Machinery Parts", "Industrial Components", "Heavy Equipment"]
       }
     ],
     updatedAt: new Date().toISOString(),

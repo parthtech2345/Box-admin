@@ -49,6 +49,7 @@ export default function SectionEditorPage() {
   const [heroFrameIndex, setHeroFrameIndex] = useState(0);
   const [heroPlaying, setHeroPlaying] = useState(false);
   const [activeProcessTab, setActiveProcessTab] = useState<number | null>(null);
+  const [activeIndustryTab, setActiveIndustryTab] = useState<number | null>(null);
 
   // Auto-play interactive 80-frame hero preview when enabled
   useEffect(() => {
@@ -137,6 +138,7 @@ export default function SectionEditorPage() {
   const isAboutUs = sectionId === "about-us";
   const isCustomPackaging = sectionId === "custom-packaging";
   const isManufacturingProcess = sectionId === "manufacturing-process";
+  const isIndustriesWeServe = sectionId === "industries-we-serve";
 
   return (
     <div className="space-y-6 pb-16">
@@ -1847,6 +1849,326 @@ export default function SectionEditorPage() {
                               }}
                               className="p-1 text-[#62574D] hover:text-red-500 rounded transition-colors cursor-pointer"
                               title="Delete Standard"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ) : isIndustriesWeServe ? (
+        /* --- INDUSTRIES WE SERVE DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Main Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                Section Presentation
+              </span>
+              <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                Section Header & Headings
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Eyebrow Badge
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="INDUSTRIES WE SERVE"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="Packaging Solutions Across Every Industry"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || data.description || ""}
+                  onChange={(e) =>
+                    setData({ ...data, subtitle: e.target.value, description: e.target.value })
+                  }
+                  placeholder="From automotive components to everyday consumer products, our corrugated packaging solutions support diverse industries with reliable protection, practical design and dependable quality."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: 8 Industries Cards Manager */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E4DED3] pb-4">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E97835]">
+                  Target Sectors
+                </span>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E] mt-0.5">
+                  {(data.industries || []).length} Industry Categories
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Manage industry titles, routing slugs, dedicated photography, and packaged products / application tags.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const current = data.industries || [];
+                  const newInd = {
+                    id: `industry-${Date.now()}`,
+                    slug: `new-industry-${current.length + 1}`,
+                    name: `New Industry ${current.length + 1}`,
+                    title: `New Industry ${current.length + 1}`,
+                    description: "Corrugated packaging solutions tailored for this industry.",
+                    mediaType: "image",
+                    image: "/home/industries/automotive.jpg",
+                    applications: ["Custom Cartons", "Bulk Packaging", "Protective Boxes"],
+                  };
+                  setData({ ...data, industries: [...current, newInd] });
+                  setActiveIndustryTab(current.length);
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#E97835] hover:bg-[#d66a2a] text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer self-start sm:self-auto"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Industry</span>
+              </button>
+            </div>
+
+            {/* Quick Industry Tab Navigator */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              <button
+                type="button"
+                onClick={() => setActiveIndustryTab(null)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  activeIndustryTab === null
+                    ? "bg-[#202A2E] text-white shadow-xs"
+                    : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                }`}
+              >
+                Show All ({(data.industries || []).length})
+              </button>
+
+              {(data.industries || []).map((ind: any, iIdx: number) => (
+                <button
+                  key={ind.id || iIdx}
+                  type="button"
+                  onClick={() => setActiveIndustryTab(iIdx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                    activeIndustryTab === iIdx
+                      ? "bg-[#E97835] text-white shadow-xs"
+                      : "bg-[#FAF9F5] border border-[#E4DED3] text-[#62574D] hover:bg-white"
+                  }`}
+                >
+                  <span className="font-mono">#{iIdx + 1}</span>
+                  <span className="truncate max-w-[130px]">{ind.name || ind.title || `Industry ${iIdx + 1}`}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Industries Cards Grid / List */}
+            <div className="space-y-6">
+              {(data.industries || []).map((ind: any, iIdx: number) => {
+                if (activeIndustryTab !== null && activeIndustryTab !== iIdx) return null;
+
+                const apps = Array.isArray(ind.applications) ? ind.applications : [];
+
+                return (
+                  <div
+                    key={ind.id || iIdx}
+                    className="p-5 sm:p-6 rounded-2xl border border-[#E4DED3] bg-[#FAF9F5] space-y-5 relative group shadow-2xs"
+                  >
+                    {/* Header Row */}
+                    <div className="flex items-center justify-between pb-3 border-b border-[#E4DED3]">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-full bg-[#E97835] text-white text-xs font-bold flex items-center justify-center shrink-0 shadow-xs">
+                          {String(iIdx + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-mono font-bold text-[#E97835] uppercase">
+                              INDUSTRY #{iIdx + 1}
+                            </span>
+                            {ind.slug && (
+                              <span className="text-[10px] font-mono text-[#62574D] bg-[#E4DED3]/50 px-2 py-0.5 rounded">
+                                /industries/{ind.slug}
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="font-heading font-bold text-base text-[#202A2E]">
+                            {ind.name || ind.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (confirm(`Remove industry "${ind.name || ind.title}"?`)) {
+                            const updated = (data.industries || []).filter(
+                              (_: any, i: number) => i !== iIdx
+                            );
+                            setData({ ...data, industries: updated });
+                            if (activeIndustryTab === iIdx) setActiveIndustryTab(null);
+                          }
+                        }}
+                        className="p-2 text-[#62574D] hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                        title="Remove Industry"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Inputs */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Industry Name
+                        </label>
+                        <input
+                          type="text"
+                          value={ind.name || ind.title || ""}
+                          onChange={(e) => {
+                            const list = [...(data.industries || [])];
+                            list[iIdx] = { ...list[iIdx], name: e.target.value, title: e.target.value };
+                            setData({ ...data, industries: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Page URL Slug (e.g. automotive, ecommerce)
+                        </label>
+                        <input
+                          type="text"
+                          value={ind.slug || ""}
+                          onChange={(e) => {
+                            const list = [...(data.industries || [])];
+                            list[iIdx] = { ...list[iIdx], slug: e.target.value };
+                            setData({ ...data, industries: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-[11px] font-bold uppercase text-[#202A2E] mb-1">
+                          Industry Description
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={ind.description || ""}
+                          onChange={(e) => {
+                            const list = [...(data.industries || [])];
+                            list[iIdx] = { ...list[iIdx], description: e.target.value };
+                            setData({ ...data, industries: list });
+                          }}
+                          className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:outline-none focus:ring-1 focus:ring-[#E97835]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Image Uploader */}
+                    <div className="pt-2 border-t border-[#E4DED3]">
+                      <MediaUploader
+                        label={`${ind.name || "Industry"} Card Photography`}
+                        value={ind.image || ""}
+                        mediaType={ind.mediaType || "image"}
+                        allowedTypes={["image", "video", "gif"]}
+                        helperText="High-resolution industry photography (4:3 ratio recommended)."
+                        onChange={(url, detectedType) => {
+                          const list = [...(data.industries || [])];
+                          list[iIdx] = { ...list[iIdx], image: url, mediaType: detectedType };
+                          setData({ ...data, industries: list });
+                        }}
+                      />
+                    </div>
+
+                    {/* Applications / Products List */}
+                    <div className="pt-2 border-t border-[#E4DED3] space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+                            Applications & Key Sectors Served
+                          </label>
+                          <p className="text-[11px] text-[#62574D]">
+                            Typical goods, parts, and packaging use cases in this sector.
+                          </p>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const list = [...(data.industries || [])];
+                            const currentApps = Array.isArray(list[iIdx].applications)
+                              ? list[iIdx].applications
+                              : [];
+                            list[iIdx] = {
+                              ...list[iIdx],
+                              applications: [...currentApps, "New Application"],
+                            };
+                            setData({ ...data, industries: list });
+                          }}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-[#E4DED3] hover:border-[#E97835] hover:text-[#E97835] text-[#202A2E] text-[11px] font-bold rounded-lg transition-colors cursor-pointer"
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add Application</span>
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+                        {apps.map((app: string, aIdx: number) => (
+                          <div key={aIdx} className="flex items-center gap-1.5 bg-white border border-[#E4DED3] rounded-lg px-2.5 py-1.5">
+                            <input
+                              type="text"
+                              value={app}
+                              onChange={(e) => {
+                                const list = [...(data.industries || [])];
+                                const currentApps = [...(list[iIdx].applications || [])];
+                                currentApps[aIdx] = e.target.value;
+                                list[iIdx] = { ...list[iIdx], applications: currentApps };
+                                setData({ ...data, industries: list });
+                              }}
+                              className="flex-1 bg-transparent text-xs text-[#202A2E] focus:outline-none"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const list = [...(data.industries || [])];
+                                const currentApps = (list[iIdx].applications || []).filter(
+                                  (_: any, i: number) => i !== aIdx
+                                );
+                                list[iIdx] = { ...list[iIdx], applications: currentApps };
+                                setData({ ...data, industries: list });
+                              }}
+                              className="p-1 text-[#62574D] hover:text-red-500 rounded transition-colors cursor-pointer"
+                              title="Delete Application"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
