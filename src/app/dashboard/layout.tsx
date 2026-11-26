@@ -138,9 +138,8 @@ export default function DashboardLayout({
       <div className="flex-1 flex relative">
         {/* Left Sidebar */}
         <aside
-          className={`fixed inset-y-16 left-0 z-40 w-72 bg-[#FFFFFF] border-r border-[#E4DED3] flex flex-col justify-between transition-transform duration-200 md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:shrink-0 md:translate-x-0 ${
-            mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed inset-y-16 left-0 z-40 w-72 bg-[#FFFFFF] border-r border-[#E4DED3] flex flex-col justify-between transition-transform duration-200 md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:shrink-0 md:translate-x-0 ${mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           {/* Scrollable Navigation Items */}
           <div className="flex-1 overflow-y-auto p-4 space-y-6">
@@ -153,11 +152,10 @@ export default function DashboardLayout({
                 <Link
                   href="/dashboard"
                   onClick={() => setMobileSidebarOpen(false)}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                    pathname === "/dashboard"
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${pathname === "/dashboard"
                       ? "bg-[#E97835] text-white shadow-xs"
                       : "text-[#202A2E] hover:bg-[#F5F2EB]"
-                  }`}
+                    }`}
                 >
                   <LayoutDashboard className="w-4 h-4 shrink-0" />
                   <span>Dashboard Overview</span>
@@ -166,11 +164,10 @@ export default function DashboardLayout({
                 <Link
                   href="/dashboard/management"
                   onClick={() => setMobileSidebarOpen(false)}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                    pathname === "/dashboard/management"
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${pathname === "/dashboard/management"
                       ? "bg-[#E97835] text-white shadow-xs"
                       : "text-[#202A2E] hover:bg-[#F5F2EB]"
-                  }`}
+                    }`}
                 >
                   <Sliders className="w-4 h-4 shrink-0" />
                   <span>Management</span>
@@ -180,12 +177,7 @@ export default function DashboardLayout({
 
             {/* Home Dynamic Content Dropdown Section */}
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#687378] px-3 mb-2 flex items-center justify-between">
-                <span>Homepage CMS</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#E97835]/15 text-[#E97835] font-bold">
-                  14 Sections
-                </span>
-              </div>
+
 
               {/* Collapsible Home Section Dropdown */}
               <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
@@ -220,35 +212,31 @@ export default function DashboardLayout({
                           key={sec.id}
                           href={`/dashboard/home-sections/${sec.id}`}
                           onClick={() => setMobileSidebarOpen(false)}
-                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
-                            active
+                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${active
                               ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                               : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <span
-                              className={`text-[10px] font-mono shrink-0 w-4 text-center ${
-                                active ? "text-[#E97835] font-bold" : "text-[#A0ACB2]"
-                              }`}
+                              className={`text-[10px] font-mono shrink-0 w-4 text-center ${active ? "text-[#E97835] font-bold" : "text-[#A0ACB2]"
+                                }`}
                             >
                               {(index + 1).toString().padStart(2, "0")}
                             </span>
                             <IconComponent
-                              className={`w-3.5 h-3.5 shrink-0 ${
-                                active ? "text-[#E97835]" : "text-[#687378]"
-                              }`}
+                              className={`w-3.5 h-3.5 shrink-0 ${active ? "text-[#E97835]" : "text-[#687378]"
+                                }`}
                             />
                             <span className="truncate">{sec.name}</span>
                           </div>
 
                           {isHero && (
                             <span
-                              className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${
-                                active
+                              className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${active
                                   ? "bg-[#E97835] text-white"
                                   : "bg-[#E97835]/15 text-[#E97835]"
-                              }`}
+                                }`}
                             >
                               Video/Img
                             </span>
