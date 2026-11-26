@@ -36,6 +36,17 @@ export interface ManagementData {
     productLinks: Array<{ label: string; href: string }>;
     legalLinks: Array<{ label: string; href: string }>;
   };
+  whatsapp: {
+    enabled: boolean;
+    phoneNumber: string;
+    displayPhone: string;
+    position: "bottom-right" | "bottom-left";
+    showOnlineDot: boolean;
+    tooltipText: string;
+    productPageTooltipPrefix: string;
+    defaultMessage: string;
+    productMessageTemplate: string;
+  };
   updatedAt?: string;
 }
 
@@ -105,5 +116,18 @@ export const DEFAULT_MANAGEMENT_DATA: ManagementData = {
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms & Conditions", href: "/terms-and-conditions" },
     ],
+  },
+  whatsapp: {
+    enabled: true,
+    phoneNumber: "919876543210",
+    displayPhone: "+91 98765 43210",
+    position: "bottom-right",
+    showOnlineDot: true,
+    tooltipText: "Chat on WhatsApp",
+    productPageTooltipPrefix: "Inquire about",
+    defaultMessage:
+      "Hello, I am interested in corrugated boxes. I would like to discuss my packaging requirement.",
+    productMessageTemplate:
+      "Hello, I am interested in your {productName}. Please share specifications and quotation.",
   },
 };

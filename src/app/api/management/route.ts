@@ -76,6 +76,11 @@ export async function POST(req: NextRequest) {
         productLinks: body.footer?.productLinks || current.footer?.productLinks || DEFAULT_MANAGEMENT_DATA.footer.productLinks,
         legalLinks: body.footer?.legalLinks || current.footer?.legalLinks || DEFAULT_MANAGEMENT_DATA.footer.legalLinks,
       },
+      whatsapp: {
+        ...DEFAULT_MANAGEMENT_DATA.whatsapp,
+        ...current.whatsapp,
+        ...(body.whatsapp || {}),
+      },
       updatedAt: new Date().toISOString(),
     };
 

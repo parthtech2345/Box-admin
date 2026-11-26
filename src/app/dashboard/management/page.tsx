@@ -19,6 +19,7 @@ import {
   Globe,
   Share2,
   ExternalLink,
+  MessageCircle,
 } from "lucide-react";
 import MediaUploader from "@/components/MediaUploader";
 import { DEFAULT_MANAGEMENT_DATA, ManagementData } from "@/lib/defaultManagementData";
@@ -27,7 +28,7 @@ export default function ManagementPage() {
   const [data, setData] = useState<ManagementData>(DEFAULT_MANAGEMENT_DATA);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"logo" | "navbar" | "footer">("logo");
+  const [activeTab, setActiveTab] = useState<"logo" | "navbar" | "footer" | "whatsapp">("logo");
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   // Load configuration from API
@@ -173,6 +174,19 @@ export default function ManagementPage() {
         >
           <FileText className="w-3.5 h-3.5" />
           <span>Footer Details</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("whatsapp")}
+          className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "whatsapp"
+              ? "bg-[#25D366] text-white shadow-xs"
+              : "text-[#687378] hover:text-[#202A2E] hover:bg-white"
+          }`}
+        >
+          <MessageCircle className="w-3.5 h-3.5" />
+          <span>WhatsApp Button</span>
         </button>
       </div>
 
@@ -1130,6 +1144,311 @@ export default function ManagementPage() {
                   </button>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: WHATSAPP FLOATING BUTTON */}
+      {activeTab === "whatsapp" && (
+        <div className="space-y-6">
+          {/* Card 1: Main WhatsApp Control & Phone Number */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="border-b border-[#E4DED3] pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#25D366]/15 text-[#20BD5A] text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <MessageCircle className="w-3 h-3" />
+                  <span>Floating Quick Contact</span>
+                </div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  WhatsApp Floating Button Settings
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Configure the floating WhatsApp button displayed on all pages of the website.
+                </p>
+              </div>
+
+              {/* Enable / Disable Toggle */}
+              <label className="flex items-center gap-3 cursor-pointer self-start sm:self-auto bg-[#FAF9F5] px-4 py-2 rounded-xl border border-[#E4DED3]">
+                <input
+                  type="checkbox"
+                  checked={data.whatsapp?.enabled ?? true}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        enabled: e.target.checked,
+                      },
+                    })
+                  }
+                  className="w-4 h-4 text-[#25D366] rounded focus:ring-[#25D366] accent-[#25D366]"
+                />
+                <span className="text-xs font-bold text-[#202A2E]">
+                  {data.whatsapp?.enabled ? "Button Active (Visible)" : "Button Disabled (Hidden)"}
+                </span>
+              </label>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Phone Number (Raw digits for wa.me) */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  WhatsApp Phone Number (with Country Code)
+                </label>
+                <input
+                  type="text"
+                  value={data.whatsapp?.phoneNumber || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        phoneNumber: e.target.value.replace(/[^0-9]/g, ""),
+                      },
+                    })
+                  }
+                  placeholder="919876543210"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none font-mono"
+                />
+                <p className="text-[11px] text-[#687378] mt-1">
+                  Digits only without + or spaces (e.g. 919876543210 for India).
+                </p>
+              </div>
+
+              {/* Formatted Display Phone */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Display Phone Number Label
+                </label>
+                <input
+                  type="text"
+                  value={data.whatsapp?.displayPhone || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        displayPhone: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="+91 98765 43210"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                />
+                <p className="text-[11px] text-[#687378] mt-1">
+                  Human-readable number (e.g. +91 98765 43210).
+                </p>
+              </div>
+
+              {/* Button Position */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Floating Position on Screen
+                </label>
+                <select
+                  value={data.whatsapp?.position || "bottom-right"}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        position: e.target.value as "bottom-right" | "bottom-left",
+                      },
+                    })
+                  }
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                >
+                  <option value="bottom-right">Bottom Right (Default &amp; Recommended)</option>
+                  <option value="bottom-left">Bottom Left</option>
+                </select>
+              </div>
+
+              {/* Show Pulsing Online Indicator */}
+              <div className="flex items-center">
+                <label className="flex items-center gap-3 cursor-pointer p-3 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl w-full">
+                  <input
+                    type="checkbox"
+                    checked={data.whatsapp?.showOnlineDot ?? true}
+                    onChange={(e) =>
+                      setData({
+                        ...data,
+                        whatsapp: {
+                          ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                          showOnlineDot: e.target.checked,
+                        },
+                      })
+                    }
+                    className="w-4 h-4 text-[#25D366] rounded focus:ring-[#25D366] accent-[#25D366]"
+                  />
+                  <div>
+                    <span className="text-xs font-bold text-[#202A2E] block">
+                      Pulsing Online Dot
+                    </span>
+                    <span className="text-[11px] text-[#687378]">
+                      Show active green pulsing indicator on button corner
+                    </span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Hover Tooltip & Pre-filled Messages */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-6">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Hover Tooltips &amp; Pre-filled Chat Messages
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Default Tooltip */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Hover Tooltip Text (Standard Pages)
+                </label>
+                <input
+                  type="text"
+                  value={data.whatsapp?.tooltipText || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        tooltipText: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Chat on WhatsApp"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                />
+              </div>
+
+              {/* Product Page Tooltip Prefix */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Product Page Tooltip Prefix
+                </label>
+                <input
+                  type="text"
+                  value={data.whatsapp?.productPageTooltipPrefix || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        productPageTooltipPrefix: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Inquire about"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                />
+                <p className="text-[11px] text-[#687378] mt-1">
+                  Renders as &ldquo;Inquire about [Product Name]&rdquo; on individual product detail pages.
+                </p>
+              </div>
+
+              {/* Default Chat Message */}
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Default Pre-filled Message (General Pages)
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.whatsapp?.defaultMessage || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        defaultMessage: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Hello, I am interested in corrugated boxes. I would like to discuss my packaging requirement."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                />
+                <p className="text-[11px] text-[#687378] mt-1">
+                  The initial text already typed in WhatsApp when a client clicks the button from Home, About, etc.
+                </p>
+              </div>
+
+              {/* Product Page Chat Message */}
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Product Specific Pre-filled Message Template
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.whatsapp?.productMessageTemplate || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      whatsapp: {
+                        ...(data.whatsapp || DEFAULT_MANAGEMENT_DATA.whatsapp),
+                        productMessageTemplate: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Hello, I am interested in your {productName}. Please share specifications and quotation."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#25D366] focus:outline-none"
+                />
+                <p className="text-[11px] text-[#687378] mt-1">
+                  Use <code className="text-[#E97835] font-bold">{"{productName}"}</code> which gets automatically replaced with the active product title.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Live Interactive Preview */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Live Visual Preview
+            </h2>
+            <div className="p-8 bg-[#F5F2EB] border border-[#E4DED3] rounded-xl flex flex-col items-center justify-center relative min-h-[160px] overflow-hidden">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#687378] mb-4">
+                Simulated Bottom Corner of Client Browser
+              </span>
+
+              <div className="flex items-center gap-3">
+                {/* Tooltip Simulation */}
+                <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white text-[#202A2E] text-xs font-semibold shadow-xl border border-[#E4DED3]">
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
+                  </span>
+                  <span>{data.whatsapp?.tooltipText || "Chat on WhatsApp"}</span>
+                </div>
+
+                {/* Floating WhatsApp Button */}
+                <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl ring-4 ring-[#25D366]/20 cursor-pointer">
+                  {data.whatsapp?.showOnlineDot && (
+                    <span className="absolute top-0.5 right-0.5 flex h-3.5 w-3.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-white"></span>
+                    </span>
+                  )}
+                  <svg
+                    className="w-7 h-7 fill-current drop-shadow-sm"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12.031 2C6.495 2 2 6.494 2 12.029c0 1.97.57 3.81 1.558 5.36L2 22l4.773-1.524a10.007 10.007 0 005.258 1.488c5.536 0 10.03-4.494 10.03-10.035C22.061 6.494 17.567 2 12.031 2zm0 18.358c-1.745 0-3.37-.53-4.73-1.442l-.339-.228-2.825.902.919-2.753-.222-.352a8.316 8.316 0 01-1.282-4.456c0-4.606 3.748-8.353 8.354-8.353 4.607 0 8.355 3.747 8.355 8.353 0 4.607-3.748 8.353-8.355 8.353zm4.582-6.262c-.251-.126-1.484-.733-1.714-.816-.23-.084-.397-.126-.565.126-.168.251-.649.816-.795.984-.147.168-.293.189-.544.063-.251-.126-1.06-.391-2.02-1.246-.747-.666-1.252-1.489-1.399-1.74-.146-.251-.016-.387.11-.512.113-.113.251-.293.377-.44.125-.146.168-.251.251-.418.084-.168.042-.314-.021-.44-.063-.126-.565-1.36-.775-1.863-.204-.49-.412-.423-.565-.431-.146-.008-.314-.008-.481-.008-.168 0-.44.063-.67.314-.23.251-.88.88-.88 2.098 0 1.238.901 2.434 1.027 2.602.126.168 1.772 2.706 4.293 3.794.6.259 1.069.414 1.435.53.603.192 1.152.165 1.586.1.483-.072 1.484-.607 1.693-1.193.21-.586.21-1.089.147-1.193-.063-.105-.23-.168-.481-.293z" />
+                  </svg>
+                </div>
+              </div>
+
+              <a
+                href={`https://wa.me/${data.whatsapp?.phoneNumber || "919876543210"}?text=${encodeURIComponent(
+                  data.whatsapp?.defaultMessage || ""
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 text-xs font-bold text-[#20BD5A] hover:underline flex items-center gap-1"
+              >
+                <span>Test Direct Link ({data.whatsapp?.displayPhone || "+91 98765 43210"})</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </div>
