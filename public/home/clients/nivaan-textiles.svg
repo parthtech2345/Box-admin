@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 60" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nivaan-plum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C026D3" />
+      <stop offset="100%" stop-color="#7E22CE" />
+    </linearGradient>
+    <linearGradient id="nivaan-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#BE123C" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblem: Premium Woven Fabric Diamond -->
+  <g transform="translate(6, 6)">
+    <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#nivaan-plum)" />
+    <!-- Overlapping Weave Strands -->
+    <path d="M12 16 L24 28 L36 16" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12 32 L24 20 L36 32" stroke="url(#nivaan-rose)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="24" cy="24" r="3.5" fill="#FFFFFF" />
+  </g>
+  
+  <!-- Text Label -->
+  <g transform="translate(64, 15)">
+    <text x="0" y="17" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" fill="#3B0764" letter-spacing="1.5">NIVAAN</text>
+    <text x="0" y="32" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#A21CAF" letter-spacing="3">TEXTILES</text>
+  </g>
+</svg>

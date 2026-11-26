@@ -31,6 +31,9 @@ import {
   Ruler,
   ChevronDown,
   ChevronUp,
+  Quote,
+  Building2,
+  MapPin,
 } from "lucide-react";
 import MediaUploader from "@/components/MediaUploader";
 import { HOME_SECTIONS_LIST, DEFAULT_HOME_DATA } from "@/lib/defaultHomeData";
@@ -58,6 +61,7 @@ export default function SectionEditorPage() {
   const [activeAppTab, setActiveAppTab] = useState<number | null>(null);
   const [activeBoxPlyTab, setActiveBoxPlyTab] = useState<number | null>(null);
   const [activeReqTab, setActiveReqTab] = useState<number | null>(null);
+  const [activeTestimonialTab, setActiveTestimonialTab] = useState<number | null>(null);
 
   // Auto-play interactive 80-frame hero preview when enabled
   useEffect(() => {
@@ -150,6 +154,7 @@ export default function SectionEditorPage() {
   const isCaseStudies = sectionId === "case-studies";
   const isBoxConstruction = sectionId === "box-construction";
   const isSustainability = sectionId === "sustainability";
+  const isTestimonials = sectionId === "testimonials";
 
   return (
     <div className="space-y-6 pb-16">
@@ -3648,6 +3653,328 @@ export default function SectionEditorPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      ) : isTestimonials ? (
+        /* --- TESTIMONIALS DEDICATED EDITOR --- */
+        <div className="space-y-6">
+          {/* Card 1: Section Header & Headings */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-4">
+            <h2 className="font-heading font-bold text-lg text-[#202A2E] border-b border-[#E4DED3] pb-3">
+              Section Header & Headings
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Badge / Eyebrow Text
+                </label>
+                <input
+                  type="text"
+                  value={data.badge || ""}
+                  onChange={(e) => setData({ ...data, badge: e.target.value })}
+                  placeholder="e.g. CLIENT EXPERIENCES"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Main Section Title
+                </label>
+                <input
+                  type="text"
+                  value={data.title || ""}
+                  onChange={(e) => setData({ ...data, title: e.target.value })}
+                  placeholder="e.g. What Our Partners Say"
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5">
+                  Section Subtitle / Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.subtitle || data.description || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      subtitle: e.target.value,
+                      description: e.target.value,
+                    })
+                  }
+                  placeholder="Strong packaging builds stronger business relationships."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-2 focus:ring-[#E97835] focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Client Testimonials & Partner Reviews */}
+          <div className="bg-[#FFFFFF] border border-[#E4DED3] rounded-2xl p-6 shadow-sm space-y-5">
+            <div className="flex items-center justify-between border-b border-[#E4DED3] pb-3">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-[#202A2E]">
+                  Client Testimonials & Partner Reviews
+                </h2>
+                <p className="text-xs text-[#687378] mt-0.5">
+                  Manage the testimonial cards matching the website structure (Quote, Author, Role, Company, Industry Badge, Location & Logo).
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const list = Array.isArray(data.testimonials) ? [...data.testimonials] : [];
+                  list.push({
+                    id: `testimonial-${Date.now()}`,
+                    contactPerson: "New Client",
+                    designation: "Operations Manager",
+                    companyName: "Client Company Ltd",
+                    industry: "Industrial Manufacturing",
+                    location: "Gujarat, India",
+                    quote: "The packaging design focuses on keeping our products organized and protected during handling.",
+                    logo: "/home/clients/truvolt-electricals.svg",
+                  });
+                  setData({ ...data, testimonials: list });
+                  setActiveTestimonialTab(list.length - 1);
+                }}
+                className="px-3.5 py-1.5 rounded-xl bg-[#E97835] text-white text-xs font-bold hover:bg-[#d66a2a] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Testimonial</span>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {(data.testimonials || []).map((item: any, tIdx: number) => {
+                const isOpen = activeTestimonialTab === null || activeTestimonialTab === tIdx;
+
+                return (
+                  <div
+                    key={item.id || tIdx}
+                    className="border border-[#E4DED3] rounded-xl overflow-hidden bg-[#FAF9F5] transition-all"
+                  >
+                    {/* Header Summary Bar */}
+                    <div
+                      onClick={() =>
+                        setActiveTestimonialTab(activeTestimonialTab === tIdx ? null : tIdx)
+                      }
+                      className="p-4 bg-white hover:bg-[#FAF9F5] flex items-center justify-between cursor-pointer border-b border-[#E4DED3]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-[#E97835]/10 text-[#E97835] flex items-center justify-center shrink-0">
+                          <Quote className="w-4 h-4 rotate-180" />
+                        </div>
+                        <div>
+                          <div className="font-heading font-bold text-sm text-[#202A2E] flex items-center gap-2">
+                            <span>{item.contactPerson || item.author || `Testimonial #${tIdx + 1}`}</span>
+                            {(item.companyName || item.company) && (
+                              <span className="text-xs font-normal text-[#687378]">
+                                • {item.companyName || item.company}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-[11px] text-[#687378] flex items-center gap-2 mt-0.5">
+                            {item.industry && (
+                              <span className="font-semibold text-[#845B32] flex items-center gap-1">
+                                <Building2 className="w-3 h-3" />
+                                {item.industry}
+                              </span>
+                            )}
+                            {item.location && (
+                              <span className="text-[#A65D32] flex items-center gap-0.5">
+                                <MapPin className="w-2.5 h-2.5" />
+                                {item.location}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (confirm(`Remove testimonial from "${item.contactPerson || item.companyName}"?`)) {
+                              const list = (data.testimonials || []).filter(
+                                (_: any, i: number) => i !== tIdx
+                              );
+                              setData({ ...data, testimonials: list });
+                            }
+                          }}
+                          className="p-1 text-[#687378] hover:text-red-500 rounded transition-colors cursor-pointer"
+                          title="Delete Testimonial"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                        {isOpen ? (
+                          <ChevronUp className="w-4 h-4 text-[#687378]" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4 text-[#687378]" />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Card Edit Fields */}
+                    {isOpen && (
+                      <div className="p-5 space-y-4 bg-[#FAF9F5]">
+                        {/* Testimonial Quote */}
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1.5 flex items-center gap-1.5">
+                            <Quote className="w-3.5 h-3.5 text-[#E97835]" />
+                            <span>Client Testimonial Quote</span>
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={item.quote || ""}
+                            onChange={(e) => {
+                              const list = [...(data.testimonials || [])];
+                              list[tIdx] = { ...list[tIdx], quote: e.target.value };
+                              setData({ ...data, testimonials: list });
+                            }}
+                            placeholder="“The packaging design focuses on keeping our electrical products organized and protected during handling.”"
+                            className="w-full px-3.5 py-2.5 bg-white border border-[#E4DED3] rounded-xl text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none leading-relaxed"
+                          />
+                        </div>
+
+                        {/* Author / Contact Person Details */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Contact Person / Author
+                            </label>
+                            <input
+                              type="text"
+                              value={item.contactPerson || item.author || ""}
+                              onChange={(e) => {
+                                const list = [...(data.testimonials || [])];
+                                list[tIdx] = {
+                                  ...list[tIdx],
+                                  contactPerson: e.target.value,
+                                  author: e.target.value,
+                                };
+                                setData({ ...data, testimonials: list });
+                              }}
+                              placeholder="e.g. Amitabh Shah"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Designation / Job Role
+                            </label>
+                            <input
+                              type="text"
+                              value={item.designation || item.role || ""}
+                              onChange={(e) => {
+                                const list = [...(data.testimonials || [])];
+                                list[tIdx] = {
+                                  ...list[tIdx],
+                                  designation: e.target.value,
+                                  role: e.target.value,
+                                };
+                                setData({ ...data, testimonials: list });
+                              }}
+                              placeholder="e.g. Logistics Manager"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1">
+                              Company Name
+                            </label>
+                            <input
+                              type="text"
+                              value={item.companyName || item.company || ""}
+                              onChange={(e) => {
+                                const list = [...(data.testimonials || [])];
+                                list[tIdx] = {
+                                  ...list[tIdx],
+                                  companyName: e.target.value,
+                                  company: e.target.value,
+                                };
+                                setData({ ...data, testimonials: list });
+                              }}
+                              placeholder="e.g. Truvolt Electricals"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Industry & Location */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1 flex items-center gap-1">
+                              <Building2 className="w-3 h-3 text-[#E97835]" />
+                              <span>Industry Category Badge</span>
+                            </label>
+                            <input
+                              type="text"
+                              value={item.industry || item.category || ""}
+                              onChange={(e) => {
+                                const list = [...(data.testimonials || [])];
+                                list[tIdx] = {
+                                  ...list[tIdx],
+                                  industry: e.target.value,
+                                  category: e.target.value,
+                                };
+                                setData({ ...data, testimonials: list });
+                              }}
+                              placeholder="e.g. Electrical Products"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-[#202A2E] mb-1 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 text-[#E97835]" />
+                              <span>City / Location</span>
+                            </label>
+                            <input
+                              type="text"
+                              value={item.location || item.city || ""}
+                              onChange={(e) => {
+                                const list = [...(data.testimonials || [])];
+                                list[tIdx] = {
+                                  ...list[tIdx],
+                                  location: e.target.value,
+                                  city: e.target.value,
+                                };
+                                setData({ ...data, testimonials: list });
+                              }}
+                              placeholder="e.g. Surat, Gujarat"
+                              className="w-full px-3 py-2 bg-white border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] focus:ring-1 focus:ring-[#E97835] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Client Brand Logo (MediaUploader) */}
+                        <div className="pt-2 border-t border-[#E4DED3]/70">
+                          <MediaUploader
+                            label="Client Brand Logo (SVG / PNG)"
+                            value={item.logo || item.image || ""}
+                            mediaType="image"
+                            allowedTypes={["image"]}
+                            helperText="Brand logo displayed on the card bottom-right (e.g. /home/clients/truvolt-electricals.svg)"
+                            onChange={(url) => {
+                              const list = [...(data.testimonials || [])];
+                              list[tIdx] = { ...list[tIdx], logo: url, image: url };
+                              setData({ ...data, testimonials: list });
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
