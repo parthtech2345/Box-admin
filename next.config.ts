@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "50mb",
     },
   },
+  images: {
+    unoptimized: true,
+  },
   async rewrites() {
     return [
       {
@@ -15,6 +18,10 @@ const nextConfig: NextConfig = {
       {
         source: "/Product/:path*",
         destination: "http://localhost:3000/Product/:path*",
+      },
+      {
+        source: "/custom pack/:path*",
+        destination: "http://localhost:3000/custom%20pack/:path*",
       },
       {
         source: "/images/:path*",

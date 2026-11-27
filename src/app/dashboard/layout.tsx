@@ -36,9 +36,11 @@ import {
   FolderKanban,
   PackageCheck,
   ShoppingBag,
+  Calculator,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
+import { CUSTOM_PACKAGING_SECTIONS_LIST } from "@/lib/defaultCustomPackagingData";
 
 // Icon mapping helper
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -60,6 +62,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Compass,
   Users,
   Info,
+  Calculator,
 };
 
 export default function DashboardLayout({
@@ -80,6 +83,9 @@ export default function DashboardLayout({
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/products"))
   );
+  const [customPackagingDropdownOpen, setCustomPackagingDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/custom-packaging"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -88,6 +94,7 @@ export default function DashboardLayout({
     setHomeDropdownOpen(Boolean(pathname?.includes("/dashboard/home-sections")));
     setAboutDropdownOpen(Boolean(pathname?.includes("/dashboard/about-sections")));
     setProductsDropdownOpen(Boolean(pathname?.includes("/dashboard/products")));
+    setCustomPackagingDropdownOpen(Boolean(pathname?.includes("/dashboard/custom-packaging")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -416,6 +423,60 @@ export default function DashboardLayout({
                       />
                       <span className="truncate">Sub Categories / Products</span>
                     </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Custom Packaging Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setCustomPackagingDropdownOpen(!customPackagingDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Boxes className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Custom Packaging Section</span>
+                  </div>
+                  {customPackagingDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Custom Packaging */}
+                {customPackagingDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {CUSTOM_PACKAGING_SECTIONS_LIST.map((sec) => {
+                      const Icon = ICON_MAP[sec.icon] || Boxes;
+                      const href = `/dashboard/custom-packaging/${sec.id}`;
+                      const isActive = pathname === href;
+
+                      return (
+                        <Link
+                          key={sec.id}
+                          href={href}
+                          onClick={() => setMobileSidebarOpen(false)}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                            isActive
+                              ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                              : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                          }`}
+                        >
+                          <Icon
+                            className={`w-3.5 h-3.5 shrink-0 ${
+                              isActive ? "text-[#E97835]" : "text-[#687378]"
+                            }`}
+                          />
+                          <span className="truncate">{sec.name}</span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>

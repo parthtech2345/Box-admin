@@ -1,0 +1,263 @@
+export interface CustomPackagingSectionMeta {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+}
+
+export const CUSTOM_PACKAGING_SECTIONS_LIST: CustomPackagingSectionMeta[] = [
+  {
+    id: "hero",
+    name: "Hero Banner & Mascot",
+    description: "Manage showcase packaging banner, page titles, and speaking designer mascot or animated GIF",
+    icon: "Sparkles",
+  },
+  {
+    id: "box-types",
+    name: "Custom Box Architectures",
+    description: "Manage custom packaging types (Mailers, RSC, Branded, Partitions, Gaylord pallets)",
+    icon: "Boxes",
+  },
+  {
+    id: "capabilities",
+    name: "Manufacturing Capabilities",
+    description: "Manage engineering capabilities, dieline accuracy, coatings, and prototype turnaround cards",
+    icon: "Sliders",
+  },
+  {
+    id: "process",
+    name: "Manufacturing Process",
+    description: "Manage the 4-step workflow from spec submission to automated dispatch",
+    icon: "Layers",
+  },
+  {
+    id: "configurator",
+    name: "Interactive Configurator & Form",
+    description: "Manage interactive dimension calculator, summary cards, and inquiry form settings",
+    icon: "Calculator",
+  },
+];
+
+export const DEFAULT_CUSTOM_PACKAGING_DATA: Record<string, any> = {
+  hero: {
+    sectionId: "hero",
+    sectionName: "Hero Banner & Mascot",
+    title: "Custom Packaging",
+    breadcrumbRoot: "Home",
+    breadcrumbCurrent: "Custom Packaging",
+    backgroundImage: "/custom pack/custom_packaging_banner_pano.png",
+    backgroundImageAlt: "Custom Packaging Banner - AAVRIT PACKAGING",
+    characterImage: "/custom pack/character_custom_designer.png",
+    characterAlt: "Custom Packaging Design Engineer - AAVRIT PACKAGING",
+    characterMediaType: "image",
+    dialogueIcon: "📐",
+    dialogueTitle: "Tailored to Your Product!",
+    dialogueSubtext: "Custom die-cuts, bespoke sizes & high-res branding",
+    updatedAt: new Date().toISOString(),
+  },
+
+  "box-types": {
+    sectionId: "box-types",
+    sectionName: "Custom Box Architectures",
+    badge: "CUSTOMIZABLE STRUCTURES",
+    title: "Select Your Custom Box Architecture",
+    subtitle:
+      "Every design is fabricated from scratch to match your dimensions, drop-test requirements, and material load thresholds.",
+    filterCategories: [
+      { id: "all", label: "All Custom Styles" },
+      { id: "die-cut", label: "Die-Cut Mailers" },
+      { id: "corrugated", label: "Master Shippers (RSC)" },
+      { id: "printed", label: "Branded Flexo" },
+      { id: "industrial", label: "Industrial & Partitions" },
+    ],
+    boxTypes: [
+      {
+        id: "mailer",
+        title: "Roll-End Tuck Mailer Boxes",
+        category: "Die-Cut Packaging",
+        image: "/Product/items/mailer-boxes.png",
+        idealFor: "E-commerce DTC, subscription kits, apparel & cosmetics",
+        minOrder: "500 units",
+        productionDays: "4-6 days",
+        recommendedPly: "3-Ply E-Flute / B-Flute",
+        buttonText: "Configure This Box",
+      },
+      {
+        id: "rsc",
+        title: "Heavy-Duty RSC Master Shippers",
+        category: "Corrugated Boxes",
+        image: "/Product/items/regular-slotted-cartons.png",
+        idealFor: "Palletised warehouse dispatch, FMCG bulk cartons & logistics",
+        minOrder: "1,000 units",
+        productionDays: "3-5 days",
+        recommendedPly: "5-Ply / 7-Ply BC Flute",
+        buttonText: "Configure This Box",
+      },
+      {
+        id: "printed",
+        title: "Multi-Colour Flexo Branded Cartons",
+        category: "Printed Packaging",
+        image: "/Product/items/real-flexographic-printed-boxes.png",
+        idealFor: "Retail display, high-visibility branding & promotional campaigns",
+        minOrder: "1,000 units",
+        productionDays: "5-7 days",
+        recommendedPly: "3-Ply / 5-Ply Top White Liner",
+        buttonText: "Configure This Box",
+      },
+      {
+        id: "auto-bottom",
+        title: "Crash-Lock Auto-Bottom Boxes",
+        category: "Die-Cut Packaging",
+        image: "/Product/items/auto-bottom-boxes.png",
+        idealFor: "High-speed assembly lines, pharmaceutical & food packaging",
+        minOrder: "500 units",
+        productionDays: "5-7 days",
+        recommendedPly: "3-Ply Micro Flute",
+        buttonText: "Configure This Box",
+      },
+      {
+        id: "partitions",
+        title: "Internal Protective Grid Partitions",
+        category: "Industrial Packaging",
+        image: "/Product/items/real-industrial-partitions-dividers.png",
+        idealFor: "Glassware, automotive spark components & precision parts",
+        minOrder: "1,000 sets",
+        productionDays: "4-6 days",
+        recommendedPly: "Solid Fibre / 3-Ply Kraft",
+        buttonText: "Configure This Box",
+      },
+      {
+        id: "pallet",
+        title: "Heavy-Duty Pallet Gaylord Containers",
+        category: "Industrial Packaging",
+        image: "/Product/items/real-pallet-gaylord-boxes.png",
+        idealFor: "Bulk export machinery, chemical sacks & heavy automotive freight",
+        minOrder: "100 units",
+        productionDays: "5-7 days",
+        recommendedPly: "7-Ply AAA / AAC Flute",
+        buttonText: "Configure This Box",
+      },
+    ],
+    updatedAt: new Date().toISOString(),
+  },
+
+  capabilities: {
+    sectionId: "capabilities",
+    sectionName: "Manufacturing Capabilities",
+    badge: "ENGINEERING ADVANTAGE",
+    title: "Precision Corrugated Manufacturing Capabilities",
+    subtitle:
+      "From custom board chemistry to rapid automated cutting, explore how our technical setup delivers unmatched protection.",
+    capabilities: [
+      {
+        id: "cap-1",
+        icon: "Ruler",
+        title: "100% Bespoke Dimensions",
+        description:
+          "No standard mould restrictions. Specify your Length, Width, and Depth in millimeters, inches, or centimeters for tight-fit protection.",
+        highlight: "±0.5mm CNC dieline precision",
+      },
+      {
+        id: "cap-2",
+        icon: "Layers",
+        title: "Flute & Ply Customization",
+        description:
+          "Choose from 3-Ply, 5-Ply, or 7-Ply board architectures with B-Flute, C-Flute, E-Flute, or hybrid BC & AAC combinations for heavy export stacking.",
+        highlight: "120 GSM to 350+ GSM kraft paper",
+      },
+      {
+        id: "cap-3",
+        icon: "Palette",
+        title: "Flexographic & Screen Printing",
+        description:
+          "High-speed 1 to 4 colour branded flexo printing, water-based eco-friendly inks, QR code serialization, and barcode compliance for Amazon/Flipkart.",
+        highlight: "Sharp registration & vibrant Pantone match",
+      },
+      {
+        id: "cap-4",
+        icon: "ShieldCheck",
+        title: "Barrier & Water-Resistant Coatings",
+        description:
+          "Functional anti-humidity coatings, oil/grease barrier liners for perishable foods, and anti-static ESD coatings for sensitive electronic PCBs.",
+        highlight: "Export-grade moisture repellant",
+      },
+      {
+        id: "cap-5",
+        icon: "Zap",
+        title: "24-Hour Digital Prototype",
+        description:
+          "Receive automated CAD 3D layout proofs and flat dieline templates within 24 hours of submitting your outer dimensions and weight load.",
+        highlight: "Fast approval before mass tooling",
+      },
+      {
+        id: "cap-6",
+        icon: "Repeat",
+        title: "Scalable Production Runs",
+        description:
+          "Whether you need pilot test batches of 500 units or commercial monthly contracts exceeding 500,000 corrugated cartons, our plant scales seamlessly.",
+        highlight: "High-speed automatic rotary slotting",
+      },
+    ],
+    updatedAt: new Date().toISOString(),
+  },
+
+  process: {
+    sectionId: "process",
+    sectionName: "Manufacturing Process",
+    badge: "FROM CONCEPT TO DISPATCH",
+    title: "Four Steps to Your Custom Packaging",
+    subtitle:
+      "A streamlined, transparent workflow engineered to take your product from raw dimensions to dock delivery in days.",
+    steps: [
+      {
+        step: "01",
+        title: "Requirement & Spec Submission",
+        desc: "Share your internal product dimensions, weight, stacking height, and any branding artwork or dieline preferences.",
+        icon: "FileText",
+      },
+      {
+        step: "02",
+        title: "CAD Engineering & 3D Proof",
+        desc: "Our packaging designers compute flute thickness, bursting pressure (B.F.), and generate an accurate 3D preview within 24 hours.",
+        icon: "Compass",
+      },
+      {
+        step: "03",
+        title: "Physical Prototype Approval",
+        desc: "For custom die-cuts and bulk production runs, we produce a physical sample box for hands-on drop-test and fitment confirmation.",
+        icon: "CheckCircle",
+      },
+      {
+        step: "04",
+        title: "Automated Production & Dispatch",
+        desc: "Upon final approval, your custom batch enters automated corrugation, rotary die-cutting, flexo printing, and bundled delivery.",
+        icon: "Truck",
+      },
+    ],
+    updatedAt: new Date().toISOString(),
+  },
+
+  configurator: {
+    sectionId: "configurator",
+    sectionName: "Interactive Configurator & Form",
+    badge: "INTERACTIVE CONFIGURATOR",
+    title: "Configure Your Custom Box Specifications",
+    subtitle:
+      "Input your box size, preferred wall ply, and printing requirements to generate an instant engineering summary and request an expedited quotation.",
+    formTitle: "Box Configuration",
+    summaryTitle: "ENGINEERING SUMMARY",
+    defaultLength: "12",
+    defaultWidth: "10",
+    defaultHeight: "8",
+    defaultUnit: "inch",
+    defaultPly: "5-ply",
+    defaultBoxStyle: "rsc",
+    defaultPrinting: "2-colour",
+    defaultQuantity: "2500",
+    submitButtonText: "Calculate & Request Specification Sheet",
+    successMessage: "Configuration saved! Our engineering team will reach out with the dieline drawing.",
+    guaranteeNote:
+      "We provide custom die-lines and sample boxes prior to commercial production runs to ensure 100% fit accuracy.",
+    updatedAt: new Date().toISOString(),
+  },
+};
