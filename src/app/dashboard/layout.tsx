@@ -361,81 +361,60 @@ export default function DashboardLayout({
                     <Link
                       href="/dashboard/products/banner"
                       onClick={() => setMobileSidebarOpen(false)}
-                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
                         pathname === "/dashboard/products/banner"
                           ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                           : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <Sparkles
-                          className={`w-3.5 h-3.5 shrink-0 ${
-                            pathname === "/dashboard/products/banner"
-                              ? "text-[#E97835]"
-                              : "text-[#687378]"
-                          }`}
-                        />
-                        <span className="truncate">Hero Banner & Mascot</span>
-                      </div>
-                      <span
-                        className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
                           pathname === "/dashboard/products/banner"
-                            ? "bg-[#E97835] text-white"
-                            : "bg-[#E97835]/15 text-[#E97835]"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
                         }`}
-                      >
-                        Banner/GIF
-                      </span>
+                      />
+                      <span className="truncate">Hero Banner & Mascot</span>
                     </Link>
 
                     {/* 2. Category */}
                     <Link
                       href="/dashboard/products/categories"
                       onClick={() => setMobileSidebarOpen(false)}
-                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
                         pathname === "/dashboard/products/categories"
                           ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                           : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <FolderKanban
-                          className={`w-3.5 h-3.5 shrink-0 ${
-                            pathname === "/dashboard/products/categories"
-                              ? "text-[#E97835]"
-                              : "text-[#687378]"
-                          }`}
-                        />
-                        <span className="truncate">Categories</span>
-                      </div>
-                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-[#E4DED3]/60 text-[#687378]">
-                        6 Main
-                      </span>
+                      <FolderKanban
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/products/categories"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Categories</span>
                     </Link>
 
                     {/* 3. Sub Category / Products */}
                     <Link
                       href="/dashboard/products/items"
                       onClick={() => setMobileSidebarOpen(false)}
-                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
                         pathname?.startsWith("/dashboard/products/items")
                           ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                           : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <PackageCheck
-                          className={`w-3.5 h-3.5 shrink-0 ${
-                            pathname?.startsWith("/dashboard/products/items")
-                              ? "text-[#E97835]"
-                              : "text-[#687378]"
-                          }`}
-                        />
-                        <span className="truncate">Sub Categories / Products</span>
-                      </div>
-                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-[#E4DED3]/60 text-[#687378]">
-                        30 Items
-                      </span>
+                      <PackageCheck
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname?.startsWith("/dashboard/products/items")
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Sub Categories / Products</span>
                     </Link>
                   </div>
                 )}
