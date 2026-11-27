@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
         destination: "http://localhost:3000/custom%20pack/:path*",
       },
       {
+        source: "/Industries/:path*",
+        destination: "http://localhost:3000/Industries/:path*",
+      },
+      {
         source: "/images/:path*",
         destination: "http://localhost:3000/images/:path*",
       },

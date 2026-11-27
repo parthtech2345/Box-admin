@@ -86,6 +86,9 @@ export default function DashboardLayout({
   const [customPackagingDropdownOpen, setCustomPackagingDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/custom-packaging"))
   );
+  const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/industries"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -95,6 +98,7 @@ export default function DashboardLayout({
     setAboutDropdownOpen(Boolean(pathname?.includes("/dashboard/about-sections")));
     setProductsDropdownOpen(Boolean(pathname?.includes("/dashboard/products")));
     setCustomPackagingDropdownOpen(Boolean(pathname?.includes("/dashboard/custom-packaging")));
+    setIndustriesDropdownOpen(Boolean(pathname?.includes("/dashboard/industries")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -477,6 +481,94 @@ export default function DashboardLayout({
                         </Link>
                       );
                     })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Industries Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setIndustriesDropdownOpen(!industriesDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Factory className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Industries Section</span>
+                  </div>
+                  {industriesDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Industries */}
+                {industriesDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/industries/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/industries/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/industries/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner & Mascot</span>
+                    </Link>
+
+                    {/* 2. Landing Page Content */}
+                    <Link
+                      href="/dashboard/industries/landing"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/industries/landing"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Layers
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/industries/landing"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Landing Page Content</span>
+                    </Link>
+
+                    {/* 3. All Industries & SEO */}
+                    <Link
+                      href="/dashboard/industries/items"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname?.startsWith("/dashboard/industries/items")
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Building2
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname?.startsWith("/dashboard/industries/items")
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">All Industries & SEO</span>
+                    </Link>
                   </div>
                 )}
               </div>
