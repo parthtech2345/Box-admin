@@ -32,6 +32,14 @@ const nextConfig: NextConfig = {
         destination: "http://localhost:3000/contact/:path*",
       },
       {
+        source: "/blog/:path*",
+        destination: "http://localhost:3000/blog/:path*",
+      },
+      {
+        source: "/blogs/:path*",
+        destination: "http://localhost:3000/blogs/:path*",
+      },
+      {
         source: "/machinery/:path*",
         destination: "http://localhost:3000/machinery/:path*",
       },

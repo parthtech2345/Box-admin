@@ -43,6 +43,8 @@ import {
   Send,
   MessageSquareText,
   Globe,
+  BookOpen,
+  FileText,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -98,6 +100,9 @@ export default function DashboardLayout({
   const [contactDropdownOpen, setContactDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/contact"))
   );
+  const [blogsDropdownOpen, setBlogsDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/blogs"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -109,6 +114,7 @@ export default function DashboardLayout({
     setCustomPackagingDropdownOpen(Boolean(pathname?.includes("/dashboard/custom-packaging")));
     setIndustriesDropdownOpen(Boolean(pathname?.includes("/dashboard/industries")));
     setContactDropdownOpen(Boolean(pathname?.includes("/dashboard/contact")));
+    setBlogsDropdownOpen(Boolean(pathname?.includes("/dashboard/blogs")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -741,6 +747,121 @@ export default function DashboardLayout({
                       <Globe
                         className={`w-3.5 h-3.5 shrink-0 ${
                           pathname === "/dashboard/contact/seo"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">SEO Optimization</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Blogs Section (Collapsible Dropdown) */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => setBlogsDropdownOpen(!blogsDropdownOpen)}
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    pathname?.includes("/dashboard/blogs")
+                      ? "bg-[#FFF6F0] text-[#E97835] shadow-xs border border-[#E97835]/30"
+                      : "text-[#202A2E] hover:bg-[#F5F2EB]"
+                  }`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+                        pathname?.includes("/dashboard/blogs")
+                          ? "bg-[#E97835] text-white"
+                          : "bg-[#F5F2EB] text-[#687378]"
+                      }`}
+                    >
+                      <BookOpen className="w-4 h-4" />
+                    </div>
+                    <span className="truncate font-heading">Blogs Section</span>
+                  </div>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#8C989E] transition-transform duration-200 shrink-0 ${
+                      blogsDropdownOpen ? "rotate-180 text-[#E97835]" : ""
+                    }`}
+                  />
+                </button>
+
+                {blogsDropdownOpen && (
+                  <div className="pl-4 pr-1 py-1 space-y-1">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/blogs/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/blogs/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/blogs/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner &amp; Mascot</span>
+                    </Link>
+
+                    {/* 2. All Articles & Content */}
+                    <Link
+                      href="/dashboard/blogs/articles"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/blogs/articles"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <FileText
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/blogs/articles"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">All Articles &amp; Content</span>
+                    </Link>
+
+                    {/* 3. Listing CTA Banner */}
+                    <Link
+                      href="/dashboard/blogs/cta"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/blogs/cta"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <MessageSquareText
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/blogs/cta"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Listing CTA Banner</span>
+                    </Link>
+
+                    {/* 4. SEO Optimization */}
+                    <Link
+                      href="/dashboard/blogs/seo"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/blogs/seo"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Globe
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/blogs/seo"
                             ? "text-[#E97835]"
                             : "text-[#687378]"
                         }`}
