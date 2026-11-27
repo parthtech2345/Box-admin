@@ -28,6 +28,26 @@ const nextConfig: NextConfig = {
         destination: "http://localhost:3000/Industries/:path*",
       },
       {
+        source: "/contact/:path*",
+        destination: "http://localhost:3000/contact/:path*",
+      },
+      {
+        source: "/machinery/:path*",
+        destination: "http://localhost:3000/machinery/:path*",
+      },
+      {
+        source: "/Machinery/:path*",
+        destination: "http://localhost:3000/Machinery/:path*",
+      },
+      {
+        source: "/Gallery/:path*",
+        destination: "http://localhost:3000/Gallery/:path*",
+      },
+      {
+        source: "/gallery/:path*",
+        destination: "http://localhost:3000/gallery/:path*",
+      },
+      {
         source: "/images/:path*",
         destination: "http://localhost:3000/images/:path*",
       },

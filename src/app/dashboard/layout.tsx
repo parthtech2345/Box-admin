@@ -37,6 +37,12 @@ import {
   PackageCheck,
   ShoppingBag,
   Calculator,
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  MessageSquareText,
+  Globe,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -89,6 +95,9 @@ export default function DashboardLayout({
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/industries"))
   );
+  const [contactDropdownOpen, setContactDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/contact"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -99,6 +108,7 @@ export default function DashboardLayout({
     setProductsDropdownOpen(Boolean(pathname?.includes("/dashboard/products")));
     setCustomPackagingDropdownOpen(Boolean(pathname?.includes("/dashboard/custom-packaging")));
     setIndustriesDropdownOpen(Boolean(pathname?.includes("/dashboard/industries")));
+    setContactDropdownOpen(Boolean(pathname?.includes("/dashboard/contact")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -568,6 +578,174 @@ export default function DashboardLayout({
                         }`}
                       />
                       <span className="truncate">All Industries & SEO</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Contact Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setContactDropdownOpen(!contactDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Mail className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Contact Section</span>
+                  </div>
+                  {contactDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Contact Page */}
+                {contactDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/contact/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner & Mascot</span>
+                    </Link>
+
+                    {/* 2. Contact Information Cards */}
+                    <Link
+                      href="/dashboard/contact/info-cards"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/info-cards"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Phone
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/info-cards"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Contact Information Cards</span>
+                    </Link>
+
+                    {/* 3. Contact Form & Showcase */}
+                    <Link
+                      href="/dashboard/contact/inquiry-form"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/inquiry-form"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Send
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/inquiry-form"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Contact Form & Showcase</span>
+                    </Link>
+
+                    {/* 4. Plant Map & Accessibility */}
+                    <Link
+                      href="/dashboard/contact/location-map"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/location-map"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <MapPin
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/location-map"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Plant Map & Directions</span>
+                    </Link>
+
+                    {/* 5. Why Connect Cards */}
+                    <Link
+                      href="/dashboard/contact/why-connect"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/why-connect"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <MessageSquareText
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/why-connect"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Why Connect Cards</span>
+                    </Link>
+
+                    {/* 6. Contact FAQs */}
+                    <Link
+                      href="/dashboard/contact/faqs"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/faqs"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <HelpCircle
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/faqs"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Contact FAQs</span>
+                    </Link>
+
+                    {/* 7. SEO Optimization */}
+                    <Link
+                      href="/dashboard/contact/seo"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/contact/seo"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Globe
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/contact/seo"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">SEO Optimization</span>
                     </Link>
                   </div>
                 )}
