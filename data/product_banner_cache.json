@@ -1,0 +1,14 @@
+{
+  "title": "Our Products",
+  "breadcrumbRoot": "Home",
+  "breadcrumbCurrent": "Products",
+  "backgroundImage": "/Product/Kraft Packaging Showcase Banner.png",
+  "backgroundImageAlt": "AAVRIT PACKAGING - Products Banner",
+  "characterImage": "/Product/character_qc_inspector.png",
+  "characterAlt": "Quality Control Specialist - AAVRIT PACKAGING",
+  "characterMediaType": "image",
+  "dialogueIcon": "📦",
+  "dialogueTitle": "Quality Tested Packaging!",
+  "dialogueSubtext": "High-burst strength & precision corrugated cartons",
+  "updatedAt": "2026-11-27T00:00:00.000Z"
+}

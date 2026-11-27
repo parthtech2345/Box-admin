@@ -33,6 +33,9 @@ import {
   Compass,
   Users,
   Info,
+  FolderKanban,
+  PackageCheck,
+  ShoppingBag,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -74,6 +77,9 @@ export default function DashboardLayout({
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/about-sections"))
   );
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/products"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -81,6 +87,7 @@ export default function DashboardLayout({
   useEffect(() => {
     setHomeDropdownOpen(Boolean(pathname?.includes("/dashboard/home-sections")));
     setAboutDropdownOpen(Boolean(pathname?.includes("/dashboard/about-sections")));
+    setProductsDropdownOpen(Boolean(pathname?.includes("/dashboard/products")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -321,6 +328,115 @@ export default function DashboardLayout({
                         </Link>
                       );
                     })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Product Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Product Section</span>
+                  </div>
+                  {productsDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Products */}
+                {productsDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/products/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/products/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <Sparkles
+                          className={`w-3.5 h-3.5 shrink-0 ${
+                            pathname === "/dashboard/products/banner"
+                              ? "text-[#E97835]"
+                              : "text-[#687378]"
+                          }`}
+                        />
+                        <span className="truncate">Hero Banner & Mascot</span>
+                      </div>
+                      <span
+                        className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase shrink-0 ${
+                          pathname === "/dashboard/products/banner"
+                            ? "bg-[#E97835] text-white"
+                            : "bg-[#E97835]/15 text-[#E97835]"
+                        }`}
+                      >
+                        Banner/GIF
+                      </span>
+                    </Link>
+
+                    {/* 2. Category */}
+                    <Link
+                      href="/dashboard/products/categories"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/products/categories"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <FolderKanban
+                          className={`w-3.5 h-3.5 shrink-0 ${
+                            pathname === "/dashboard/products/categories"
+                              ? "text-[#E97835]"
+                              : "text-[#687378]"
+                          }`}
+                        />
+                        <span className="truncate">Categories</span>
+                      </div>
+                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-[#E4DED3]/60 text-[#687378]">
+                        6 Main
+                      </span>
+                    </Link>
+
+                    {/* 3. Sub Category / Products */}
+                    <Link
+                      href="/dashboard/products/items"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname?.startsWith("/dashboard/products/items")
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <PackageCheck
+                          className={`w-3.5 h-3.5 shrink-0 ${
+                            pathname?.startsWith("/dashboard/products/items")
+                              ? "text-[#E97835]"
+                              : "text-[#687378]"
+                          }`}
+                        />
+                        <span className="truncate">Sub Categories / Products</span>
+                      </div>
+                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-[#E4DED3]/60 text-[#687378]">
+                        30 Items
+                      </span>
+                    </Link>
                   </div>
                 )}
               </div>

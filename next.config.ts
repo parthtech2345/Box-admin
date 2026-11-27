@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         destination: "http://localhost:3000/home/:path*",
       },
       {
+        source: "/Product/:path*",
+        destination: "http://localhost:3000/Product/:path*",
+      },
+      {
         source: "/images/:path*",
         destination: "http://localhost:3000/images/:path*",
       },

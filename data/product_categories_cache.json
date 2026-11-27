@@ -1,0 +1,110 @@
+[
+  {
+    "id": "corrugated-boxes",
+    "title": "Corrugated Boxes",
+    "slug": "corrugated-boxes",
+    "image": "/home/product-categories/corrugated-boxes.png",
+    "imageAlt": "Standard & Heavy Duty Corrugated Boxes Manufacturer - AAVRIT PACKAGING",
+    "imageName": "corrugated-boxes.png",
+    "description": "Standard slotted cartons and heavy-duty multi-ply boxes engineered for structural stacking and high load endurance.",
+    "itemCount": 5,
+    "order": 1,
+    "seo": {
+      "metaTitle": "Corrugated Boxes Manufacturer & Supplier | Aavrit Packaging",
+      "metaDescription": "Explore 3-ply, 5-ply, 7-ply and regular slotted corrugated boxes manufactured by Aavrit Packaging for heavy-duty shipping and industrial stacking.",
+      "metaKeywords": "corrugated boxes, 3 ply boxes, 5 ply boxes, 7 ply boxes, regular slotted cartons, industrial shipping boxes, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=corrugated-boxes",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Corrugated Boxes\",\n  \"description\": \"Standard slotted cartons and heavy-duty multi-ply boxes engineered for structural stacking and high load endurance.\",\n  \"url\": \"https://aavritpackaging.com/products?category=corrugated-boxes\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  },
+  {
+    "id": "printed-corrugated-boxes",
+    "title": "Printed Corrugated Boxes",
+    "slug": "printed-corrugated-boxes",
+    "image": "/home/product-categories/printed-corrugated-boxes.png",
+    "imageAlt": "Custom Printed Corrugated Boxes Manufacturer - AAVRIT PACKAGING",
+    "imageName": "printed-corrugated-boxes.png",
+    "description": "High-definition 1 to 4 colour flexographic printed boxes with sharp branded graphics, handling icons, and eco barcodes.",
+    "itemCount": 5,
+    "order": 2,
+    "seo": {
+      "metaTitle": "Custom Printed Corrugated Boxes | 1-4 Color Flexo Printing | Aavrit",
+      "metaDescription": "Custom printed corrugated cardboard boxes with 1 to 4 colour flexographic branding, high-resolution barcode reproduction, and eco-friendly water-based inks.",
+      "metaKeywords": "printed corrugated boxes, custom printed boxes, flexo printed cartons, branded packaging, 2 colour boxes, 4 colour boxes, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=printed-corrugated-boxes",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Printed Corrugated Boxes\",\n  \"description\": \"High-definition 1 to 4 colour flexographic printed boxes with sharp branded graphics, handling icons, and eco barcodes.\",\n  \"url\": \"https://aavritpackaging.com/products?category=printed-corrugated-boxes\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  },
+  {
+    "id": "die-cut-boxes",
+    "title": "Die-Cut Boxes",
+    "slug": "die-cut-boxes",
+    "image": "/home/product-categories/die-cut-boxes.png",
+    "imageAlt": "Precision CNC Die-Cut Corrugated Boxes - AAVRIT PACKAGING",
+    "imageName": "die-cut-boxes.png",
+    "description": "Precision CNC die-cut cartons featuring roll-end tuck-tops, carry handles, auto-lock bases, and custom shapes.",
+    "itemCount": 5,
+    "order": 3,
+    "seo": {
+      "metaTitle": "Precision Die-Cut Boxes & Mailers | Aavrit Packaging",
+      "metaDescription": "CNC precision die-cut boxes, self-locking mailers, crash lock auto-bottom cartons, and handle boxes engineered for effortless tape-free assembly.",
+      "metaKeywords": "die cut boxes, corrugated mailers, self locking boxes, auto bottom boxes, handle boxes, tape free boxes, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=die-cut-boxes",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Die-Cut Boxes\",\n  \"description\": \"Precision CNC die-cut cartons featuring roll-end tuck-tops, carry handles, auto-lock bases, and custom shapes.\",\n  \"url\": \"https://aavritpackaging.com/products?category=die-cut-boxes\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  },
+  {
+    "id": "industrial-packaging",
+    "title": "Industrial Packaging",
+    "slug": "industrial-packaging",
+    "image": "/home/product-categories/industrial-packaging.png",
+    "imageAlt": "Heavy Duty Industrial Corrugated Packaging - AAVRIT PACKAGING",
+    "imageName": "industrial-packaging.png",
+    "description": "Engineered heavy-duty corrugated packaging, internal partition grids, and pallet master containers for components.",
+    "itemCount": 5,
+    "order": 4,
+    "seo": {
+      "metaTitle": "Industrial Packaging Solutions & Gaylords | Aavrit Packaging",
+      "metaDescription": "Industrial packaging solutions including heavy-duty component boxes, automobile part shippers, bulk pallet gaylords, and protective partition grids.",
+      "metaKeywords": "industrial packaging, pallet boxes, gaylord containers, component boxes, automobile packaging, partition dividers, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=industrial-packaging",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Industrial Packaging\",\n  \"description\": \"Engineered heavy-duty corrugated packaging, internal partition grids, and pallet master containers for components.\",\n  \"url\": \"https://aavritpackaging.com/products?category=industrial-packaging\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  },
+  {
+    "id": "food-packaging",
+    "title": "Food Packaging",
+    "slug": "food-packaging",
+    "image": "/home/product-categories/food-packaging.png",
+    "imageAlt": "Certified Food Grade Corrugated Boxes - AAVRIT PACKAGING",
+    "imageName": "food-packaging.png",
+    "description": "Food-grade, ventilated produce trays, hygienic bakery cartons, and moisture-resistant secondary FMCG boxes.",
+    "itemCount": 5,
+    "order": 5,
+    "seo": {
+      "metaTitle": "Food-Grade Corrugated Packaging & Pizza Boxes | Aavrit Packaging",
+      "metaDescription": "Hygienic food-grade packaging boxes, greaseproof bakery boxes, vented pizza cartons, fruit harvest shippers, and FMCG master shipper cartons.",
+      "metaKeywords": "food packaging, food grade boxes, pizza boxes, bakery cake boxes, ventilated fruit boxes, FMCG shipper cartons, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=food-packaging",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Food Packaging\",\n  \"description\": \"Food-grade, ventilated produce trays, hygienic bakery cartons, and moisture-resistant secondary FMCG boxes.\",\n  \"url\": \"https://aavritpackaging.com/products?category=food-packaging\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  },
+  {
+    "id": "ecommerce-packaging",
+    "title": "E-commerce Packaging",
+    "slug": "ecommerce-packaging",
+    "image": "/home/product-categories/ecommerce-packaging.png",
+    "imageAlt": "Tamper Evident E-Commerce Shipping Packaging - AAVRIT PACKAGING",
+    "imageName": "ecommerce-packaging.png",
+    "description": "Tamper-evident courier boxes, self-locking mailers, and tear-strip shipping cartons built for modern fulfillment.",
+    "itemCount": 5,
+    "order": 6,
+    "seo": {
+      "metaTitle": "E-commerce Packaging Boxes & Courier Mailers | Aavrit Packaging",
+      "metaDescription": "E-commerce packaging solutions including tamper-evident courier boxes with peel & seal adhesive, tear-strip mailers, and returnable shipping boxes.",
+      "metaKeywords": "ecommerce packaging, courier boxes, tamper evident mailers, returnable shipping boxes, tear strip cartons, DTC packaging, Aavrit Packaging",
+      "canonicalLink": "https://aavritpackaging.com/products?category=ecommerce-packaging",
+      "schemaMarkup": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"E-commerce Packaging\",\n  \"description\": \"Tamper-evident courier boxes, self-locking mailers, and tear-strip shipping cartons built for modern fulfillment.\",\n  \"url\": \"https://aavritpackaging.com/products?category=ecommerce-packaging\",\n  \"provider\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Aavrit Packaging\",\n    \"url\": \"https://aavritpackaging.com\"\n  }\n}"
+    }
+  }
+]
