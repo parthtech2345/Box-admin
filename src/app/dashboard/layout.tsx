@@ -45,6 +45,7 @@ import {
   Globe,
   BookOpen,
   FileText,
+  Cpu,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -103,6 +104,9 @@ export default function DashboardLayout({
   const [blogsDropdownOpen, setBlogsDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/blogs"))
   );
+  const [machineryDropdownOpen, setMachineryDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/machinery"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -115,6 +119,7 @@ export default function DashboardLayout({
     setIndustriesDropdownOpen(Boolean(pathname?.includes("/dashboard/industries")));
     setContactDropdownOpen(Boolean(pathname?.includes("/dashboard/contact")));
     setBlogsDropdownOpen(Boolean(pathname?.includes("/dashboard/blogs")));
+    setMachineryDropdownOpen(Boolean(pathname?.includes("/dashboard/machinery")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -756,39 +761,32 @@ export default function DashboardLayout({
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Blogs Section (Collapsible Dropdown) */}
-              <div className="space-y-1">
+            {/* Blogs Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
                 <button
                   type="button"
                   onClick={() => setBlogsDropdownOpen(!blogsDropdownOpen)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    pathname?.includes("/dashboard/blogs")
-                      ? "bg-[#FFF6F0] text-[#E97835] shadow-xs border border-[#E97835]/30"
-                      : "text-[#202A2E] hover:bg-[#F5F2EB]"
-                  }`}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
-                        pathname?.includes("/dashboard/blogs")
-                          ? "bg-[#E97835] text-white"
-                          : "bg-[#F5F2EB] text-[#687378]"
-                      }`}
-                    >
-                      <BookOpen className="w-4 h-4" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <BookOpen className="w-3.5 h-3.5" />
                     </div>
-                    <span className="truncate font-heading">Blogs Section</span>
+                    <span>Blogs Section</span>
                   </div>
-                  <ChevronDown
-                    className={`w-4 h-4 text-[#8C989E] transition-transform duration-200 shrink-0 ${
-                      blogsDropdownOpen ? "rotate-180 text-[#E97835]" : ""
-                    }`}
-                  />
+                  {blogsDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
                 </button>
 
+                {/* Dropdown Items List for Blogs */}
                 {blogsDropdownOpen && (
-                  <div className="pl-4 pr-1 py-1 space-y-1">
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
                     {/* 1. Hero Banner & Mascot */}
                     <Link
                       href="/dashboard/blogs/banner"
@@ -814,14 +812,14 @@ export default function DashboardLayout({
                       href="/dashboard/blogs/articles"
                       onClick={() => setMobileSidebarOpen(false)}
                       className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
-                        pathname === "/dashboard/blogs/articles"
+                        pathname?.startsWith("/dashboard/blogs/articles")
                           ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
                           : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
                       }`}
                     >
                       <FileText
                         className={`w-3.5 h-3.5 shrink-0 ${
-                          pathname === "/dashboard/blogs/articles"
+                          pathname?.startsWith("/dashboard/blogs/articles")
                             ? "text-[#E97835]"
                             : "text-[#687378]"
                         }`}
@@ -872,20 +870,173 @@ export default function DashboardLayout({
                 )}
               </div>
             </div>
+
+            {/* Machinery Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setMachineryDropdownOpen(!machineryDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Cpu className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Machinery Section</span>
+                  </div>
+                  {machineryDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Machinery */}
+                {machineryDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/machinery/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/machinery/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/machinery/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner &amp; Mascot</span>
+                    </Link>
+
+                    {/* 2. Plant Intro & Highlights */}
+                    <Link
+                      href="/dashboard/machinery/intro"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/machinery/intro"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Layers
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/machinery/intro"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Plant Intro &amp; Highlights</span>
+                    </Link>
+
+                    {/* 3. All Machinery & Detail Editor */}
+                    <Link
+                      href="/dashboard/machinery/items"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname?.startsWith("/dashboard/machinery/items")
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Cpu
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname?.startsWith("/dashboard/machinery/items")
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">All Machinery &amp; Details</span>
+                    </Link>
+
+                    {/* 4. Operational Advantage */}
+                    <Link
+                      href="/dashboard/machinery/why-matters"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/machinery/why-matters"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <ShieldCheck
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/machinery/why-matters"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Operational Advantage</span>
+                    </Link>
+
+                    {/* 5. Consultation CTA */}
+                    <Link
+                      href="/dashboard/machinery/cta"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/machinery/cta"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <MessageSquareText
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/machinery/cta"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Consultation CTA</span>
+                    </Link>
+
+                    {/* 6. SEO Optimization */}
+                    <Link
+                      href="/dashboard/machinery/seo"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/machinery/seo"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Globe
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/machinery/seo"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">SEO Optimization</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Sidebar Footer */}
-          <div className="p-3.5 border-t border-[#E4DED3] bg-[#FAF9F5] text-xs text-[#687378]">
-            <div className="flex items-center justify-between text-[11px] mb-1">
-              <span className="font-semibold text-[#202A2E]">MongoDB Sync</span>
-              <span className="text-emerald-700 font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                Active
+          {/* Sidebar Footer - Company Brand & Motto */}
+          <div className="p-3.5 border-t border-[#E4DED3] bg-[#FAF9F5]">
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="w-5 h-5 rounded-md bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                <Package className="w-3 h-3" />
+              </div>
+              <span className="font-heading font-bold text-xs text-[#202A2E]">
+                Aavrit Packaging
               </span>
             </div>
-            <p className="text-[10px] text-[#847B70]">
-              box-website database synced in real-time.
+            <p className="text-[11px] text-[#687378] leading-relaxed">
+              Precision German corrugation engineering &amp; heavy-duty industrial box manufacturing.
             </p>
+            <div className="flex items-center justify-between text-[10px] text-[#8C7E72] mt-2 pt-2 border-t border-[#E4DED3]/70">
+              <span className="font-medium">Quality &bull; Protection &bull; Speed</span>
+              <span className="font-mono text-[#A0ACB2]">v2.4</span>
+            </div>
           </div>
         </aside>
 

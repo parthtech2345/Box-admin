@@ -1014,11 +1014,26 @@ export default function ContactInquiryFormEditorPage() {
                     >
                       <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-white border border-[#E4DED3]">
                         {sc.image ? (
-                          <Image
-                            src={sc.image}
+                          <img
+                            src={
+                              sc.image.startsWith("http://") ||
+                              sc.image.startsWith("https://") ||
+                              sc.image.startsWith("data:") ||
+                              sc.image.startsWith("blob:") ||
+                              sc.image.startsWith("/uploads/")
+                                ? sc.image
+                                : `${process.env.NEXT_PUBLIC_WEBSITE_URL || "http://localhost:3000"}${encodeURI(
+                                    sc.image.startsWith("/") ? sc.image : `/${sc.image}`
+                                  )}`
+                            }
                             alt={sc.imageAlt || sc.title}
-                            fill
-                            className="object-cover"
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              if (target.src !== sc.image) {
+                                target.src = sc.image;
+                              }
+                            }}
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-xs text-[#8C989E]">
