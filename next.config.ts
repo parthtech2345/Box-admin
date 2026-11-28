@@ -48,6 +48,14 @@ const nextConfig: NextConfig = {
         destination: "http://localhost:3000/Machinery/:path*",
       },
       {
+        source: "/Sustanablity/:path*",
+        destination: "http://localhost:3000/Sustanablity/:path*",
+      },
+      {
+        source: "/sustainability/:path*",
+        destination: "http://localhost:3000/sustainability/:path*",
+      },
+      {
         source: "/Gallery/:path*",
         destination: "http://localhost:3000/Gallery/:path*",
       },

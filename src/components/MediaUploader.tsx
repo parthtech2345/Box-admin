@@ -72,19 +72,19 @@ export default function MediaUploader({
   };
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <label className="text-xs font-bold uppercase tracking-wider text-[#202A2E]">
+    <div className="space-y-2 min-w-0">
+      <div className="flex items-center justify-between gap-2">
+        <label className="text-xs font-bold uppercase tracking-wider text-[#202A2E] truncate">
           {label}
         </label>
-        <span className="text-[10px] font-semibold text-[#847B70] uppercase">
+        <span className="text-[10px] font-semibold text-[#847B70] uppercase shrink-0">
           Supported: {allowedTypes.join(" / ")}
         </span>
       </div>
 
-      <div className="bg-[#FAF9F5] border border-[#E4DED3] rounded-xl p-3.5 space-y-3">
-        {/* Upload & URL Input Row */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+      <div className="bg-[#FAF9F5] border border-[#E4DED3] rounded-xl p-3.5 space-y-3 min-w-0 overflow-hidden">
+        {/* Upload & URL Input Stack (placed cleanly below input) */}
+        <div className="space-y-2">
           <input
             type="text"
             value={value || ""}
@@ -95,8 +95,8 @@ export default function MediaUploader({
               else if (val.match(/\.gif$/i)) detected = "gif";
               onChange(val, detected);
             }}
-            placeholder="/home/example.png or https://... or uploaded file"
-            className="flex-1 px-3.5 py-2 bg-[#FFFFFF] border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#E97835]"
+            placeholder="/Sustanablity/... or https://... or upload below"
+            className="w-full px-3.5 py-2 bg-[#FFFFFF] border border-[#E4DED3] rounded-lg text-xs text-[#202A2E] placeholder-[#A0988A] focus:outline-none focus:ring-2 focus:ring-[#E97835]"
           />
 
           <input
@@ -111,7 +111,7 @@ export default function MediaUploader({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="px-3.5 py-2 rounded-lg bg-[#E97835] hover:bg-[#d66a2a] text-[#FFFFFF] text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer disabled:opacity-60 shadow-xs"
+            className="w-full py-2 px-3.5 rounded-lg bg-[#E97835] hover:bg-[#d66a2a] text-[#FFFFFF] text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60 shadow-xs"
           >
             {uploading ? (
               <>
@@ -136,13 +136,13 @@ export default function MediaUploader({
 
         {/* Media Preview Box */}
         {value && typeof value === "string" && value.trim() !== "" && (
-          <div className="relative rounded-xl overflow-hidden border border-[#E4DED3] bg-[#FFFFFF] p-3 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-[#E97835] flex items-center gap-1.5">
+          <div className="relative rounded-xl overflow-hidden border border-[#E4DED3] bg-[#FFFFFF] p-3 space-y-2 min-w-0">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] font-bold text-[#E97835] flex items-center gap-1.5 shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E97835] animate-pulse" />
-                Current Active Media Preview
+                Current Active Preview
               </span>
-              <span className="text-[10px] font-mono text-[#847B70] truncate max-w-[220px]" title={value}>
+              <span className="text-[10px] font-mono text-[#847B70] truncate min-w-0" title={value}>
                 {value}
               </span>
             </div>

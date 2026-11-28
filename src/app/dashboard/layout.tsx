@@ -46,6 +46,8 @@ import {
   BookOpen,
   FileText,
   Cpu,
+  Recycle,
+  SlidersHorizontal,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -101,6 +103,9 @@ export default function DashboardLayout({
   const [contactDropdownOpen, setContactDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/contact"))
   );
+  const [sustainabilityDropdownOpen, setSustainabilityDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/sustainability"))
+  );
   const [blogsDropdownOpen, setBlogsDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/blogs"))
   );
@@ -117,6 +122,7 @@ export default function DashboardLayout({
     setProductsDropdownOpen(Boolean(pathname?.includes("/dashboard/products")));
     setCustomPackagingDropdownOpen(Boolean(pathname?.includes("/dashboard/custom-packaging")));
     setIndustriesDropdownOpen(Boolean(pathname?.includes("/dashboard/industries")));
+    setSustainabilityDropdownOpen(Boolean(pathname?.includes("/dashboard/sustainability")));
     setContactDropdownOpen(Boolean(pathname?.includes("/dashboard/contact")));
     setBlogsDropdownOpen(Boolean(pathname?.includes("/dashboard/blogs")));
     setMachineryDropdownOpen(Boolean(pathname?.includes("/dashboard/machinery")));
@@ -589,6 +595,214 @@ export default function DashboardLayout({
                         }`}
                       />
                       <span className="truncate">All Industries & SEO</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Sustainability Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setSustainabilityDropdownOpen(!sustainabilityDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <Leaf className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Sustainability Section</span>
+                  </div>
+                  {sustainabilityDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Sustainability */}
+                {sustainabilityDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/sustainability/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner & Mascot</span>
+                    </Link>
+
+                    {/* 2. Intro & Highlights */}
+                    <Link
+                      href="/dashboard/sustainability/intro"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/intro"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Layers
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/intro"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Intro & Highlights</span>
+                    </Link>
+
+                    {/* 3. Corrugated Advantages */}
+                    <Link
+                      href="/dashboard/sustainability/difference"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/difference"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Recycle
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/difference"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Corrugated Advantages</span>
+                    </Link>
+
+                    {/* 4. Responsible Manufacturing */}
+                    <Link
+                      href="/dashboard/sustainability/manufacturing"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/manufacturing"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <SlidersHorizontal
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/manufacturing"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Responsible Manufacturing</span>
+                    </Link>
+
+                    {/* 5. Sustainable Solutions */}
+                    <Link
+                      href="/dashboard/sustainability/solutions"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/solutions"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Package
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/solutions"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Sustainable Solutions</span>
+                    </Link>
+
+                    {/* 6. Practical Waste Reduction */}
+                    <Link
+                      href="/dashboard/sustainability/waste-reduction"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/waste-reduction"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <ShieldCheck
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/waste-reduction"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Waste Minimization</span>
+                    </Link>
+
+                    {/* 7. Sustainability FAQs */}
+                    <Link
+                      href="/dashboard/sustainability/faqs"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/faqs"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <HelpCircle
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/faqs"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Sustainability FAQs</span>
+                    </Link>
+
+                    {/* 8. Collaboration CTA */}
+                    <Link
+                      href="/dashboard/sustainability/cta"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/cta"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <MessageSquareText
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/cta"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Collaboration CTA</span>
+                    </Link>
+
+                    {/* 9. SEO Optimization */}
+                    <Link
+                      href="/dashboard/sustainability/seo"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/sustainability/seo"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Globe
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/sustainability/seo"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">SEO Optimization</span>
                     </Link>
                   </div>
                 )}
