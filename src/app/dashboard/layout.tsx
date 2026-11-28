@@ -48,6 +48,7 @@ import {
   Cpu,
   Recycle,
   SlidersHorizontal,
+  Image as ImageIcon,
 } from "lucide-react";
 import { HOME_SECTIONS_LIST } from "@/lib/defaultHomeData";
 import { ABOUT_SECTIONS_LIST } from "@/lib/defaultAboutData";
@@ -112,6 +113,9 @@ export default function DashboardLayout({
   const [machineryDropdownOpen, setMachineryDropdownOpen] = useState(
     () => Boolean(pathname?.includes("/dashboard/machinery"))
   );
+  const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(
+    () => Boolean(pathname?.includes("/dashboard/gallery"))
+  );
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -126,6 +130,7 @@ export default function DashboardLayout({
     setContactDropdownOpen(Boolean(pathname?.includes("/dashboard/contact")));
     setBlogsDropdownOpen(Boolean(pathname?.includes("/dashboard/blogs")));
     setMachineryDropdownOpen(Boolean(pathname?.includes("/dashboard/machinery")));
+    setGalleryDropdownOpen(Boolean(pathname?.includes("/dashboard/gallery")));
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -1232,25 +1237,152 @@ export default function DashboardLayout({
                 )}
               </div>
             </div>
+
+            {/* Gallery Dynamic Content Dropdown Section */}
+            <div>
+              <div className="rounded-xl border border-[#E4DED3] overflow-hidden bg-[#FAF9F5]">
+                <button
+                  type="button"
+                  onClick={() => setGalleryDropdownOpen(!galleryDropdownOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-[#202A2E] hover:bg-[#F5F2EB] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-6 h-6 rounded-lg bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
+                      <ImageIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <span>Gallery Section</span>
+                  </div>
+                  {galleryDropdownOpen ? (
+                    <ChevronDown className="w-4 h-4 text-[#687378]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-[#687378]" />
+                  )}
+                </button>
+
+                {/* Dropdown Items List for Gallery */}
+                {galleryDropdownOpen && (
+                  <div className="border-t border-[#E4DED3] bg-[#FFFFFF] py-1 px-1.5 space-y-0.5">
+                    {/* 1. Overview Hub */}
+                    <Link
+                      href="/dashboard/gallery"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/gallery"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <LayoutDashboard
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/gallery"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Gallery Overview</span>
+                    </Link>
+
+                    {/* 2. Hero Banner & Mascot */}
+                    <Link
+                      href="/dashboard/gallery/banner"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/gallery/banner"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Sparkles
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/gallery/banner"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Hero Banner & Mascot</span>
+                    </Link>
+
+                    {/* 3. Showcase Items & Categories */}
+                    <Link
+                      href="/dashboard/gallery/items"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/gallery/items"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <FolderKanban
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/gallery/items"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Showcase Items & Grid</span>
+                    </Link>
+
+                    {/* 4. Consultation CTA */}
+                    <Link
+                      href="/dashboard/gallery/cta"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/gallery/cta"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <PackageCheck
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/gallery/cta"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">Consultation CTA</span>
+                    </Link>
+
+                    {/* 5. SEO Optimization */}
+                    <Link
+                      href="/dashboard/gallery/seo"
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all ${
+                        pathname === "/dashboard/gallery/seo"
+                          ? "bg-[#FFF6F0] text-[#E97835] font-bold border-l-4 border-[#E97835] shadow-2xs"
+                          : "text-[#202A2E] hover:bg-[#F5F2EB] font-medium"
+                      }`}
+                    >
+                      <Globe
+                        className={`w-3.5 h-3.5 shrink-0 ${
+                          pathname === "/dashboard/gallery/seo"
+                            ? "text-[#E97835]"
+                            : "text-[#687378]"
+                        }`}
+                      />
+                      <span className="truncate">SEO Optimization</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Sidebar Footer - Company Brand & Motto */}
-          <div className="p-3.5 border-t border-[#E4DED3] bg-[#FAF9F5]">
-            <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-5 h-5 rounded-md bg-[#E97835]/15 text-[#E97835] flex items-center justify-center">
-                <Package className="w-3 h-3" />
-              </div>
-              <span className="font-heading font-bold text-xs text-[#202A2E]">
-                Aavrit Packaging
-              </span>
-            </div>
-            <p className="text-[11px] text-[#687378] leading-relaxed">
-              Precision German corrugation engineering &amp; heavy-duty industrial box manufacturing.
-            </p>
-            <div className="flex items-center justify-between text-[10px] text-[#8C7E72] mt-2 pt-2 border-t border-[#E4DED3]/70">
-              <span className="font-medium">Quality &bull; Protection &bull; Speed</span>
-              <span className="font-mono text-[#A0ACB2]">v2.4</span>
-            </div>
+          {/* Sidebar Footer - Company Logo */}
+          <div className="px-4 py-3 border-t border-[#E4DED3] bg-[#FAF9F5] flex items-center justify-between">
+            <Link
+              href="/"
+              target="_blank"
+              className="hover:opacity-80 transition-opacity flex items-center"
+              title="Visit Live Website"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/aavrit_logo_light_bg.svg"
+                alt="Aavrit Packaging"
+                className="h-6 w-auto object-contain"
+              />
+            </Link>
+            <span className="text-[10px] font-mono text-[#A0ACB2]">v2.4</span>
           </div>
         </aside>
 
